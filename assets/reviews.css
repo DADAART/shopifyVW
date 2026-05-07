@@ -1,0 +1,89 @@
+
+.trustSlide {
+  padding: 1.5rem 0;
+}
+
+.trustSlide .splide {
+  position: relative;
+  width: 75%;
+  margin: 2rem auto;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.trustSlide h3 {
+  text-align: center;
+padding: 0;
+  padding-bottom: 0px;
+font-size: 25px;
+font-weight: 900;
+width: 100%;
+  margin-top: 2rem;
+}
+
+.trustSlide ul {
+  width: max-content;
+  display: flex;
+  align-items: flex-start;
+}
+
+.trustSlide ul li {
+  padding: 0 1rem;
+}
+
+.trustSlide ul li svg{
+  width: 120px;
+}
+
+.trustSlide ul li .p1 {
+  font-weight: bold;
+}
+.trustSlide ul li .p2 {
+  font-size: 90%;
+}
+.trustSlide ul li .p3 {
+  font-size: 90%;
+  opacity: 0.9;
+ }
+
+.trustSlide .splide .splide__arrow {
+  background-color: transparent;
+  box-shadow: none;
+  border: 0;
+  outline: 0;
+}
+
+.trustSlide .splide .splide__arrow svg {
+  fill: rgb(0,0,0,0.8);
+}
+
+.trustSlide .splide .splide__arrow:hover svg {
+  fill: rgb(0,0,0,1);
+}
+
+.trustSlide .splide__track {
+  overflow: hidden;
+  background-color: #fff;
+}
+.trustSlide .splide__arrow.splide__arrow--prev {
+  left: -40px;
+}
+.trustSlide .splide__arrow.splide__arrow--next {
+  right: -40px;
+}
+
+@media only screen and (min-width: 500px) {
+
+  .trustSlide .splide {
+  width: 80%;
+  }
+}
+
+@media only screen and (min-width: 760px) {
+  
+.trustSlide .splide__arrow.splide__arrow--prev {
+  left: -70px;
+}
+.trustSlide .splide__arrow.splide__arrow--next {
+  right: -70px;
+}
+}

@@ -1,0 +1,32 @@
+.template-index.template-about video {
+  width: 100%;
+  display: block;
+}
+.template-index.template-about .Transform .bgImg {
+  height: auto;
+}
+.template-index.template-about .Presentation .titleH1 {
+  position: relative;
+  top: 1rem;
+}
+.template-index.template-about .Presentation h1 {
+  color: #000;
+  text-shadow: none;
+}
+
+
+
+/* MEDIA SCREEN */
+
+
+@media only screen and (min-width: 1025px) {
+  
+.template-index.template-about .Presentation h1 {
+  color: #fff;
+  text-shadow: 3px 6px 6px rgb(0 0 0 / 16%);
+}
+.template-index.template-about .Transform > div {
+  flex: 50%;
+}
+  
+}
