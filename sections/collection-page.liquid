@@ -1,0 +1,538 @@
+{{ 'collection-page.css' | asset_url | stylesheet_tag }}
+{{ 'collection-page.js' | asset_url | script_tag }}
+
+{% if request.locale.iso_code contains 'fr' %}
+  {% assign localUrl = '' %}
+{% else %}
+  {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+{% endif %}
+
+{% if collection.handle contains 'style' or collection.handle contains 'stil' %}
+  {% assign pageStyle = '' %}
+{% elsif collection.handle contains 'couleur'
+  or collection.handle contains 'farbe'
+  or collection.handle contains 'color'
+%}
+  {% assign pageCouleur = '' %}
+{% elsif collection.handle contains 'best' %}
+  {% assign pageBest = '' %}
+{% else %}
+  {% assign pageCollections = '' %}
+{% endif %}
+
+<div
+  class="
+    notranslate
+    {% if pageCollections %}collectionCollections
+    {% elsif pageStyle %}collectionFilters
+    {% elsif pageCouleur %}collectionFilters
+    {% elsif pageBest %}collectionBest
+      {% endif %}
+  "
+>
+  <div class="popupPreview">
+    <div class="popupPreviewBg popupPreviewHide"></div>
+    <div
+      class="popupPreviewContent"
+      role="img"
+      alt="Mise en situation du carreau adhésif dans une maison. Adapté à toutes vos pièces"
+    >
+      <span class="popupPreviewHide">x</span>
+      <div>
+        <div class="listRooms">
+          <div>
+            {% if collection.handle contains 'camping-car' %}
+              <small>Camping Car :</small>
+              <span>Salon</span>
+            {% elsif collection.handle contains 'mobilhome' %}
+              <small>Mobil Home :</small>
+              <span>Salon</span>
+            {% else %}
+              <small>{{ 'vw.collection_page.destination' | t }} :</small>
+              <span>{{ 'vw.collection_page.pieces.cuisine' | t }}</span>
+            {% endif %}
+            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 40 40" width="18" height="18">
+              <path
+                  d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+              </path>
+            </svg>
+          </div>
+
+          {% if collection.handle contains 'camping-car' %}
+            <ul>
+              <li id="camping_car_salon">Salon</li>
+              <li id="camping_car_chambre">Chambre</li>
+              <li id="camping_car_sdb">S. de bain</li>
+            </ul>
+          {% elsif collection.handle contains 'mobilhome' %}
+            <ul>
+              <li id="mobilhome_salon">Salon</li>
+              <li id="mobilhome_chambre">Chambre</li>
+              <li id="mobilhome_sdb">S. de bain</li>
+            </ul>
+          {% else %}
+            <ul>
+              <li id="KITCHEN">{{ 'vw.collection_page.pieces.cuisine' | t }}</li>
+              <li id="SHOWER">{{ 'vw.collection_page.pieces.douche' | t }}</li>
+              <li id="BATHROOM">{{ 'vw.collection_page.pieces.sdb' | t }}</li>
+              <li id="FURNITURE">{{ 'vw.collection_page.pieces.meuble' | t }}</li>
+              <li id="WALL">{{ 'vw.collection_page.pieces.mur' | t }}</li>
+              <li id="FLOOR">{{ 'vw.collection_page.pieces.sol' | t }}</li>
+            </ul>
+          {% endif %}
+        </div>
+        <a data-href="#"
+          ><span>{{ 'vw.collection_page.produit' | t }}</span></a
+        >
+      </div>
+    </div>
+  </div>
+
+  <section class="headerCollection">
+    <div class="title">
+      <h1>
+        {{ 'vw.header.nav.carreaux' | t }}
+        <small>20 x 20 cm</small>
+        <small>40 x 40 cm</small>
+        <span><small>20 x 20 cm</small></span>
+      </h1>
+    </div>
+    <div class="blocFilters">
+      {% if collection.handle contains 'camping-car' %}
+        <ul>
+          <li class="listFilter listFilterCollections">
+            <a data-href="{{ localUrl }}/collections/camping-car/">
+              {{ 'vw.collection_page.collections.collections' | t }}
+            </a>
+          </li>
+          <li class="listFilter listFilterColor">
+            <a data-href="{{ localUrl }}/collections/camping-car-couleurs/">
+              {{ 'vw.collection_page.collections.couleurs' | t }}
+            </a>
+          </li>
+
+          <li class="listFilter listFilterStyle">
+            <a data-href="{{ localUrl }}/collections/camping-car-style/">
+              {{ 'vw.collection_page.collections.style' | t }}
+            </a>
+          </li>
+          <li class="listFilter listFilterBest">
+            <a data-href="{{ localUrl }}/collections/camping-car-bestsellers/">
+              {{ 'vw.collection_page.collections.best' | t }}
+            </a>
+          </li>
+        </ul>
+      {% elsif collection.handle contains 'mobilhome' %}
+        <ul>
+          <li class="listFilter listFilterCollections">
+            <a data-href="{{ localUrl }}/collections/mobilhome/">
+              {{ 'vw.collection_page.collections.collections' | t }}
+            </a>
+          </li>
+          <li class="listFilter listFilterColor">
+            <a data-href="{{ localUrl }}/collections/mobilhome-couleurs/">
+              {{ 'vw.collection_page.collections.couleurs' | t }}
+            </a>
+          </li>
+
+          <li class="listFilter listFilterStyle">
+            <a data-href="{{ localUrl }}/collections/mobilhome-style/">
+              {{ 'vw.collection_page.collections.style' | t }}
+            </a>
+          </li>
+          <li class="listFilter listFilterBest">
+            <a data-href="{{ localUrl }}/collections/mobilhome-bestsellers/">
+              {{ 'vw.collection_page.collections.best' | t }}
+            </a>
+          </li>
+        </ul>
+      {% else %}
+        <ul>
+          <li class="listFilter listFilterCollections">
+            <a data-href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-collections' | t }}/">
+              {{ 'vw.collection_page.collections.collections' | t }}
+            </a>
+          </li>
+          <li class="listFilter listFilterColor">
+            <a data-href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-couleurs' | t }}/">
+              {{ 'vw.collection_page.collections.couleurs' | t }}
+            </a>
+          </li>
+
+          <li class="listFilter listFilterStyle">
+            <a data-href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-style' | t }}/">
+              {{ 'vw.collection_page.collections.style' | t }}
+            </a>
+          </li>
+          <li class="listFilter listFilterBest">
+            <a data-href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-bestsellers' | t }}/">
+              {{ 'vw.collection_page.collections.best' | t }}
+            </a>
+          </li>
+        </ul>
+      {% endif %}
+    </div>
+  </section>
+  <section class="Products">
+    {% if pageCouleur %}
+      <div class="filters filterColors">
+        <ul>
+          <li id="black" style="background-color:#212121"></li>
+          <li id="grey" style="background-color:#808080"></li>
+          <li id="white" style="background-color:#FFFFFF"></li>
+          <li id="beige" style="background-color:#F5F5DC"></li>
+          <li id="brown" style="background-color:#8E6841"></li>
+          <li id="orange" style="background-color:#FFA500"></li>
+          <li id="blue" style="background-color:#3A4879"></li>
+          <li id="green" style="background-color:#008000"></li>
+          <li id="red" style="background-color:#B61815"></li>
+          <li id="pink" style="background-color:#FFC0CB"></li>
+        </ul>
+      </div>
+    {% elsif pageStyle %}
+      <div class="filters filterStyles">
+        <ul>
+          <li id="material">{{ 'vw.collection_page.style.matiere' | t }}</li>
+          <li id="cement_tiles">{{ 'vw.collection_page.style.carreaux_ciment' | t }}</li>
+          <li id="tile">{{ 'vw.collection_page.style.carrelage' | t }}</li>
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if pageCollections %}
+      {% for collection in collections %}
+        {% if collection.handle contains 'arche'
+          or collection.handle contains 'beton'
+          or collection.handle contains 'bois'
+          or collection.handle contains 'brique'
+          or collection.handle contains 'carreaux-de-ciment'
+          or collection.handle contains 'carreaux-de-metro'
+          or collection.handle contains 'carreaux-marocains'
+          or collection.handle contains 'couleurs-unies'
+          or collection.handle contains 'marbre'
+          or collection.handle contains 'mosaique'
+          or collection.handle contains 'osier'
+          or collection.handle contains 'zelliges'
+          or collection.handle contains 'quad'
+          or collection.handle contains 'mono'
+          or collection.handle contains 'cuir'
+          or collection.handle contains 'abstrait'
+          or collection.handle contains 'mono'
+          or collection.handle contains 'terra'
+          or collection.handle contains 'montreal'
+        %}
+          <div id="{{ collection.handle }}" class="bgCollection {{ collection.handle }} white">
+            <h2>
+              {{ collection.title }}
+              {% if collection.handle == 'arche' -%}
+                <small>Nouvelle collection</small>
+              {%- endif %}
+            </h2>
+            <ul class="productsList">
+              {% for product in collection.products %}
+                {% unless product.handle contains 'marketplace' or product.handle contains 'backsplash' %}
+                  <li>
+                    <div class="sale-icon" style="display:none;">
+                      <span>-33%</span>
+                    </div>
+                    <span>{{ product.title }}</span>
+                    <a>
+                      <img
+                        alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} {{ product.title }} - collection {{ collection.title }}"
+                        loading="lazy"
+                        src="{{ product.images[1] | img_url: '200x' }}"
+                      >
+                    </a>
+                    <div class="buttons">
+                      <a data-href="{{ product.url }}">{{ 'vw.collection_page.produit' | t }}</a>
+                      <span id="{% assign current_variant = product.selected_or_first_available_variant %}{{ current_variant.sku }}">
+                        <svg
+                          version="1.1"
+                          xmlns="https://www.w3.org/2000/svg"
+                          xmlns:xlink="https://www.w3.org/1999/xlink"
+                          x="0px"
+                          y="0px"
+                          viewBox="0 0 56.966 56.966"
+                          style="enable-background:new 0 0 56.966 56.966;"
+                          xml:space="preserve"
+                        >
+                          <path
+                              d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                        </svg>
+                      </span>
+                    </div>
+                  </li>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+    {% else %}
+      <div class="black">
+        <ul class="productsList">
+          {% paginate collection.products by 200 %}
+            {% for product in collection.products %}
+              {% unless product.handle contains 'marketplace' or product.handle contains 'backsplash' %}
+                <li>
+                  <div class="sale-icon" style="display:none;">
+                    <span>-33%</span>
+                  </div>
+                  <span>{{ product.title }}</span>
+                  <a>
+                    <img
+                      alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} {{ product.title }}"
+                      loading="lazy"
+                      src="{{ product.images[1] | img_url: '200x' }}"
+                    >
+                  </a>
+                  <div class="buttons">
+                    <a data-href="{{ product.url }}">{{ 'vw.collection_page.produit' | t }}</a>
+                    <span id="{% assign current_variant = product.selected_or_first_available_variant %}{{ current_variant.sku }}">
+                      <svg
+                        version="1.1"
+                        xmlns="https://www.w3.org/2000/svg"
+                        xmlns:xlink="https://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 56.966 56.966"
+                        style="enable-background:new 0 0 56.966 56.966;"
+                        xml:space="preserve"
+                      >
+                        <path
+                            d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                      </svg>
+                    </span>
+                  </div>
+                </li>
+              {% endunless %}
+            {% endfor %}
+          {% endpaginate %}
+        </ul>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<script>
+         //changeListFilters
+
+    {% if pageBest %}
+      $('.listFilterBest').addClass('active');
+    {% elsif pageStyle %}
+      $('.listFilterStyle').addClass('active');
+    {% elsif pageCouleur %}
+      $('.listFilterColor').addClass('active');
+    {% else %}
+      $('.listFilterCollections').addClass('active');
+      {% endif %}
+      $( ".listFilter.active a" ).prepend("<small>{{ 'vw.collection_page.filtre' | t }}</small>");
+      $( ".listFilter.active a" ).append("<svg xmlns='https://www.w3.org/2000/svg' viewBox='0 0 40 40' width='18' height='18'><path d='m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z'></path></svg>");
+
+
+
+  {% if collection.handle contains "camping-car" %}
+
+         // variables
+
+     let selectedPiece = "camping_car_salon";
+     let selectedHref = "/products/adhesive-tiles-dublin-1";
+     let urlPiece = location.href.substring(location.href.indexOf('?') + 1);
+
+     let resolutionMES = "1200x";
+        if ($(window).width() < 600) {
+        resolutionMES = "500x";
+        }
+    let actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+
+         //changeImageMES
+
+            $(".template-collection .productsList li > div > span").click(function() {
+     let refProduct = this.id.replace("VIR","");
+     let smallRefProduct = refProduct.slice(0, 5);
+     $(".template-collection .popupPreview .popupPreviewContent").css("background-image", "url(https://ftp.vinyl-wall.com/vinylway-europe/mes/" + resolutionMES + "/" + smallRefProduct + "-" + selectedPiece + ".jpg)");
+     actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+     selectedHref = $(this).parent().children('a').data('href');
+     $(".popupPreview .popupPreviewContent > div > :nth-child(2)").data("href", selectedHref);
+            });
+
+         if (window.innerWidth > 1080) {
+           $(".template-collection .productsList li > a img").hover(function() {
+     let refProduct = $(this).closest('li').find('.buttons > span[id^="VIR"]').attr('id').replace("VIR","");
+     let smallRefProduct = refProduct.slice(0, 5);
+     $(".template-collection .popupPreview .popupPreviewContent").css("background-image", "url(https://ftp.vinyl-wall.com/vinylway-europe/mes/" + resolutionMES + "/" + smallRefProduct + "-" + selectedPiece + ".jpg)");
+     actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+     selectedHref = $(this).closest('li').find('.buttons > span[id^="VIR"]').siblings('a').data('href');
+     $(".popupPreview .popupPreviewContent > div > :nth-child(2)").data("href", selectedHref);
+  });
+         }
+
+
+         //changeRoomMES
+
+          $(".template-collection .popupPreview .popupPreviewContent > div > .listRooms ul li").click(function() {
+          selectedPiece = this.id;
+          let newBackgroundRoom = actualBackgroundRoom.replace(/camping_car_salon|camping_car_chambre|camping_car_sdb/g, selectedPiece);
+          $('.template-collection .popupPreview .popupPreviewContent').css('background-image' , newBackgroundRoom);
+          $('.template-collection .popupPreview .popupPreviewContent > div > .listRooms > div span').text($(this).text());
+          });
+
+
+  {% elsif collection.handle contains "mobilhome" %}
+
+         // variables
+
+     let selectedPiece = "mobilhome_salon";
+     let selectedHref = "/products/adhesive-tiles-dublin-1";
+     let urlPiece = location.href.substring(location.href.indexOf('?') + 1);
+
+     let resolutionMES = "1200x";
+        if ($(window).width() < 600) {
+        resolutionMES = "500x";
+        }
+    let actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+
+         //changeImageMES
+
+            $(".template-collection .productsList li > div > span").click(function() {
+     let refProduct = this.id.replace("VIR","");
+     let smallRefProduct = refProduct.slice(0, 5);
+     $(".template-collection .popupPreview .popupPreviewContent").css("background-image", "url(https://ftp.vinyl-wall.com/vinylway-europe/mes/" + resolutionMES + "/" + smallRefProduct + "-" + selectedPiece + ".jpg)");
+     actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+     selectedHref = $(this).parent().children('a').data('href');
+     $(".popupPreview .popupPreviewContent > div > :nth-child(2)").data("href", selectedHref);
+            });
+
+         if (window.innerWidth > 1080) {
+           $(".template-collection .productsList li > a img").hover(function() {
+     let refProduct = $(this).closest('li').find('.buttons > span[id^="VIR"]').attr('id').replace("VIR","");
+     let smallRefProduct = refProduct.slice(0, 5);
+     $(".template-collection .popupPreview .popupPreviewContent").css("background-image", "url(https://ftp.vinyl-wall.com/vinylway-europe/mes/" + resolutionMES + "/" + smallRefProduct + "-" + selectedPiece + ".jpg)");
+     actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+     selectedHref = $(this).closest('li').find('.buttons > span[id^="VIR"]').siblings('a').data('href');
+     $(".popupPreview .popupPreviewContent > div > :nth-child(2)").data("href", selectedHref);
+  });
+         }
+
+
+         //changeRoomMES
+
+          $(".template-collection .popupPreview .popupPreviewContent > div > .listRooms ul li").click(function() {
+          selectedPiece = this.id;
+          let newBackgroundRoom = actualBackgroundRoom.replace(/mobilhome_salon|mobilhome_chambre|mobilhome_sdb/g, selectedPiece);
+          $('.template-collection .popupPreview .popupPreviewContent').css('background-image' , newBackgroundRoom);
+          $('.template-collection .popupPreview .popupPreviewContent > div > .listRooms > div span').text($(this).text());
+          });
+
+
+  {% else %}
+
+
+         // variables
+
+     let selectedPiece = "KITCHEN";
+     let selectedHref = "/products/adhesive-tiles-dublin-1";
+     let urlPiece = location.href.substring(location.href.indexOf('?') + 1);
+
+     let resolutionMES = "1200x";
+        if ($(window).width() < 600) {
+        resolutionMES = "500x";
+        }
+    let actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+
+         //changeImageMES
+
+            $(".template-collection .productsList li > div > span").click(function() {
+     let refProduct = this.id.replace("VIR","");
+     let smallRefProduct = refProduct.slice(0, 5);
+     $(".template-collection .popupPreview .popupPreviewContent").css("background-image", "url(https://ftp.vinyl-wall.com/vinylway-europe/mes/" + resolutionMES + "/" + smallRefProduct + "-MES-" + selectedPiece + ".jpg)");
+     actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+     selectedHref = $(this).parent().children('a').data('href');
+     $(".popupPreview .popupPreviewContent > div > :nth-child(2)").data("href", selectedHref);
+            });
+
+         if (window.innerWidth > 1080) {
+           $(".template-collection .productsList li > a img").hover(function() {
+     let refProduct = $(this).closest('li').find('.buttons > span[id^="VIR"]').attr('id').replace("VIR","");
+     let smallRefProduct = refProduct.slice(0, 5);
+     $(".template-collection .popupPreview .popupPreviewContent").css("background-image", "url(https://ftp.vinyl-wall.com/vinylway-europe/mes/" + resolutionMES + "/" + smallRefProduct + "-MES-" + selectedPiece + ".jpg)");
+     actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+     selectedHref = $(this).closest('li').find('.buttons > span[id^="VIR"]').siblings('a').data('href');
+     $(".popupPreview .popupPreviewContent > div > :nth-child(2)").data("href", selectedHref);
+  });
+         }
+
+
+         //changeRoomMES
+
+          $(".template-collection .popupPreview .popupPreviewContent > div > .listRooms ul li").click(function() {
+          selectedPiece = this.id;
+          let newBackgroundRoom = actualBackgroundRoom.replace(/KITCHEN|WALL|BATHROOM|SHOWER|FLOOR|FURNITURE/g, selectedPiece);
+          $('.template-collection .popupPreview .popupPreviewContent').css('background-image' , newBackgroundRoom);
+          $('.template-collection .popupPreview .popupPreviewContent > div > .listRooms > div span').text($(this).text());
+          });
+
+
+
+
+  {% endif %}
+
+          $(".template-collection .Products .filters ul li").click(function() {
+            if ( $(this).hasClass('active') ) {
+          $(this).removeClass('active');
+            location.href = "{{ collection.url }}/?" + selectedPiece.toLowerCase();
+            } else {
+            location.href = "{{ collection.url }}/" + this.id + "?" + selectedPiece.toLowerCase();
+            }
+            });
+
+          $(".template-collection .Products .filters ul li").each(function() {
+          if (window.location.href.indexOf(this.id) > -1) {
+          $(this).addClass('active');
+          }
+          });
+
+         // listFiltersHref
+
+           $(".template-collection .headerCollection .blocFilters ul li").not(".active").click(function() {
+            let dataHref = $(this).children('a').data('href');
+            location.href = dataHref + "?" + selectedPiece.toLowerCase();
+          });
+
+         // loadUrlPiece
+         if (window.location.href.indexOf("?") > -1) {
+         function loadUrlPiece() {
+         $('#' + urlPiece.toUpperCase()).trigger('click');
+         }
+         loadUrlPiece();
+      }
+
+         // loadFirstProduct
+           if ($(window).width() > 1025) {
+         function loadFirstProduct() {
+           {% capture urlCarreaux %}{{ 'vw.url.carreaux-adhesifs' | t }}{% endcapture %}
+         {% if collection.handle contains '-collections' or collection.handle == urlCarreaux %}
+            $(".Products :nth-child(1) .productsList :nth-child(1) > div > span").trigger('click');
+           {% else %}
+            $(".Products .productsList :nth-child(1) > div > span").trigger('click');
+           {% endif %}
+         }
+         loadFirstProduct();
+           }
+
+
+         // productHref
+           $(".template-collection .Products .productsList li > div > a").click(function() {
+            let dataHref = $(this).data('href');
+            location.href = dataHref + "/+" + selectedPiece.toLowerCase();
+          });
+           $(".Products .productsList li > a").click(function() {
+            let dataHref = $(this).parent().find("div").find("a").data('href');
+            location.href = dataHref + "/+" + selectedPiece.toLowerCase();
+          });
+           $(".popupPreview .popupPreviewContent > div > :nth-child(2)").click(function() {
+            let dataHref = $(this).data('href');
+            location.href = dataHref + "?" + selectedPiece.toLowerCase();
+          });
+</script>

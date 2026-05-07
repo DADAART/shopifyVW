@@ -1,0 +1,309 @@
+{% comment %}
+  Section: Vinyl Way Cross-Sell Banner (Dada Art)
+  Author: Architecte Vinyl Way
+  Description: Section "Galerie d'Art" pour la marque sœur. Présentation type Triptyque ou Single.
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-xs-bg: {{ section.settings.bg_color }};
+    --vw-xs-text: {{ section.settings.text_color }};
+    --vw-xs-accent: {{ section.settings.accent_color }};
+  }
+
+  .vw-xs-section {
+    padding: 8rem 1.5rem;
+    background-color: var(--vw-xs-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--vw-xs-text);
+    overflow: hidden;
+  }
+
+  .vw-xs-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* --- HEADER --- */
+  .vw-xs-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--vw-xs-accent);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .vw-xs-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--vw-xs-text);
+  }
+
+  .vw-xs-desc {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #4B5563;
+    max-width: 600px;
+    margin-bottom: 4rem;
+  }
+
+  /* --- GALLERY (TRIPTYCH) --- */
+  .vw-xs-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .vw-xs-image-wrapper {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+  }
+
+  /* Effet décalé pour le dynamisme sur Desktop */
+  .vw-xs-image-wrapper:nth-child(1) {
+    transform: translateY(2rem);
+  }
+  
+  .vw-xs-image-wrapper:nth-child(2) {
+    z-index: 10;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .vw-xs-image-wrapper:nth-child(3) {
+    transform: translateY(2rem);
+  }
+
+  .vw-xs-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* --- CTA --- */
+  .vw-xs-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--vw-xs-accent);
+    color: #FFFFFF;
+    padding: 1rem 2.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(15, 118, 110, 0.2);
+  }
+
+  .vw-xs-btn:hover {
+    background-color: #0d635c; /* Darker shade of teal */
+  }
+
+  .vw-xs-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.75rem;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 768px) {
+    .vw-xs-title {
+      font-size: 3.5rem;
+    }
+    
+    .vw-xs-gallery {
+      gap: 2rem;
+      max-width: 900px; /* Contient la largeur pour l'esthétique */
+    }
+  }
+
+  @media (max-width: 767px) {
+    /* Sur mobile : Scroll horizontal fluide */
+    .vw-xs-gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 2rem;
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      /* Reset grid properties */
+      grid-template-columns: none;
+      width: auto;
+    }
+    
+    .vw-xs-image-wrapper {
+      min-width: 80%; /* Affiche 80% de l'image, incite au scroll */
+      scroll-snap-align: center;
+      margin-right: 1rem;
+    }
+    
+    /* Reset du décalage vertical sur mobile */
+    .vw-xs-image-wrapper:nth-child(1),
+    .vw-xs-image-wrapper:nth-child(3) {
+      transform: none;
+    }
+  }
+</style>
+
+<div class="vw-xs-section">
+  <div class="vw-xs-container">
+    
+    <span class="vw-xs-label">{{ section.settings.label }}</span>
+    
+    {% if section.settings.title != blank %}
+      <h2 class="vw-xs-title">{{ section.settings.title | newline_to_br }}</h2>
+    {% endif %}
+    
+    {% if section.settings.description != blank %}
+      <p class="vw-xs-desc">{{ section.settings.description }}</p>
+    {% endif %}
+
+    <div class="vw-xs-gallery">
+      <!-- Image 1 -->
+      <div class="vw-xs-image-wrapper">
+        {% if section.settings.image_1 != blank %}
+          {{ section.settings.image_1 | image_url: width: 600 | image_tag: class: 'vw-xs-image', loading: 'lazy', alt: 'Art Mural 1' }}
+        {% else %}
+          {{ 'collection-1' | placeholder_svg_tag: 'vw-xs-image' }}
+        {% endif %}
+      </div>
+
+      <!-- Image 2 (Centrale) -->
+      <div class="vw-xs-image-wrapper">
+        {% if section.settings.image_2 != blank %}
+          {{ section.settings.image_2 | image_url: width: 600 | image_tag: class: 'vw-xs-image', loading: 'lazy', alt: 'Art Mural 2' }}
+        {% else %}
+          {{ 'collection-2' | placeholder_svg_tag: 'vw-xs-image' }}
+        {% endif %}
+      </div>
+
+      <!-- Image 3 -->
+      <div class="vw-xs-image-wrapper">
+        {% if section.settings.image_3 != blank %}
+          {{ section.settings.image_3 | image_url: width: 600 | image_tag: class: 'vw-xs-image', loading: 'lazy', alt: 'Art Mural 3' }}
+        {% else %}
+          {{ 'collection-3' | placeholder_svg_tag: 'vw-xs-image' }}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if section.settings.btn_url != blank %}
+      <a href="{{ section.settings.btn_url }}" class="vw-xs-btn" target="_blank">
+        {{ section.settings.btn_text }}
+        <svg class="vw-xs-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      </a>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way x Dada Art",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Textes"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Surtitre",
+      "default": "L'UNIVERS CONNEXE"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Titre",
+      "default": "Au-delà de la Rénovation :\nL'Art Mural"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Complétez votre architecture intérieure avec notre marque sœur, DADA ART. Une curation d'affiches et de textiles pour l'âme de votre maison."
+    },
+    {
+      "type": "header",
+      "content": "Galerie Triptyque"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image Gauche"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image Centre (Mise en avant)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image Droite"
+    },
+    {
+      "type": "header",
+      "content": "Bouton Action"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Texte Bouton",
+      "default": "VISITER LA GALERIE DADA ART"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Lien Externe"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Teal)",
+      "default": "#0F766E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way x Dada Art",
+      "category": "Cross-sell"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,449 @@
+{% comment %}
+  Section: Vinyl Way Best Sellers (Dynamique)
+  Author: Architecte Vinyl Way
+  Description: Grille produits connectée à une collection Shopify. Scroll horizontal sur mobile. Option pour masquer les prix.
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-bs-bg: {{ section.settings.bg_color }};
+    --vw-bs-text: {{ section.settings.text_color }};
+    --vw-bs-accent: {{ section.settings.accent_color }};
+    --vw-bs-price: {{ section.settings.price_color }};
+  }
+
+  .vw-bs-section {
+    padding: 6rem 1.5rem;
+    background-color: var(--vw-bs-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--vw-bs-text);
+  }
+
+  .vw-bs-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* --- HEADER --- */
+  .vw-bs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .vw-bs-title-wrapper {
+    max-width: 600px;
+  }
+
+  .vw-bs-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--vw-bs-accent);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .vw-bs-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--vw-bs-text);
+  }
+
+  /* Bouton "Tout voir" Desktop */
+  .vw-bs-link-desktop {
+    display: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--vw-bs-text);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 4px;
+    transition: all 0.3s;
+  }
+
+  .vw-bs-link-desktop:hover {
+    color: var(--vw-bs-accent);
+    border-color: var(--vw-bs-accent);
+  }
+
+  /* --- GRID PRODUITS --- */
+  .vw-bs-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 2rem; /* Espace pour la scrollbar éventuelle */
+    scroll-snap-type: x mandatory;
+    /* Masquer scrollbar standard pour look clean */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+  }
+  
+  .vw-bs-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* --- PRODUCT CARD --- */
+  .vw-product-card {
+    min-width: 280px; /* Largeur fixe sur mobile */
+    max-width: 280px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    group: hover;
+  }
+
+  .vw-product-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Format Portrait */
+    background-color: #F3F4F6;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+
+  .vw-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease, transform 0.6s ease;
+  }
+
+  /* Image secondaire (Hover) */
+  .vw-product-img-hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .vw-product-card:hover .vw-product-img-hover {
+    opacity: 1;
+  }
+  
+  .vw-product-card:hover .vw-product-img {
+    transform: scale(1.05); /* Zoom subtil */
+  }
+
+  /* Badges (Soldes, Nouveau) */
+  .vw-product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #FFFFFF;
+    color: var(--vw-bs-text);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    letter-spacing: 0.1em;
+    z-index: 2;
+  }
+
+  .vw-product-badge.sale {
+    background-color: #FEF2F2;
+    color: #991B1B; /* Rouge sombre */
+  }
+
+  .vw-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .vw-product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.125rem;
+    color: var(--vw-bs-text);
+    margin: 0;
+    transition: color 0.3s;
+  }
+
+  .vw-product-card:hover .vw-product-title {
+    color: var(--vw-bs-accent);
+  }
+
+  .vw-product-meta {
+    font-size: 0.875rem;
+    color: #6B7280;
+  }
+
+  .vw-product-price-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.25rem;
+  }
+
+  .vw-price {
+    font-weight: 600;
+    color: var(--vw-bs-price);
+  }
+
+  .vw-price-compare {
+    text-decoration: line-through;
+    color: #9CA3AF;
+    font-size: 0.875rem;
+  }
+
+  /* Bouton d'ajout rapide (Apparaît au hover sur Desktop) */
+  .vw-quick-add {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--vw-bs-text);
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+
+  .vw-product-card:hover .vw-quick-add {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- MOBILE BUTTON --- */
+  .vw-bs-mobile-btn-container {
+    margin-top: 2rem;
+    text-align: center;
+    display: block;
+  }
+  
+  .vw-bs-mobile-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: 1px solid var(--vw-bs-text);
+    color: var(--vw-bs-text);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 768px) {
+    .vw-bs-section {
+      padding: 8rem 3rem;
+    }
+
+    .vw-bs-title {
+      font-size: 3rem;
+    }
+
+    .vw-bs-link-desktop {
+      display: inline-block;
+    }
+
+    .vw-bs-mobile-btn-container {
+      display: none;
+    }
+
+    .vw-bs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 produits par ligne sur Desktop */
+      gap: 2rem;
+      overflow: visible;
+    }
+
+    .vw-product-card {
+      min-width: auto;
+      max-width: none;
+    }
+  }
+</style>
+
+<div class="vw-bs-section">
+  <div class="vw-bs-container">
+    
+    <!-- HEADER -->
+    <div class="vw-bs-header">
+      <div class="vw-bs-title-wrapper">
+        <span class="vw-bs-label">{{ section.settings.label }}</span>
+        <h2 class="vw-bs-title">{{ section.settings.title }}</h2>
+      </div>
+      
+      {% if section.settings.collection != blank %}
+        <a href="{{ collections[section.settings.collection].url }}" class="vw-bs-link-desktop">
+          {{ section.settings.link_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="vw-bs-grid">
+      {%- assign collection = collections[section.settings.collection] -%}
+      {%- assign limit = section.settings.products_to_show -%}
+
+      {% if collection != blank %}
+        {% for product in collection.products limit: limit %}
+          <a href="{{ product.url }}" class="vw-product-card">
+            
+            <div class="vw-product-image-wrapper">
+              <!-- Image Principale -->
+              {{ product.featured_image | image_url: width: 600 | image_tag: class: 'vw-product-img', loading: 'lazy', alt: product.title }}
+              
+              <!-- Image Secondaire (si dispo) -->
+              {% if product.images[1] != blank %}
+                {{ product.images[1] | image_url: width: 600 | image_tag: class: 'vw-product-img vw-product-img-hover', loading: 'lazy', alt: product.title }}
+              {% endif %}
+
+              <!-- Badges -->
+              {% if section.settings.show_price and product.compare_at_price > product.price %}
+                <span class="vw-product-badge sale">Offre</span>
+              {% elsif product.available == false %}
+                <span class="vw-product-badge">Épuisé</span>
+              {% endif %}
+            </div>
+
+            <div class="vw-product-info">
+              <h3 class="vw-product-title">{{ product.title }}</h3>
+              
+              {% if section.settings.show_price %}
+                <div class="vw-product-price-box">
+                  <span class="vw-price">{{ product.price | money_without_trailing_zeros }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <span class="vw-price-compare">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="vw-quick-add">
+              Voir le produit
+            </div>
+          </a>
+        {% endfor %}
+
+      {% else %}
+        <!-- Placeholder si pas de collection sélectionnée -->
+        {% for i in (1..4) %}
+          <div class="vw-product-card">
+            <div class="vw-product-image-wrapper">
+              {{ 'product-' | append: i | placeholder_svg_tag: 'vw-product-img' }}
+            </div>
+            <div class="vw-product-info">
+              <h3 class="vw-product-title">Produit Exemple {{ i }}</h3>
+              {% if section.settings.show_price %}
+                <div class="vw-product-price-box">
+                  <span class="vw-price">49 €</span>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <!-- MOBILE BUTTON -->
+    {% if section.settings.collection != blank %}
+      <div class="vw-bs-mobile-btn-container">
+        <a href="{{ collections[section.settings.collection].url }}" class="vw-bs-mobile-btn">
+          {{ section.settings.link_text }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Best Sellers",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configuration"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Surtitre",
+      "default": "LA SÉLECTION"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Les Incontournables"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Choisir la collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "default": 4,
+      "label": "Nombre de produits"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Afficher le prix",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Texte du lien",
+      "default": "TOUT VOIR"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond Section",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte Principal",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Prix",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Teal)",
+      "default": "#0F766E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Best Sellers",
+      "category": "Produits"
+    }
+  ]
+}
+{% endschema %}

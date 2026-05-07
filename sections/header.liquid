@@ -1,0 +1,187 @@
+{{ 'header.css' | asset_url | stylesheet_tag }}
+{{ 'header.js' | asset_url | script_tag }}
+
+{% if request.locale.iso_code contains 'fr' %}
+  {% assign localUrl = '' %}
+{% else %}
+  {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+{% endif %}
+
+<header class="Header">
+  <div class="announcement">
+    <style>
+@media only screen and (max-width: 600px) {
+  .Header .announcement span.spanGap {
+    gap: 3px;
+    font-size: 11px;
+}
+}
+    </style>
+    <span class="madeinfrance">
+      <img
+        alt="logo made in France"
+        src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/madeinfrance.svg?v=1666779214"
+      >
+      {{- 'vw.header.topbar.made_france' | t -}}
+    </span>
+    <span>
+      <!-- TrustBox widget - Micro Combo -->
+      <div
+        class="trustpilot-widget"
+        data-locale="{{ request.locale.iso_code }}-EU"
+        data-template-id="5419b6ffb0d04a076446a9af"
+        data-businessunit-id="61b6ef608c78c0029e82f404"
+        data-style-height="20px"
+        data-style-width="100%"
+        data-theme="light"
+      >
+        <a href="https://trustpilot.com/review/vinyl-way.com" target="_blank">Trustpilot</a>
+      </div>
+      <!-- End TrustBox widget -->
+      <!-- SAG widget -->
+      <div class="grc-site-rating"></div>
+      <!-- End SAG widget -->
+    </span><span class="spanGap"
+      ><strong>{{ 'vw.header.topbar.livraison1' | t }} </strong> {{ 'vw.header.topbar.livraison2' | t -}}
+    </span>
+    <span class="spanGap"
+      ><strong>{{ 'vw.header.topbar.livraison1' | t }} </strong> {{ 'vw.header.topbar.livraison2' | t -}}
+    </span> 
+  </div>
+  <div class="nav">
+    <div class="menuHamburger">
+      <div class="menu-toggle" id="menu-toggle">
+        <span class="screen-reader-text">Menu</span>
+        <svg
+          class="icon icon-menu-toggle"
+          aria-hidden="true"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 100 100"
+        >
+          <g class="svg-menu-toggle">
+              <path class="line line-1" d="M5 13h90v14H5z" />
+              <path class="line line-2" d="M5 43h90v14H5z" />
+              <path class="line line-3" d="M5 73h90v14H5z" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="menuListHeader">
+        <ul>
+          <li class="menu-item">
+            <a>Vinyl Way<span class="arrow"></span></a>
+            <ul class="sub-menu" style="display: none;">
+              <li>
+                <a href="{{ localUrl }}/collections/credences-adhesives"> Crédences adhésives </a>
+              </li>
+              <li>
+                <a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}">
+                  {{- 'vw.header.nav.carreaux' | t -}}
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item">
+            <a style="font-weight:bold;">Dada Art<span class="arrow"></span></a>
+            <ul class="sub-menu" style="display: none;">
+              <li>
+                <a href="https://dada-art.fr/collections/tapis-vinyle" target="blank">Tapis vinyle</a>
+              </li>
+              <li>
+                <a href="https://dada-art.fr/collections/set-de-table" target="blank">Set de table</a>
+              </li>
+              <li>
+                <a href="https://dada-art.fr/collections/credence-aluminium" target="blank">Crédence Aluminium</a>
+              </li>
+              <li>
+                <a href="https://dada-art.fr/collections/papier-peint" target="blank">Papier peint</a>
+              </li>
+              <li>
+                <a href="https://dada-art.fr/collections/toile-imprimee" target="blank">Toile encadrée</a>
+              </li>
+              <li>
+                <a href="https://dada-art.fr/collections/affiche" target="blank">Affiche</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="{{ localUrl }}/#{{ 'vw.url.installation' | t }}">{{ 'vw.header.nav.installation' | t }}</a>
+          </li>
+          <li>
+            <a href="{{ localUrl }}/#{{ 'vw.url.realisations' | t }}">{{ 'vw.header.nav.realisations' | t }}</a>
+          </li>
+          <li><a class="notranslate" href="{{ localUrl }}/pages/faq">FAQ</a></li>
+          <li><a href="{{ localUrl }}/blogs/articles">Blog</a></li>
+
+          {% unless customer and customer.tags contains 'pro' %}
+            <li class="menuListHeadersmall menuListHeadersmallFirst">
+              <a href="{{ localUrl }}/account/register/?pro">{{ 'vw.header.nav.professionnels' | t }}</a>
+            </li>
+          {% endunless %}
+          <li class="menuListHeadersmall">
+            <a href="https://ftp.vinyl-wall.com/{{ 'vw.url.retour' | t }}.pdf">{{ 'vw.header.nav.retour' | t }}</a>
+          </li>
+          <li class="menuListHeadersmall">
+            <a href="{{ localUrl }}/policies/legal-notice">{{ 'vw.header.nav.legal-notice' | t }}</a>
+          </li>
+          <li class="menuListHeadersmall">
+            <a href="{{ localUrl }}/policies/terms-of-sale">{{ 'vw.header.nav.terms-of-sale' | t }}</a>
+          </li>
+          <li class="menuListHeadersmall">
+            <a href="{{ localUrl }}/pages/contact">{{ 'vw.header.nav.contact' | t }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <a href="/search" class="searchMobile">
+        <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/search.svg?v=1751962967" alt="Search">
+      </a>
+    </div>
+    <div class="logoHeader">
+      <a href="https://vinyl-way.com{{ localUrl }}">
+        <img alt="logo Vinyl Way" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/LogoVw.svg?v=1666779214">
+        <span class="notranslate"></span>
+      </a>
+    </div>
+    <div class="btnsHeader">
+      <form class="searchHeader searchHeaderDesktop" action="{{ localUrl }}/search">
+        <div class="inputContainer">
+          <input type="text" placeholder="{{ 'vw.header.search' | t }}.." name="q" value="">
+        </div>
+        <button name="someName" type="submit">
+          <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/search.svg?v=1751962967" alt="Search" class="icon">
+        </button>
+      </form>
+
+      <div class="accountHeader">
+        <a href="{{ localUrl }}/account">
+          <img
+            alt="icon account"
+            src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/account.svg?v=1751962967"
+          >
+        </a>
+      </div>
+      <div class="cartHeader">
+        <a href="{{ localUrl }}/cart">
+          <img alt="icon cart" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/cart.svg?v=1751962967">
+          <span
+            {% if cart.item_count < 1 %}
+              class="is-empty"
+            {% endif %}
+          >
+            {{- cart.item_count -}}
+          </span>
+        </a>
+      </div>
+      {% unless customer %}
+        <a class="btnPro" href="{{ localUrl }}/account/register/?pro">{{ 'vw.header.nav.professionnels' | t }}</a>
+      {% else %}
+        <a class="btnPro" href="{{ localUrl }}/account/">{{ 'vw.header.nav.account' | t }}</a>
+      {% endunless %}
+    </div>
+  </div>
+</header>

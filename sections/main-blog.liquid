@@ -1,0 +1,44 @@
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.js' | asset_url | script_tag }}
+
+<section class="intro">
+
+    <div>
+  <div class="divH1">
+    <h2>
+      <span>Blog</span>
+      <span>Vinyl Way</span>
+    </h2>
+  </div>
+
+  <div class="divH2">
+  <h1>
+    <span>Tout sur les carreaux</span>
+    <span>et la déco adhésive</span>
+  </h1>
+  </div>
+  </div>
+
+  
+</section>
+
+<section class="listArticles">
+
+  
+{% render 'listFilterBlog' %}
+
+  <ul>
+    {% for article in blog.articles %}
+    <li class="{{ article.tags }}" >
+      <div style="background-image: url('{{ article.image.src | img_url:'500x' }}');"></div>
+      <a href="{{ article.url }}">
+        Lire l'article
+      </a>
+      <h3>
+       {{ article.title }}
+      </h3>
+    </li>
+    {% endfor %}
+  </ul>
+  
+</section>

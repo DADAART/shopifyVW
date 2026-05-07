@@ -1,0 +1,268 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ 'customer-page.css' | asset_url | stylesheet_tag }}
+
+{% if request.locale.iso_code contains 'fr' %}
+  {% assign localUrl = '' %}
+{% else %}
+  {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+{% endif %}
+
+<div class="customer register section-{{ section.id }}-padding">
+  <svg style="display: none">
+    <symbol id="icon-error" viewBox="0 0 13 13">
+      <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+      <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+      <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+      <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+    </symbol>
+  </svg>
+  <h1>
+    <span>{{ 'vw.register.title' | t }} Vinyl Way</span>
+  </h1>
+  <p class="paragraphPro">
+    {{ 'vw.register.text_pro' | t }}
+  </p>
+  {%- form 'create_customer', novalidate: 'novalidate' -%}
+    {%- if form.errors -%}
+      <h2 class="form__message" tabindex="-1" autofocus>
+        <svg aria-hidden="true" focusable="false" role="presentation">
+          <use href="#icon-error" />
+        </svg>
+        {{ 'templates.contact.form.error_heading' | t }}
+      </h2>
+      <ul>
+        {%- for field in form.errors -%}
+          <li>
+            {%- if field == 'form' -%}
+              {{ form.errors.messages[field] }}
+            {%- else -%}
+              <a href="#RegisterForm-{{ field }}">
+                {{ form.errors.translated_fields[field] | capitalize }}
+                {{ form.errors.messages[field] }}
+              </a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    <div class="field">
+      <input
+        type="text"
+        name="customer[first_name]"
+        id="RegisterForm-FirstName"
+        {% if form.first_name %}
+          value="{{ form.first_name }}"
+        {% endif %}
+        autocomplete="given-name"
+        placeholder=""
+      >
+      <label for="RegisterForm-FirstName" class="notranslate">
+        {{ 'customer.register.first_name' | t }}
+      </label>
+    </div>
+    <div class="field">
+      <input
+        type="text"
+        name="customer[last_name]"
+        id="RegisterForm-LastName"
+        {% if form.last_name %}
+          value="{{ form.last_name }}"
+        {% endif %}
+        autocomplete="family-name"
+        placeholder=""
+      >
+      <label for="RegisterForm-LastName" class="notranslate">
+        {{ 'customer.register.last_name' | t }}
+      </label>
+    </div>
+    <div class="field">
+      <input
+        type="email"
+        name="customer[email]"
+        id="RegisterForm-email"
+        {% if form.email %}
+          value="{{ form.email }}"
+        {% endif %}
+        spellcheck="false"
+        autocapitalize="off"
+        autocomplete="email"
+        aria-required="true"
+        {% if form.errors contains 'email' %}
+          aria-invalid="true"
+          aria-describedby="RegisterForm-email-error"
+        {% endif %}
+        placeholder=""
+      >
+      <label for="RegisterForm-email">
+        {{ 'customer.register.email' | t }}
+      </label>
+    </div>
+    {%- if form.errors contains 'email' -%}
+      <span id="RegisterForm-email-error" class="form__message">
+        <svg aria-hidden="true" focusable="false" role="presentation">
+          <use href="#icon-error" />
+        </svg>
+        {{ form.errors.translated_fields.email | capitalize }}
+        {{ form.errors.messages.email }}.
+      </span>
+    {%- endif -%}
+    <div class="field">
+      <input
+        type="password"
+        name="customer[password]"
+        id="RegisterForm-password"
+        aria-required="true"
+        {% if form.errors contains 'password' %}
+          aria-invalid="true"
+          aria-describedby="RegisterForm-password-error"
+        {% endif %}
+        placeholder=""
+      >
+      <label for="RegisterForm-password">
+        {{ 'customer.register.password' | t }}
+      </label>
+    </div>
+    {%- if form.errors contains 'password' -%}
+      <span id="RegisterForm-password-error" class="form__message">
+        <svg aria-hidden="true" focusable="false" role="presentation">
+          <use href="#icon-error" />
+        </svg>
+        {{ form.errors.translated_fields.password | capitalize }}
+        {{ form.errors.messages.password }}.
+      </span>
+    {%- endif -%}
+
+    <div class="field inputPro">
+      <input
+        type="text"
+        name="customer[note][Entreprise]"
+        id="RegisterForm-company"
+        value=""
+        spellcheck="false"
+        autocapitalize="off"
+        aria-required="true"
+        placeholder=""
+      >
+      <label for="RegisterForm-company"> {{ 'vw.register.entreprise' | t }}* </label>
+    </div>
+
+    <div class="field inputPro">
+      <select
+        name="customer[note][Pays]"
+        id="RegisterForm-country"
+        aria-required="true"
+      >
+        <option value="">-- {{ 'vw.register.pays.title' | t }} --</option>
+        <option value="FR">{{ 'vw.register.pays.france' | t }}</option>
+        <option value="BE">{{ 'vw.register.pays.belgique' | t }}</option>
+        <option value="CH">{{ 'vw.register.pays.suisse' | t }}</option>
+        <option value="LU">{{ 'vw.register.pays.luxembourg' | t }}</option>
+        <option value="DE">{{ 'vw.register.pays.allemagne' | t }}</option>
+        <option value="ES">{{ 'vw.register.pays.espagne' | t }}</option>
+        <option value="IT">{{ 'vw.register.pays.italie' | t }}</option>
+      </select>
+
+      <label for="RegisterForm-country"> {{ 'vw.register.pays.label' | t }}* </label>
+    </div>
+
+    <div class="field inputPro">
+      <input
+        type="text"
+        name="customer[note][Siret]"
+        id="RegisterForm-siret"
+        value=""
+        spellcheck="false"
+        autocapitalize="off"
+        aria-required="true"
+        placeholder=""
+      >
+      <label for="RegisterForm-siret" class="notranslate"> {{ 'vw.register.siret' | t }}* </label>
+    </div>
+    <div class="field inputPro">
+      <small>
+        {{- 'vw.register.no-numero' | t }}?
+        <a style="text-decoration: underline;" href="{{ pages.contact.url }}">{{ 'vw.register.contact' | t }}</a></small
+      >
+      <input
+        type="text"
+        name="customer[note][Tva]"
+        id="RegisterForm-tva"
+        value=""
+        spellcheck="false"
+        autocapitalize="off"
+        aria-required="true"
+        placeholder=""
+      >
+      <label for="RegisterForm-tva"> {{ 'vw.register.tva' | t }}* </label>
+    </div>
+
+    <input type="hidden" id="customer_tags" name="customer[tags]" value="">
+
+    <span class="verificationTVA" onclick="verificationTVA();">{{ 'vw.register.creer' | t }}</span>
+
+    <button>
+      {{ 'vw.register.creer' | t }}
+    </button>
+
+    <a class="toggleTypeAccount" href="{{ localUrl }}/account/register/?pro">
+      {{ 'vw.register.btn_pro' | t }}
+    </a>
+  {%- endform -%}
+</div>
+
+<script>
+              // displayContentPro
+            document.addEventListener('DOMContentLoaded', function () {
+              if (window.location.href.indexOf("?pro") > -1) {
+                $(".template-customers-register").addClass('pro');
+                $(".toggleTypeAccount").text("{{ 'vw.register.btn_particulier' | t }}");
+                $("h1").append('<span>{{ 'vw.register.title_pro' | t }}</spann>');
+                $(".toggleTypeAccount").attr("href", "{{ localUrl }}/account/register/")
+                $("#customer_tags").val('pro');
+              }
+              else {
+                $('.inputPro input').prop('disabled', true);
+                $('.inputPro select').prop('disabled', true);
+              }
+          });
+          $( "#RegisterForm-country" ).change(function() {
+            $("#customer_tags").val('pro , pro_' + $("#RegisterForm-country").val());
+          });
+
+
+
+             // verificationTVA
+        function verificationTVA() {
+            let myHeaders = new Headers();
+      myHeaders.append("apikey", "DuURCPMWgbAxhfgfvCQOm3NeyNiegM29");
+
+      let requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        headers: myHeaders
+      };
+
+        let countryCode = $("#RegisterForm-country").val();
+        let vat_number = $("#RegisterForm-tva").val();
+
+        $(".verificationTVA").text("{{ 'vw.register.verification' | t }}");
+        $(".verificationTVA").css('cursor','progress');
+
+      fetch("https://api.apilayer.com/tax_data/validate?vat_number=" + vat_number + "&country_code=" + countryCode, requestOptions)
+        .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+
+      if (data.valid) {
+      $("form button").trigger('click');
+      } else {
+        alert("{{ 'vw.register.error1' | t }}");
+        $(".verificationTVA").text("{{ 'vw.register.creer' | t }}");
+        $(".verificationTVA").css('cursor','pointer');
+      }
+
+    })
+  .catch(error => alert("{{ 'vw.register.error2' | t }}", error));
+        }
+</script>

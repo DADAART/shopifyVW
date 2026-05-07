@@ -1,0 +1,395 @@
+{% comment %}
+  Section: Vinyl Way Customer Realizations (UGC Gallery)
+  Author: Architecte Vinyl Way
+  Description: Galerie de réalisations clients type Instagram. Affichage "Shop the look" au survol.
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-ugc-bg: {{ section.settings.bg_color }};
+    --vw-ugc-text: {{ section.settings.text_color }};
+    --vw-ugc-overlay: {{ section.settings.overlay_color }};
+    --vw-ugc-accent: {{ section.settings.accent_color }};
+  }
+
+  .vw-ugc-section {
+    padding: 6rem 1.5rem;
+    background-color: var(--vw-ugc-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--vw-ugc-text);
+  }
+
+  .vw-ugc-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* --- HEADER --- */
+  .vw-ugc-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .vw-ugc-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--vw-ugc-accent);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .vw-ugc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--vw-ugc-text);
+  }
+
+  .vw-ugc-desc {
+    font-size: 1.125rem;
+    color: #6B7280;
+    line-height: 1.6;
+  }
+
+  /* --- GALLERY GRID --- */
+  .vw-ugc-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  .vw-ugc-grid::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  /* --- ITEM (PHOTO) --- */
+  .vw-ugc-item {
+    min-width: 280px;
+    height: 380px;
+    position: relative;
+    scroll-snap-align: start;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .vw-ugc-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  /* --- OVERLAY HOVER --- */
+  .vw-ugc-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--vw-ugc-overlay);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    text-decoration: none;
+  }
+
+  /* Comportement Hover Desktop : Zoom image + Affichage Overlay */
+  .vw-ugc-item:hover .vw-ugc-image {
+    transform: scale(1.05);
+  }
+
+  .vw-ugc-item:hover .vw-ugc-overlay {
+    opacity: 0.9;
+  }
+
+  /* Contenu Overlay */
+  .vw-ugc-handle {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .vw-ugc-instagram-icon {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+  }
+
+  .vw-ugc-product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .vw-ugc-link-btn {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    padding-bottom: 2px;
+    width: fit-content;
+  }
+
+  /* --- CTA FOOTER --- */
+  .vw-ugc-footer {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .vw-ugc-main-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border: 1px solid var(--vw-ugc-text);
+    color: var(--vw-ugc-text);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .vw-ugc-main-btn:hover {
+    background-color: var(--vw-ugc-text);
+    color: #FFFFFF;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 768px) {
+    .vw-ugc-section {
+      padding: 8rem 3rem;
+    }
+
+    .vw-ugc-title {
+      font-size: 3rem;
+    }
+
+    .vw-ugc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 colonnes desktop */
+      gap: 1.5rem;
+      overflow: visible;
+    }
+
+    .vw-ugc-item {
+      min-width: auto;
+      height: 400px;
+    }
+  }
+</style>
+
+<div class="vw-ugc-section">
+  <div class="vw-ugc-container">
+    
+    <!-- HEADER -->
+    <div class="vw-ugc-header">
+      <span class="vw-ugc-label">{{ section.settings.label }}</span>
+      {% if section.settings.title != blank %}
+        <h2 class="vw-ugc-title">{{ section.settings.title | newline_to_br }}</h2>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <p class="vw-ugc-desc">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <!-- GALLERY GRID -->
+    <div class="vw-ugc-grid">
+      {% for block in section.blocks %}
+        <div class="vw-ugc-item" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 600 | image_tag: class: 'vw-ugc-image', loading: 'lazy', alt: 'Réalisation client Vinyl Way' }}
+          {% else %}
+            {{ 'lifestyle-' | append: forloop.index | placeholder_svg_tag: 'vw-ugc-image' }}
+          {% endif %}
+
+          <a href="{{ block.settings.product_url }}" class="vw-ugc-overlay">
+            {% if block.settings.handle != blank %}
+              <div class="vw-ugc-handle">
+                <svg class="vw-ugc-instagram-icon" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                {{ block.settings.handle }}
+              </div>
+            {% endif %}
+            
+            <h3 class="vw-ugc-product-name">{{ block.settings.product_name }}</h3>
+            <span class="vw-ugc-link-btn">Acheter ce look</span>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- FOOTER CTA -->
+    {% if section.settings.cta_link != blank %}
+      <div class="vw-ugc-footer">
+        <a href="{{ section.settings.cta_link }}" class="vw-ugc-main-btn" target="_blank">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Réalisations",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Textes"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Surtitre",
+      "default": "LA COMMUNAUTÉ"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Vos Réalisations"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Inspirez-vous des intérieurs transformés par nos clients. Identifiez-nous @vinylway pour apparaître ici."
+    },
+    {
+      "type": "header",
+      "content": "Bouton Principal"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texte Bouton",
+      "default": "VOIR NOTRE INSTAGRAM"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Lien (Instagram)"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond Section",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Teal)",
+      "default": "#0F766E"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Fond Overlay (Hover)",
+      "default": "#111827"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "realization",
+      "name": "Réalisation",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo Client"
+        },
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Pseudo Instagram",
+          "default": "@client_vinyl"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Produit Utilisé",
+          "default": "Zellige Blanc Pur"
+        },
+        {
+          "type": "url",
+          "id": "product_url",
+          "label": "Lien Produit"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Réalisations",
+      "category": "Preuve Sociale",
+      "blocks": [
+        {
+          "type": "realization",
+          "settings": {
+            "handle": "@sophie_deco",
+            "product_name": "Zellige Vert d'Eau"
+          }
+        },
+        {
+          "type": "realization",
+          "settings": {
+            "handle": "@atelier_architecte",
+            "product_name": "Terrazzo Minéral"
+          }
+        },
+        {
+          "type": "realization",
+          "settings": {
+            "handle": "@marie_home",
+            "product_name": "Metro Blanc Mat"
+          }
+        },
+        {
+          "type": "realization",
+          "settings": {
+            "handle": "@loft_paris",
+            "product_name": "Béton Ciré Gris"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,416 @@
+{% comment %}
+  Section: Vinyl Way Main Grid V5 (Hybrid)
+  Author: Architecte Vinyl Way
+  Description: Grille produits avec carte marketing "Intrus" insérée à une position spécifique.
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-grid-bg: {{ section.settings.bg_color }};
+    --vw-promo-bg: {{ section.settings.promo_bg_color }};
+    --vw-promo-text: {{ section.settings.promo_text_color }};
+    --vw-accent: {{ section.settings.accent_color }};
+  }
+
+  .vw-grid-section {
+    padding: 4rem 1.5rem;
+    background-color: var(--vw-grid-bg);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .vw-grid-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .vw-products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Mobile : 2 colonnes */
+    gap: 1rem;
+  }
+
+  /* --- CARTE PRODUIT --- */
+  .vw-product-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #111827;
+    position: relative;
+    group: hover;
+  }
+
+  .vw-product-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-color: #F3F4F6;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .vw-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  /* Zoom au survol */
+  .vw-product-card:hover .vw-product-img {
+    transform: scale(1.05);
+  }
+
+  /* Image secondaire au survol */
+  .vw-product-img-hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+    object-fit: cover;
+    z-index: 1;
+  }
+  
+  .vw-product-card:hover .vw-product-img-hover {
+    opacity: 1;
+  }
+
+  /* Badges */
+  .vw-product-badge {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background-color: #FFFFFF;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    letter-spacing: 0.05em;
+    z-index: 2;
+  }
+
+  .vw-product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+  }
+
+  .vw-product-price {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #111827;
+  }
+  
+  .vw-price-compare {
+    font-weight: 400;
+    color: #9CA3AF;
+    text-decoration: line-through;
+    margin-left: 5px;
+    font-size: 0.8em;
+  }
+
+  /* --- CARTE MARKETING (L'INTRUS) --- */
+  .vw-promo-card {
+    grid-column: span 2; /* Prend toute la largeur sur mobile */
+    background-color: var(--vw-promo-bg);
+    color: var(--vw-promo-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+  }
+
+  /* Effet dégradé subtil sur la carte promo */
+  .vw-promo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.05), transparent);
+    z-index: 0;
+  }
+
+  .vw-promo-content { position: relative; z-index: 1; }
+
+  .vw-promo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: inherit;
+  }
+  
+  .vw-promo-text {
+    opacity: 0.9;
+    max-width: 300px;
+    margin: 0 auto 1.5rem auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .vw-promo-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--vw-accent);
+    color: #FFFFFF;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    transition: background 0.3s;
+  }
+  
+  .vw-promo-btn:hover {
+    background-color: #0d635c;
+  }
+
+  /* --- PAGINATION --- */
+  .vw-pagination {
+    margin-top: 4rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .vw-page-link {
+    padding: 0.5rem 1rem;
+    border: 1px solid #E5E7EB;
+    text-decoration: none;
+    color: #111827;
+    transition: all 0.2s;
+  }
+  
+  .vw-page-link.current {
+    background-color: #111827;
+    color: #FFFFFF;
+    border-color: #111827;
+  }
+
+  /* --- SEO TEXT (Accordeon Style) --- */
+  .vw-seo-section {
+    max-width: 800px;
+    margin: 4rem auto 0;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 3rem;
+  }
+  .vw-seo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .vw-seo-text {
+    font-size: 0.9rem;
+    color: #6B7280;
+    line-height: 1.6;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 768px) {
+    .vw-grid-section { padding: 4rem 3rem; }
+    
+    .vw-products-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 colonnes desktop */
+      gap: 3rem 2rem;
+    }
+
+    .vw-product-title { font-size: 1.1rem; }
+    
+    /* La carte promo prend 2 places sur Desktop */
+    .vw-promo-card {
+      grid-column: span 2; 
+      height: 100%; /* S'adapte à la hauteur des produits */
+    }
+  }
+</style>
+
+<div class="vw-grid-section">
+  <div class="vw-grid-container">
+    
+    {% paginate collection.products by section.settings.products_per_page %}
+      
+      <div class="vw-products-grid">
+        {% for product in collection.products %}
+          
+          <!-- L'INTRUS : Insertion Carte Marketing à la position définie -->
+          {% if section.settings.show_promo and forloop.index == section.settings.promo_position %}
+            <a href="{{ section.settings.promo_link }}" class="vw-promo-card">
+              <div class="vw-promo-content">
+                <h3 class="vw-promo-title">{{ section.settings.promo_title }}</h3>
+                <p class="vw-promo-text">{{ section.settings.promo_text }}</p>
+                <span class="vw-promo-btn">{{ section.settings.promo_btn }}</span>
+              </div>
+            </a>
+          {% endif %}
+
+          <!-- Carte Produit Standard -->
+          <a href="{{ product.url }}" class="vw-product-card">
+            <div class="vw-product-image-wrapper">
+              <!-- Image Principale -->
+              {{ product.featured_image | image_url: width: 600 | image_tag: class: 'vw-product-img', loading: 'lazy', alt: product.title }}
+              
+              <!-- Image Secondaire (Hover) -->
+              {% if product.images[1] != blank %}
+                {{ product.images[1] | image_url: width: 600 | image_tag: class: 'vw-product-img vw-product-img-hover', loading: 'lazy' }}
+              {% endif %}
+              
+              <!-- Badges -->
+              {% if product.available == false %}
+                <span class="vw-product-badge">ÉPUISÉ</span>
+              {% elsif product.compare_at_price > product.price %}
+                <span class="vw-product-badge" style="color:#991B1B;">OFFRE</span>
+              {% endif %}
+            </div>
+            
+            <h3 class="vw-product-title">{{ product.title }}</h3>
+            <span class="vw-product-price">
+              {% if product.price_varies %}À partir de {% endif %}
+              {{ product.price | money_without_trailing_zeros }}
+              {% if product.compare_at_price > product.price %}
+                <span class="vw-price-compare">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+              {% endif %}
+            </span>
+          </a>
+
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if paginate.pages > 1 %}
+        <div class="vw-pagination">
+          {% for part in paginate.parts %}
+            {% if part.is_link %}
+              <a href="{{ part.url }}" class="vw-page-link">{{ part.title }}</a>
+            {% else %}
+              <span class="vw-page-link {% if part.title == paginate.current_page %}current{% endif %}">{{ part.title }}</span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    {% endpaginate %}
+
+    <!-- Zone SEO (Si configurée) -->
+    {% if section.settings.show_seo and collection.description != blank %}
+      <div class="vw-seo-section">
+        <h2 class="vw-seo-title">En savoir plus sur {{ collection.title }}</h2>
+        <div class="vw-seo-text">
+          {{ collection.description }}
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Grille Collection V5",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configuration Grille"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 12,
+      "label": "Produits par page"
+    },
+    {
+      "type": "header",
+      "content": "Carte Marketing (L'Intrus)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_promo",
+      "label": "Afficher la carte promo",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "promo_position",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 3,
+      "label": "Position (Index produit)"
+    },
+    {
+      "type": "text",
+      "id": "promo_title",
+      "label": "Titre Promo",
+      "default": "Touchez la matière"
+    },
+    {
+      "type": "textarea",
+      "id": "promo_text",
+      "label": "Texte Promo",
+      "default": "Commandez un échantillon pour valider la teinte et la texture chez vous."
+    },
+    {
+      "type": "text",
+      "id": "promo_btn",
+      "label": "Texte Bouton",
+      "default": "COMMANDER (2€)"
+    },
+    {
+      "type": "url",
+      "id": "promo_link",
+      "label": "Lien Promo"
+    },
+    {
+      "type": "header",
+      "content": "SEO"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_seo",
+      "label": "Afficher la description collection en bas",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond Section",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "promo_bg_color",
+      "label": "Fond Carte Promo",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "promo_text_color",
+      "label": "Texte Carte Promo",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Bouton)",
+      "default": "#0F766E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grille Collection V5"
+    }
+  ]
+}
+{% endschema %}

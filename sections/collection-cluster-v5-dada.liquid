@@ -1,0 +1,207 @@
+{% comment %}
+  Section: Vinyl Way Cluster V5.20 - MOBILE SQUARE OVERRIDE
+  Description: 
+  - Option "force_square_mobile" ajoutée pour aligner des blocs sur la même ligne en mobile.
+  - Hover Reveal Image.
+  - Badge Finitions : Affiché UNIQUEMENT si rempli manuellement (vide = pas de badge)
+  Author: Architecte UX pour Vinyl Way
+{% endcomment %}
+
+{% style %}
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+  :root {
+    --vw-green: #235c52;
+    --vw-black: #111827;
+    --vw-white: #ffffff;
+    --vw-gradient: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  }
+
+  .vw-section-wrapper {
+    background-color: var(--vw-white);
+    padding: 3rem 0 3rem !important;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    position: relative; 
+  }
+  
+  .vw-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    width: 100% !important;
+    padding: 0 1rem;
+  }
+
+  /* SECTION HEADER */
+  .vw-section-header { margin-bottom: 2rem; padding: 0 1rem; }
+  .vw-section-subtitle { color: var(--vw-green); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+  .vw-section-title { font-family: 'Playfair Display', serif; font-size: 2rem; line-height: 1.1; color: var(--vw-black); margin: 0; }
+
+  /* GRID */
+  .vw-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; grid-auto-flow: dense; width: 100% !important; }
+  @media (max-width: 767px) { .vw-grid { grid-auto-rows: calc((100vw - 2rem - 8px) / 2) !important; } }
+  @media (min-width: 768px) { .vw-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important; grid-auto-rows: calc((min(100vw - 3rem, 1320px) - 40px) / 3) !important; } }
+
+  /* CARTE */
+  .vw-card { position: relative !important; display: block !important; width: 100% !important; height: 100% !important; background: #f0f0f0; margin: 0 !important; text-decoration: none; overflow: hidden; aspect-ratio: 1 / 1; z-index: 1; }
+  .vw-card.vw-span-2 { aspect-ratio: auto; } .vw-card.vw-row-2 { aspect-ratio: 1 / 2; }
+  
+  .vw-span-2 { grid-column: span 2 !important; } .vw-row-2 { grid-row: span 2 !important; }
+
+  /* OVERRIDE MOBILE CARRÉ (METRO) */
+  @media (max-width: 767px) {
+    .vw-mobile-square {
+      grid-column: span 1 !important;
+      aspect-ratio: 1 / 1 !important;
+    }
+  }
+
+  /* IMAGE */
+  .vw-img-wrap { position: absolute !important; inset: 0; z-index: 0; width: 100%; height: 100%; }
+  .vw-img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; transition: transform 0.6s ease, opacity 0.4s ease; }
+  
+  .vw-img.vw-img-main { z-index: 1; opacity: 1; }
+  .vw-img.vw-img-hover { z-index: 2; opacity: 0; }
+  .vw-card:hover .vw-img-main { transform: scale(1.05); }
+  .vw-card:hover .vw-img-hover { opacity: 1; transform: scale(1.05); }
+
+  /* CONTENT */
+  .vw-content-overlay { position: absolute !important; bottom: 0; left: 0; width: 100%; padding: 1rem !important; z-index: 3; background: var(--vw-gradient); display: flex !important; flex-direction: column !important; justify-content: flex-end !important; align-items: flex-start !important; pointer-events: none; height: 35% !important; min-height: 120px; }
+  .vw-card-title { font-family: 'Playfair Display', serif; font-size: 1rem !important; color: white !important; margin: 0 0 2px 0 !important; line-height: 1.1; text-shadow: none !important; }
+  @media (min-width: 768px) { .vw-content-overlay { padding: 1.5rem !important; } .vw-card-title { font-size: 1.5rem !important; margin-bottom: 4px !important; } .vw-span-2 .vw-card-title, .vw-row-2 .vw-card-title { font-size: 1.8rem !important; } }
+  .vw-card-subtitle { font-size: 0.7rem; color: rgba(255,255,255,0.95); margin: 0; font-weight: 400; }
+  @media (max-width: 767px) { .vw-card-subtitle { display: none !important; } .vw-link-indicator { margin-top: 4px !important; } }
+  .vw-link-indicator { font-size: 0.6rem; text-transform: uppercase; font-weight: 700; color: white; border-bottom: 2px solid white; margin-top: 8px; padding-bottom: 2px; display: inline-block; }
+
+  /* BADGES */
+  .vw-badge { position: absolute; top: 10px; left: 10px; background: white; color: black; font-size: 0.6rem; font-weight: 800; padding: 4px 8px; z-index: 4; text-transform: uppercase; box-shadow: none; }
+  .vw-badge.green { background: var(--vw-green); color: white; }
+  .vw-count-badge { position: absolute; top: 10px; right: 10px; bottom: auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); color: white; font-size: 0.65rem; padding: 4px 8px; border-radius: 4px; z-index: 4; border: 1px solid rgba(255,255,255,0.3); font-weight: 600; }
+
+  /* PROMO */
+  .vw-promo-box { background: var(--vw-black) !important; z-index: 1; display: flex !important; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 1rem; aspect-ratio: 1 / 1 !important; }
+  .vw-promo-border { position: absolute; inset: 8px; border: 1px solid rgba(255,255,255,0.2); pointer-events: none; }
+  .vw-promo-title { color: white !important; font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; text-shadow: none !important; }
+  .vw-promo-text { color: #ddd !important; font-size: 0.75rem; margin-bottom: 1rem; line-height: 1.4; }
+  @media (max-width: 767px) { .vw-promo-text { display: none !important; } .vw-promo-title { font-size: 1.1rem; margin-bottom: 0.8rem; } }
+  .vw-btn { background: var(--vw-green); color: white; font-size: 0.7rem; font-weight: 700; padding: 10px 16px; text-decoration: none; text-transform: uppercase; display: inline-block; }
+
+{% endstyle %}
+
+<div id="{{ section.settings.anchor_id }}" class="vw-section-wrapper">
+  <div class="vw-container">
+    {%- if section.settings.title != blank -%}
+      <div class="vw-section-header">
+        {%- if section.settings.subtitle != blank -%}<span class="vw-section-subtitle">{{ section.settings.subtitle }}</span>{%- endif -%}
+        <h2 class="vw-section-title">{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="vw-grid">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'collection_block' -%}
+            {%- assign collection = collections[block.settings.collection] -%}
+            {%- assign size = block.settings.card_size | default: 'standard' -%}
+            
+            <!-- Classe conditionnelle pour le carré mobile -->
+            {%- capture card_classes -%}
+                vw-card 
+                {% if size == 'wide' %}vw-span-2{% endif %}
+                {% if size == 'tall' %}vw-row-2{% endif %}
+                {% if block.settings.force_square_mobile %}vw-mobile-square{% endif %}
+            {%- endcapture -%}
+
+            <a href="{{ collection.url | default: '#' }}" class="{{ card_classes }}" {{ block.shopify_attributes }}>
+              <div class="vw-img-wrap">
+                {%- if block.settings.custom_image != blank -%}
+                   {{ block.settings.custom_image | image_url: width: 800 | image_tag: class: 'vw-img vw-img-main', loading: 'lazy' }}
+                {%- elsif collection.image -%}
+                  {{ collection.image | image_url: width: 800 | image_tag: class: 'vw-img vw-img-main', loading: 'lazy' }}
+                {%- elsif collection.products.first.featured_image -%}
+                  {{ collection.products.first.featured_image | image_url: width: 800 | image_tag: class: 'vw-img vw-img-main', loading: 'lazy' }}
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'vw-img vw-img-main' }}
+                {%- endif -%}
+
+                {%- assign hover_image = blank -%}
+                {%- if block.settings.hover_image != blank -%}
+                  {%- assign hover_image = block.settings.hover_image -%}
+                {%- elsif collection.products.first.images[1] != blank -%}
+                  {%- assign hover_image = collection.products.first.images[1] -%}
+                {%- endif -%}
+
+                {%- if hover_image != blank -%}
+                   {{ hover_image | image_url: width: 800 | image_tag: class: 'vw-img vw-img-hover', loading: 'lazy' }}
+                {%- endif -%}
+              </div>
+
+              {%- if block.settings.label != blank -%}
+                <span class="vw-badge {% if block.settings.label_style == 'gold' %}green{% endif %}">{{ block.settings.label }}</span>
+              {%- endif -%}
+              
+              {%- comment -%} BADGE FINITIONS : Affiché UNIQUEMENT si rempli manuellement {%- endcomment -%}
+              {%- if block.settings.badge != blank -%}
+                <span class="vw-count-badge">{{ block.settings.badge }}</span>
+              {%- endif -%}
+
+              <div class="vw-content-overlay">
+                  <h3 class="vw-card-title">{{ block.settings.custom_title | default: collection.title }}</h3>
+                  {%- if block.settings.subtitle != blank -%}<p class="vw-card-subtitle">{{ block.settings.subtitle }}</p>{%- endif -%}
+                  <span class="vw-link-indicator">Découvrir</span>
+              </div>
+            </a>
+
+          {%- when 'promo_block' -%}
+            <div class="vw-card vw-span-1 vw-promo-box" {{ block.shopify_attributes }}>
+              <div class="vw-promo-border"></div>
+              {%- if block.settings.title != blank -%}<h3 class="vw-promo-title">{{ block.settings.title }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<p class="vw-promo-text">{{ block.settings.text }}</p>{%- endif -%}
+              {%- if block.settings.btn_text != blank -%}<a href="{{ block.settings.link }}" class="vw-btn">{{ block.settings.btn_text }}</a>{%- endif -%}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cluster V5.20 Mobile",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Sur-titre" },
+    { "type": "text", "id": "title", "label": "Titre Section" },
+    { "type": "text", "id": "anchor_id", "label": "ID pour le menu" }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "image_picker", "id": "custom_image", "label": "Image Principale" },
+        { "type": "image_picker", "id": "hover_image", "label": "Image Survol" },
+        { "type": "select", "id": "card_size", "label": "Format Desktop", "options": [ { "value": "standard", "label": "Carré" }, { "value": "wide", "label": "Large" }, { "value": "tall", "label": "Haut" } ], "default": "standard" },
+        { "type": "checkbox", "id": "force_square_mobile", "label": "Mobile : Forcer carré (1 colonne)", "info": "Cochez pour aligner avec un autre bloc sur la même ligne.", "default": false },
+        { "type": "text", "id": "custom_title", "label": "Titre" },
+        { "type": "text", "id": "subtitle", "label": "Sous-titre" },
+        { "type": "text", "id": "badge", "label": "Badge (ex: 18 Finitions)", "info": "Laissez vide pour masquer le badge" },
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "select", "id": "label_style", "label": "Couleur Label", "options": [{ "value": "black", "label": "Blanc" }, { "value": "gold", "label": "Vert" }] }
+      ]
+    },
+    {
+      "type": "promo_block",
+      "name": "Bloc Promo",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre" },
+        { "type": "textarea", "id": "text", "label": "Texte" },
+        { "type": "text", "id": "btn_text", "label": "Bouton" },
+        { "type": "url", "id": "link", "label": "Lien" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Cluster V5.20 Mobile" }]
+}
+{% endschema %}

@@ -1,0 +1,417 @@
+{% comment %}
+  Section: Vinyl Way Tech Specs (Technologie Produit)
+  Author: Architecte Vinyl Way
+  Description: Présentation technique avec GIF des couches et grille de caractéristiques.
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-tech-bg: {{ section.settings.bg_color }};
+    --vw-tech-text: {{ section.settings.text_color }};
+    --vw-tech-accent: {{ section.settings.accent_color }};
+    --vw-tech-border: #E5E7EB;
+  }
+
+  .vw-tech-section {
+    padding: 6rem 1.5rem;
+    background-color: var(--vw-tech-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--vw-tech-text);
+    border-top: 1px solid var(--vw-tech-border);
+  }
+
+  .vw-tech-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  /* --- HEADER (MOBILE) --- */
+  .vw-tech-header-mobile {
+    display: block;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .vw-tech-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--vw-tech-accent);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .vw-tech-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--vw-tech-text);
+  }
+
+  /* --- LAYOUT SPLIT --- */
+  .vw-tech-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  /* --- COLONNE VISUELLE (GIF) --- */
+  .vw-tech-visual-col {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #F9FAFB; /* Fond subtil pour faire ressortir le produit */
+    border-radius: 4px; /* Très léger arrondi tech */
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .vw-tech-gif {
+    width: 100%;
+    height: auto;
+    max-width: 600px; /* Taille optimale pour le GIF */
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Intégration parfaite si fond blanc */
+  }
+
+  /* Badge "Technologie Brevetée" flottant */
+  .vw-tech-badge {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #FFFFFF;
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--vw-tech-border);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--vw-tech-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .vw-tech-badge-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--vw-tech-accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(15, 118, 110, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
+  }
+
+  /* --- COLONNE TEXTE & SPECS --- */
+  .vw-tech-info-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vw-tech-header-desktop {
+    display: none;
+    margin-bottom: 3rem;
+  }
+
+  .vw-tech-description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #4B5563;
+    margin-bottom: 3rem;
+    max-width: 500px;
+  }
+
+  /* Grille des caractéristiques */
+  .vw-specs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    border-top: 1px solid var(--vw-tech-border);
+    padding-top: 2rem;
+  }
+
+  .vw-spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .vw-spec-icon-box {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: #F0FDFA; /* Light Teal background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vw-tech-accent);
+  }
+
+  .vw-spec-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke-width: 1.5;
+  }
+
+  .vw-spec-text-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vw-spec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--vw-tech-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .vw-spec-desc {
+    font-size: 0.875rem;
+    color: #6B7280;
+    line-height: 1.5;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 768px) {
+    .vw-tech-section {
+      padding: 8rem 3rem;
+    }
+
+    .vw-tech-header-mobile { display: none; }
+    .vw-tech-header-desktop { display: block; }
+
+    .vw-tech-content-wrapper {
+      grid-template-columns: 1fr 1fr; /* Split 50/50 */
+      gap: 6rem;
+    }
+
+    .vw-tech-title {
+      font-size: 3rem;
+    }
+
+    .vw-specs-grid {
+      grid-template-columns: 1fr 1fr; /* 2 colonnes de specs sur desktop */
+      gap: 3rem 2rem;
+    }
+  }
+</style>
+
+<div class="vw-tech-section">
+  <div class="vw-tech-container">
+
+    <!-- Titre Mobile Only -->
+    <div class="vw-tech-header-mobile">
+      <span class="vw-tech-label">{{ section.settings.label }}</span>
+      <h2 class="vw-tech-title">{{ section.settings.title | newline_to_br }}</h2>
+    </div>
+
+    <div class="vw-tech-content-wrapper">
+      
+      <!-- GAUCHE : VISUEL GIF -->
+      <div class="vw-tech-visual-col">
+        {% if section.settings.gif_image != blank %}
+          {{ section.settings.gif_image | image_url: width: 800 | image_tag: class: 'vw-tech-gif', loading: 'lazy', alt: 'Technologie des couches Vinyl Way' }}
+        {% else %}
+          <!-- Placeholder SVG si pas d'image -->
+          {{ 'product-1' | placeholder_svg_tag: 'vw-tech-gif' }}
+        {% endif %}
+
+        <div class="vw-tech-badge">
+          <div class="vw-tech-badge-dot"></div>
+          Technology™
+        </div>
+      </div>
+
+      <!-- DROITE : SPECS -->
+      <div class="vw-tech-info-col">
+        
+        <div class="vw-tech-header-desktop">
+          <span class="vw-tech-label">{{ section.settings.label }}</span>
+          <h2 class="vw-tech-title">{{ section.settings.title | newline_to_br }}</h2>
+        </div>
+
+        <p class="vw-tech-description">
+          {{ section.settings.description }}
+        </p>
+
+        <div class="vw-specs-grid">
+          {% for block in section.blocks %}
+            <div class="vw-spec-item">
+              <div class="vw-spec-icon-box">
+                <!-- Icônes SVG basées sur le type sélectionné -->
+                {% if block.settings.icon == 'water' %}
+                  <svg class="vw-spec-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                {% elsif block.settings.icon == 'heat' %}
+                  <svg class="vw-spec-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" /><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" /></svg>
+                {% elsif block.settings.icon == 'relief' %}
+                  <svg class="vw-spec-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                {% elsif block.settings.icon == 'cut' %}
+                  <svg class="vw-spec-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" /></svg>
+                {% else %}
+                  <svg class="vw-spec-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                {% endif %}
+              </div>
+              
+              <div class="vw-spec-text-box">
+                <h4 class="vw-spec-title">{{ block.settings.title }}</h4>
+                <p class="vw-spec-desc">{{ block.settings.text }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Tech Specs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Textes"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Surtitre",
+      "default": "INGÉNIERIE ADHÉSIVE"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Titre Principal",
+      "default": "Plus qu'un Sticker.\nUne Surface Technique."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Notre technologie multi-couches combine la facilité de pose de l'adhésif avec la robustesse des matériaux de construction. Conçu pour durer 10 ans."
+    },
+    {
+      "type": "header",
+      "content": "Visuel"
+    },
+    {
+      "type": "image_picker",
+      "id": "gif_image",
+      "label": "GIF Animé ou Image des Couches",
+      "info": "Format recommandé : GIF fond transparent ou blanc"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond Section",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Teal)",
+      "default": "#0F766E"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Caractéristique",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            { "value": "water", "label": "Goutte (Étanche)" },
+            { "value": "heat", "label": "Feu (Chaleur)" },
+            { "value": "relief", "label": "Couches (3D)" },
+            { "value": "cut", "label": "Ciseaux (Découpe)" },
+            { "value": "check", "label": "Check (Validé)" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Caractéristique"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description courte",
+          "default": "Description technique."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Tech Specs",
+      "category": "Produit",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "relief",
+            "title": "Gel 3D Effect™",
+            "text": "Toucher céramique authentique et brillance minérale."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "water",
+            "title": "100% Étanche",
+            "text": "Compatible douche et crédence évier. Ne jaunit pas."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "heat",
+            "title": "Bouclier Thermique",
+            "text": "Résiste à la chaleur des plaques de cuisson (gaz & induction)."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "cut",
+            "title": "Découpe Cutter",
+            "text": "Ajustement millimétré sans scie ni poussière."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

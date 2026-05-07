@@ -1,0 +1,315 @@
+{% comment %}
+  Section: Vinyl Way Content Split Duo (Rouleaux & Sols)
+  Author: Architecte Vinyl Way
+  Description: Section sombre à 2 colonnes pour présenter les gammes complémentaires.
+{% endcomment %}
+
+<style>
+  /* Import des polices */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-duo-bg: {{ section.settings.bg_color }};
+    --vw-duo-text: {{ section.settings.text_color }};
+    --vw-duo-text-light: {{ section.settings.text_light_color }};
+    --vw-duo-btn-bg: {{ section.settings.btn_bg_color }};
+    --vw-duo-btn-text: {{ section.settings.btn_text_color }};
+  }
+
+  .vw-duo-section {
+    padding: 6rem 1.5rem;
+    background-color: var(--vw-duo-bg);
+    color: var(--vw-duo-text);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .vw-duo-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* --- HEADER --- */
+  .vw-duo-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .vw-duo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--vw-duo-text);
+  }
+
+  .vw-duo-subtitle {
+    font-size: 1.125rem;
+    color: var(--vw-duo-text-light);
+    line-height: 1.6;
+  }
+
+  /* --- GRID --- */
+  .vw-duo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  /* --- COLUMNS --- */
+  .vw-duo-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vw-duo-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Format Cinéma */
+    overflow: hidden;
+    margin-bottom: 2rem;
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  .vw-duo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  .vw-duo-column:hover .vw-duo-image {
+    transform: scale(1.05);
+  }
+
+  .vw-duo-col-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--vw-duo-text);
+  }
+
+  .vw-duo-col-desc {
+    font-size: 1rem;
+    color: var(--vw-duo-text-light);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 450px;
+  }
+
+  /* --- BUTTONS --- */
+  .vw-duo-btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: transparent;
+    border: 1px solid var(--vw-duo-text);
+    color: var(--vw-duo-text);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: fit-content;
+  }
+
+  .vw-duo-btn:hover {
+    background-color: var(--vw-duo-text);
+    color: var(--vw-duo-bg); /* Inversion contrastée */
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 768px) {
+    .vw-duo-section {
+      padding: 8rem 3rem;
+    }
+
+    .vw-duo-title {
+      font-size: 3rem;
+    }
+
+    .vw-duo-grid {
+      grid-template-columns: 1fr 1fr; /* 2 Colonnes */
+      gap: 5rem;
+    }
+  }
+</style>
+
+<div class="vw-duo-section">
+  <div class="vw-duo-container">
+    
+    <!-- HEADER -->
+    <div class="vw-duo-header">
+      {% if section.settings.title != blank %}
+        <h2 class="vw-duo-title">{{ section.settings.title | newline_to_br }}</h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="vw-duo-subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <!-- CONTENT GRID -->
+    <div class="vw-duo-grid">
+      
+      <!-- COLONNE 1 (GAUCHE) -->
+      <div class="vw-duo-column">
+        <div class="vw-duo-image-wrapper">
+          {% if section.settings.image_1 != blank %}
+            {{ section.settings.image_1 | image_url: width: 1200 | image_tag: class: 'vw-duo-image', loading: 'lazy', alt: section.settings.title_1 }}
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'vw-duo-image' }}
+          {% endif %}
+        </div>
+        
+        <h3 class="vw-duo-col-title">{{ section.settings.title_1 }}</h3>
+        <p class="vw-duo-col-desc">{{ section.settings.text_1 }}</p>
+        
+        {% if section.settings.link_1 != blank %}
+          <a href="{{ section.settings.link_1 }}" class="vw-duo-btn">
+            {{ section.settings.btn_label_1 }}
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- COLONNE 2 (DROITE) -->
+      <div class="vw-duo-column">
+        <div class="vw-duo-image-wrapper">
+          {% if section.settings.image_2 != blank %}
+            {{ section.settings.image_2 | image_url: width: 1200 | image_tag: class: 'vw-duo-image', loading: 'lazy', alt: section.settings.title_2 }}
+          {% else %}
+            {{ 'collection-2' | placeholder_svg_tag: 'vw-duo-image' }}
+          {% endif %}
+        </div>
+        
+        <h3 class="vw-duo-col-title">{{ section.settings.title_2 }}</h3>
+        <p class="vw-duo-col-desc">{{ section.settings.text_2 }}</p>
+        
+        {% if section.settings.link_2 != blank %}
+          <a href="{{ section.settings.link_2 }}" class="vw-duo-btn">
+            {{ section.settings.btn_label_2 }}
+          </a>
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Duo (Split)",
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête Section"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Titre Principal",
+      "default": "Surfaces Continues & Sols"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Pour les grands volumes et les zones à fort passage."
+    },
+    {
+      "type": "header",
+      "content": "Colonne 1 (Gauche)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Titre 1",
+      "default": "Les Crédences Panoramiques"
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Description 1",
+      "default": "Idéal pour les grandes surfaces lisses. Rendu uniforme sans jointure, pose ultra-rapide en un seul tenant."
+    },
+    {
+      "type": "text",
+      "id": "btn_label_1",
+      "label": "Texte Bouton 1",
+      "default": "VOIR LES ROULEAUX"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Lien 1"
+    },
+    {
+      "type": "header",
+      "content": "Colonne 2 (Droite)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Titre 2",
+      "default": "Les Sols Rénovation"
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Description 2",
+      "default": "Technologie couche d'usure renforcée. Résistance au passage intensif et à l'humidité. Pose directe sur carrelage."
+    },
+    {
+      "type": "text",
+      "id": "btn_label_2",
+      "label": "Texte Bouton 2",
+      "default": "VOIR LES SOLS"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Lien 2"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs (Dark Mode)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte Principal",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_light_color",
+      "label": "Texte Secondaire",
+      "default": "#9CA3AF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Duo (Split)",
+      "category": "Produits"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,531 @@
+{{ 'main-cart-items.css' | asset_url | stylesheet_tag }}
+{{ 'main-cart-items.js' | asset_url | script_tag }}
+
+{{ 'main-product-page.css' | asset_url | stylesheet_tag }}
+
+{% if request.locale.iso_code contains "fr" %}
+      {% assign localUrl = "" %}
+    {% else %}
+      {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+    {% endif %}
+
+
+<cart-items class="{% if cart == empty %}is-empty{% endif %}">
+ <section class="cartTemplate">
+
+        <div class="cartTemplateHeader">
+            <h1>{{ 'vw.panier.title' | t }}</h1>
+            <a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/">{{ 'vw.panier.continue' | t }}</a>
+        </div>
+        <form action="{{ routes.cart_url }}" method="post">
+          
+        <div class="cartGrid">
+
+          {% for item in cart.items %}
+
+            {% if item.product.handle contains "cadeau" %}
+              <div  id="CartItem-{{ item.index | plus: 1 }}">
+            
+        <div class="listTiles">
+                <a href="{{ item.url }}">
+            
+            <ul style="grid-template-columns: repeat(1,1fr)">
+                    <li style="max-width: 200px">
+                        <img alt="Carte cadeau Vinyl Way" loading="lazy" src="{{ item.product.images[0] | image_url: width: 500 }}">
+                    </li>
+                </ul>
+                </a>
+            </div>
+            <div class="productContent">
+                <div>
+            <a href="{{ item.url }}"><h2>{{ item.product.title }}</h2></a>
+            </div>
+            <div>
+            <div class="productPrice">
+                 <div>
+                           <span class="price" id="price">{{ item.original_line_price | money_without_currency }}€</span>
+                    </div>
+              <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+                        {{ 'products.product.quantity.label' | t }}
+                      </label>
+              
+                    <div class="quantityProduct">
+                      
+                      <quantity-input class="quantity">                        
+                        <span id="downQuantity">-</span>
+                        <input class="quantity__input"
+                          type="number"
+                          name="updates[]"
+                          value="{{ item.quantity }}"
+                          min="1" max="999" maxlength="3"
+                          aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                          id="Quantity-{{ item.index | plus: 1 }}"
+                          data-index="{{ item.index | plus: 1 }}"
+                          onblur="this.form.submit()"
+                        >
+                       <span id="upQuantity">+</span>                       
+                      </quantity-input>
+              
+                      <cart-remove-button class="btnRemove" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                        <a href="{{ item.url_to_remove }}" class="button button--tertiary" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+                          {% render 'icon-remove' %}
+                        </a>
+                      </cart-remove-button>
+                      
+                    </div>  
+              
+                </div>
+            </div>
+            </div>        
+        </div>
+
+              {% else %}
+
+              
+
+    
+            
+              {% unless customer and customer.tags contains 'pro' %}
+              {% else %}
+              {% assign customerPro = true %}
+              {% endunless %}
+
+                      {% if item.product.tags contains 'motifs_1' %}
+                      {% assign nbMotifs = 1 %}
+                      {% elsif item.product.tags contains 'motifs_2' %}
+                      {% assign nbMotifs = 2 %}
+                      {% elsif item.product.tags contains 'motifs_4' %}
+                      {% assign nbMotifs = 4 %}
+                      {% elsif item.product.tags contains 'motifs_8' %}
+                      {% assign nbMotifs = 8 %}
+                        {% else %}
+                      {% assign nbMotifs = 'X' %}
+                      {% endif %}
+            
+        <div  id="CartItem-{{ item.index | plus: 1 }}">
+            
+        <a class="grid-choice notranslate" href="{{ item.url }}">   
+              
+               {% if item.product.type == 'Carreaux adhésifs' %}
+                 
+  {% for option in item.options_with_values %}
+    {% if option.name == "Quantity" and option.value contains "1" %}
+       <div class="c20x20 sample notranslate">
+          <div>
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°1"
+              class="tile1"
+              src="{{ item.product.images[1] | img_url:'50x' }}"
+            >
+          </div>
+          </div>
+    {% elsif option.name == "Quantity" and option.value contains "4" %}      
+        <div class="c40x40 notranslate">
+          <div>
+            <div>
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°1"
+                
+                src="{{ item.product.images[1] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°2"
+                
+                src="{{ item.product.images[2] | img_url:'50x' }}"
+              >
+  
+              {% if item.product.tags contains 'ordre_carre' %}
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°3"
+                
+                src="{{ item.product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°4"
+                "
+                src="{{ item.product.images[4] | img_url:'50x' }}"
+              >                
+                {% else %}
+                <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°3"
+                
+                src="{{ item.product.images[5] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°4"
+                "
+                src="{{ item.product.images[6] | img_url:'50x' }}"
+              >        
+                {% endif %}
+            </div>
+            <div>
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°5"
+                src="{{ item.product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°6"
+                src="{{ item.product.images[4] | img_url:'50x' }}"
+              >
+              {% if item.product.tags contains 'ordre_ligne' %}
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°7"
+                
+                src="{{ item.product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°8"
+                "
+                src="{{ item.product.images[4] | img_url:'50x' }}"
+              >                
+                {% else %}
+                <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°7"
+                
+                src="{{ item.product.images[5] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°8"
+                "
+                src="{{ item.product.images[6] | img_url:'50x' }}"
+              >        
+                {% endif %}
+            </div>
+  <div>
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°1"
+                
+                src="{{ item.product.images[1] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°2"
+                
+                src="{{ item.product.images[2] | img_url:'50x' }}"
+              >
+  
+              {% if item.product.tags contains 'ordre_carre' %}
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°3"
+                
+                src="{{ item.product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°4"
+                "
+                src="{{ item.product.images[4] | img_url:'50x' }}"
+              >                
+                {% else %}
+                <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°3"
+                
+                src="{{ item.product.images[5] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°4"
+                "
+                src="{{ item.product.images[6] | img_url:'50x' }}"
+              >        
+                {% endif %}
+            </div>
+            <div>
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°5"
+                src="{{ item.product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°6"
+                src="{{ item.product.images[4] | img_url:'50x' }}"
+              >
+              {% if item.product.tags contains 'ordre_ligne' %}
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°7"
+                
+                src="{{ item.product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°8"
+                "
+                src="{{ item.product.images[4] | img_url:'50x' }}"
+              >                
+                {% else %}
+                <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°7"
+                
+                src="{{ item.product.images[5] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°8"
+                "
+                src="{{ item.product.images[6] | img_url:'50x' }}"
+              >        
+                {% endif %}
+            </div>
+          </div>
+        </div>
+    {% elsif option.name == "Quantity" and option.value contains "8" %}
+        <div class="c20x20 notranslate">
+          <div>
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°1"
+              class="tile1"
+              src="{{ item.product.images[1] | img_url:'50x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°2"
+              class="tile2"
+              src="{{ item.product.images[2] | img_url:'50x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°3"
+              class="{% if item.product.tags contains 'ordre_carre' %}tile3{% else %}tile5{% endif %}"
+              src="{{ item.product.images[3] | img_url:'50x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°4"
+              class="{% if item.product.tags contains 'ordre_carre' %}tile4{% else %}tile6{% endif %}"
+              src="{{ item.product.images[4] | img_url:'50x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°5"
+              class="{% if item.product.tags contains 'ordre_carre' %}tile5{% else %}tile3{% endif %}"
+              src="{{ item.product.images[5] | img_url:'50x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°6"
+              class="{% if item.product.tags contains 'ordre_carre' %}tile6{% else %}tile4{% endif %}"
+              src="{{ item.product.images[6] | img_url:'50x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°7"
+              class="tile7"
+              src="{{ item.product.images[7] | img_url:'50x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ item.product.title }} - n°8"
+              class="tile8"
+              src="{{ item.product.images[8] | img_url:'50x' }}"
+            >
+          </div>
+          </div>
+    {% endif %}
+  {% endfor %}
+
+          {% else %}
+                 <img src="{{ item.product.images[0] | img_url:'500x' }}"
+                 {% endif %}
+      </a>
+              
+            <div class="productContent">
+                <div>
+            <a href="{{ item.url }}"><h2 class="notranslate">{{ item.product.title }}<small></small></h2></a>
+              
+               {% if item.product.type == 'Carreaux adhésifs' %}
+            <h3><strong>{{ 'vw.product_page.title_carreau' | t }}</strong> {{ 'vw.product_page.title_adhesif' | t }} <small></small>
+                 {% elsif item.product.type == 'Fresque adhésive' %}
+            <h3><strong>{{ 'vw.product_page.title_fresque' | t }}</strong> {{ 'vw.product_page.title_adhesive' | t }} <small></small>
+                 {% elsif item.product.type == 'Crédence adhésive' %}
+            <h3><strong>Crédence</strong> {{ 'vw.product_page.title_adhesive' | t }} <small></small>
+              {% endif %}
+            <small id="lots-{{ item.index | plus: 1 }}" style="display:block;">
+              
+               {% if item.product.type == 'Carreaux adhésifs' %}
+              {% for option in item.options_with_values %}
+    {% if option.name == "Quantity" and option.value != "1" %}
+      {{ 'vw.panier.lot-de' | t }} {{ option.value }} {{ 'vw.product_page.carreaux' | t }}
+      {% elsif option.name == "Quantity" %}
+      1 {{ 'vw.popup_delivery.livraison.echantillon' | t }}
+      {% endif %}
+    {% endfor %}
+                 {% endif %}
+               {% if item.product.type == 'Crédence adhésive' %}
+              {% for option in item.options_with_values %}
+    {% if option.name == "Format" and option.value == "20x20" %}
+      1 {{ 'vw.popup_delivery.livraison.echantillon' | t }}
+      {% endif %}
+    {% endfor %}
+                 {% endif %}
+              <b>              
+  {% for option in item.options_with_values %}
+    {% if option.name == "Format" %}
+      {{ option.value }} cm
+      {% endif %}
+    {% endfor %}
+              </b></small></h3>
+            </div>
+            <div>
+            <div class="productPrice">
+
+                        {% assign compare_price = item.variant.price | times: item.quantity %} 
+              
+                 <div>
+                           <span class="price" id="price">{{ item.original_line_price | money_without_currency }} €</span>
+                     {% for option in item.options_with_values %}
+                      {% if option.name == "Quantity" and option.value != '1' %}
+                            <small style="display:none;" class="comparePrice">
+                            0 €
+                           </small>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+              <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+                        {{ 'products.product.quantity.label' | t }}
+                      </label>
+              
+                    <div class="quantityProduct">
+
+              
+                      <quantity-input class="quantity">   
+
+                        
+               {% if item.product.type == 'Carreaux adhésifs' %}
+                    {% for option in item.options_with_values %}
+                      {% if option.name == "Quantity" and option.value != '1' %}
+                        <span id="downQuantity">-</span>
+                        {% endif %}
+                    {% endfor %}
+                 {% elsif item.product.type == 'Crédence adhésive' and item.sku contains "WA" %}
+                 <!-- ne rien afficher -->
+                 {% else %}
+                        <span id="downQuantity">-</span>
+                        {% endif %}
+                        
+                        
+                       <input class="quantity__input quantity__inputHidden"
+  type="number"
+  name="updates[]"
+  value="{{ item.quantity }}"
+  min="1" max="999" maxlength="3"
+  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+  id="Quantity-{{ item.index | plus: 1 }}"
+  data-index="{{ item.index | plus: 1 }}"
+  onblur="this.form.submit()"
+                         
+               {% if item.product.type == 'Carreaux adhésifs' %}
+  {% for option in item.options_with_values %}
+  {% if option.name == "Quantity" and option.value == '1' %}
+  readonly
+  {% endif %}
+  {% endfor %}
+                 {% endif %}
+>
+                                
+               {% if item.product.type == 'Carreaux adhésifs' %}
+                    {% for option in item.options_with_values %}
+                      {% if option.name == "Quantity" and option.value != '1' %}
+                            <span id="upQuantity">+</span>  
+                        {% endif %}
+                    {% endfor %}
+                 {% elsif item.product.type == 'Crédence adhésive' and item.sku contains "WA" %}
+                 <!-- ne rien afficher -->
+                 {% else %}
+                            <span id="upQuantity">+</span>  
+                        {% endif %}
+                        
+                      </quantity-input>
+                      
+              
+                      <cart-remove-button class="btnRemove" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                        <a href="{{ item.url_to_remove }}" class="button button--tertiary" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+                          {% render 'icon-remove' %}
+                        </a>
+                      </cart-remove-button>
+                      
+                    </div>  
+              
+                </div>
+            </div>
+            </div>        
+        </div>
+
+              {% endif %}
+              
+            {% endfor %}
+
+        <div class="divTotal">
+
+          
+          {% assign total_cart_item_price = 0 %}
+          {% assign total_cart_compare_price = 0 %}
+          {% for item in cart.items %} 
+          {% assign total_cart_item_price = total_cart_item_price | plus: item.price %}
+          {% assign compare_price = item.price | times: item.quantity %} 
+          {% assign total_cart_compare_price = total_cart_compare_price | plus: compare_price %}
+          {% endfor %}
+          
+        <div>
+            <div>
+            <button type="submit" name="checkout" class="btnCheckout">{{ 'vw.panier.btn_checkout' | t }}
+        {% comment %} <small>{{ 'vw.panier.btn_checkout_small1' | t }} {% if total_cart_compare_price < 4900 %}{{ 'vw.popup_delivery.livraison.a_partir' | t }} 49€{% else %}
+          {{ 'vw.panier.btn_checkout_small2' | t }}!{% endif %}</small></small> {% endcomment %}
+            </button>
+
+              {% unless customer and customer.tags contains 'pro' %}
+        <div class="additional-checkout-buttons btnPaypal">{{ content_for_additional_checkout_buttons }}</div>
+                {% endunless %}
+                
+             </div>
+        <span class="infoDelivery">
+           {% if cart.total_price > 300 and cart.total_price < 4900 %}{{ 'vw.popup_delivery.livraison.livraison_offerte' | t }} {{ 'vw.popup_delivery.livraison.a_partir' | t }} 49€
+           {% elsif cart.total_price > 4900 %}La livraison est offerte !
+           {% else %}{{ 'vw.popup_delivery.livraison.livraison_offerte' | t }} {{ 'vw.popup_delivery.livraison.pour' | t }} 1 {{ 'vw.popup_delivery.livraison.echantillon' | t }}
+             {% endif %}
+            </span>
+        <span class="btnInfos" style="display:none;">{{ 'vw.product_page.btn_popupdiscounts' | t }}</span>
+        <input id="btnUpdate" type="submit" name="update" value="Update cart" />
+        </div>
+            <div class="productPrice">
+                <p>{{ 'vw.panier.subtotal' | t }} :</p>
+                <div>
+            <div class="discount enable"  {%- unless customerPro %}style="display:none;"{% endunless %}>
+
+                      
+                        <div><span id="regularPrice">{{ total_cart_compare_price | money_without_currency }}</span> €</div>
+                        <span id="discountPercent">Pro -30%</span>
+                    </div>
+                    <span class="price"><span id="totalPrice">{% if customerPro %}{{ cart.items_subtotal_price | times: 0.7 | money_without_currency }}{% else %}{{ cart.items_subtotal_price | money_without_currency }}{% endif %}</span> €                    
+                    <small>{% if customerPro %}{{ 'vw.product_page.hors_taxe' | t }}{% else %}{{ 'vw.product_page.toute_taxe' | t }}{% endif %}</small>
+                    </span>
+                </div>
+                
+<div id="promo-blackfriday" style="display: none;">
+  <p>Le code Black Friday sera appliqué au Checkout🎉</p>
+</div>
+            </div>
+
+{% comment %} BLACKFRIDAY {% endcomment %}
+            <!-- Bloc caché par défaut -->
+
+<script>
+  (function() {
+    // Fonction pour lire un cookie
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    const discountCookie = getCookie('discount_code');
+    if (discountCookie && discountCookie.toUpperCase() === 'BLACKFRIDAY2025') {
+      const el = document.getElementById('promo-blackfriday');
+      if (el) {
+        el.style.display = 'block';
+      }
+    }
+  })();
+</script>
+{% comment %}  {% endcomment %}
+
+
+        </div>
+        {% if cart == empty %}
+          <div class="divEmpty">
+            <p>{{ 'vw.panier.empty' | t }}</p>
+          </div>
+          {% endif %}
+            
+  </form>
+        </section>
+
+</cart-items>
+

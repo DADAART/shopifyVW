@@ -1,0 +1,338 @@
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+
+{% if request.locale.iso_code contains 'fr' %}
+  {% assign localUrl = '' %}
+{% else %}
+  {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+{% endif %}
+
+<footer class="Footer">
+  <div class="footerContainer">
+    <div class="gridFooter">
+      <div class="divAbout">
+        <span>{{ 'vw.footer.about.title' | t }}</span>
+        <p>{{ 'vw.footer.about.text' | t }}</p>
+        <div class="socialIcons">
+          <a target="blank" href="https://www.facebook.com/{{ 'vw.url.social' | t }}"
+            ><img
+              alt="facebook"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/facebook.svg?v=1667916047"
+          ></a>
+          <a target="blank" href="https://www.instagram.com/{{ 'vw.url.social' | t }}/"
+            ><img
+              alt="instagram"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/instagram.svg?v=1667916047"
+          ></a>
+          <a target="blank" href="https://linkedin.com/company/vinyl-way"
+            ><img
+              alt="linkedin"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/linkedin.svg?v=1667916047"
+          ></a>
+        </div>
+      </div>
+
+      <div class="divNavigation">
+        <span>{{ 'vw.footer.navigation.title' | t }}</span>
+        <div>
+          <ul>
+            <li>
+              <a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}">
+                {{- 'vw.header.nav.carreaux' | t -}}
+              </a>
+            </li>
+            <li>
+              <a href="{{ localUrl }}/account/register/?pro">{{ 'vw.header.nav.professionnels' | t }}</a>
+            </li>
+            <li>
+              <a href="{{ localUrl }}/pages/faq">FAQ</a>
+            </li>
+            <li>
+              <a href="https://dada-art.fr">Art mural - Dada Art.</a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="{{ localUrl }}/policies/legal-notice">{{ 'vw.header.nav.legal-notice' | t }}</a>
+            </li>
+            <li>
+              <a href="{{ localUrl }}/policies/terms-of-sale">{{ 'vw.header.nav.terms-of-sale' | t }}</a>
+            </li>
+            <li>
+              <a href="https://ftp.vinyl-wall.com/{{ 'vw.url.retour' | t }}.pdf">{{ 'vw.header.nav.retour' | t }}</a>
+            </li>
+            <li>
+              <a href="{{ localUrl }}/pages/contact">{{ 'vw.header.nav.contact' | t }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="divContact notranslate">
+        <span>{{ 'vw.header.nav.contact' | t }}</span>
+        <ul>
+          <li>
+            <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/localisation.svg?v=1667916047">
+            13 rue Emmanuel Chabrier
+            <br>
+            26000 Valence, France
+          </li>
+{% if request.locale.iso_code contains 'fr' %}
+          <li>
+            <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/telephone.svg?v=1667916048">
+            +33 4 27 24 04 64
+          </li>
+  {% endif %}
+          <li>
+            <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/email.svg?v=1667916047">
+            hello@vinyl-way.com
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <div>
+        <img alt="logo Vinyl Way" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/LogoVw.svg?v=1666779214">
+        <p>
+          <span>VINYL WAY © 2026</span> <span>{{ 'vw.footer.copyright' | t }}</span>
+        </p>
+      </div>
+      <div>
+        <ul>
+          {%- for type in shop.enabled_payment_types -%}
+            <li>
+              {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Quick links",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image alignment on large screen",
+          "options": [
+            {
+              "value": "",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__1.content",
+      "info": "t:sections.footer.settings.header__1.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "default": "Subscribe to our emails",
+      "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__2.content",
+      "info": "t:sections.footer.settings.header__2.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": false,
+      "label": "t:sections.footer.settings.show_social.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__3.content",
+      "info": "t:sections.footer.settings.header__4.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_country_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__5.content",
+      "info": "t:sections.footer.settings.header__6.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_language_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__7.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.footer.settings.margin_top.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "text"
+      }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,227 @@
+{% comment %}
+  Section: Vinyl Way Press Banner (Vu sur...)
+  Author: Architecte Vinyl Way
+  Description: Bandeau de réassurance presse. Logos monochromes élégants. Supporte Images & SVG.
+{% endcomment %}
+
+<style>
+  /* Import des polices */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-press-bg: {{ section.settings.bg_color }};
+    --vw-press-text: {{ section.settings.text_color }};
+  }
+
+  .vw-press-section {
+    padding: 3rem 1.5rem;
+    background-color: var(--vw-press-bg);
+    border-bottom: 1px solid #F3F4F6;
+  }
+
+  .vw-press-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .vw-press-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--vw-press-text);
+    margin-bottom: 2.5rem;
+    display: block;
+    opacity: 0.6;
+  }
+
+  .vw-press-logos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .vw-press-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: all 0.4s ease;
+    filter: grayscale(100%);
+    max-width: 180px; /* Limite la largeur du bloc */
+  }
+
+  .vw-press-logo-item:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: translateY(-2px);
+  }
+
+  /* Gestion Image */
+  .vw-press-img {
+    height: 2.5rem; 
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* Gestion SVG */
+  .vw-press-svg {
+    height: 2.5rem;
+    width: auto;
+    max-width: 160px;
+    fill: currentColor; /* Permet au SVG de prendre la couleur du texte */
+    color: var(--vw-press-text);
+  }
+  
+  .vw-press-svg path, 
+  .vw-press-svg polygon, 
+  .vw-press-svg rect {
+    fill: currentColor;
+  }
+
+  /* Si pas d'image, on affiche le texte en Serif élégant */
+  .vw-press-text-fallback {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--vw-press-text);
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .vw-press-section {
+      padding: 4rem 3rem;
+    }
+    
+    .vw-press-logos-grid {
+      gap: 5rem;
+      justify-content: space-between; 
+      padding: 0 4rem;
+    }
+    
+    .vw-press-img, .vw-press-svg {
+      height: 3rem;
+    }
+  }
+</style>
+
+<div class="vw-press-section">
+  <div class="vw-press-container">
+    {% if section.settings.title != blank %}
+      <span class="vw-press-label">{{ section.settings.title }}</span>
+    {% endif %}
+
+    <div class="vw-press-logos-grid">
+      {% for block in section.blocks %}
+        <div class="vw-press-logo-item" {{ block.shopify_attributes }}>
+          {% if block.settings.svg_code != blank %}
+             <!-- Priorité au SVG Vectoriel -->
+             <div class="vw-press-svg">{{ block.settings.svg_code }}</div>
+          {% elsif block.settings.logo != blank %}
+             <!-- Sinon Image Uploadée -->
+            {{ block.settings.logo | image_url: height: 100 | image_tag: class: 'vw-press-img', loading: 'lazy', alt: block.settings.title }}
+          {% else %}
+             <!-- Sinon Texte -->
+            <span class="vw-press-text-fallback">{{ block.settings.title }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Press Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre Section",
+      "default": "ILS RECOMMANDENT VINYL WAY"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#111827"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "press_logo",
+      "name": "Logo Presse",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image (PNG)"
+        },
+        {
+          "type": "html",
+          "id": "svg_code",
+          "label": "Code SVG (Prioritaire)",
+          "info": "Collez le code <svg>...</svg> ici pour un rendu vectoriel parfait."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nom (Fallback)",
+          "default": "Magazine"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Press Banner",
+      "category": "Réassurance",
+      "blocks": [
+        {
+          "type": "press_logo",
+          "settings": { 
+            "title": "Marie Claire Maison",
+            "svg_code": "<svg viewBox='0 0 200 40' height='100%' width='100%'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Times New Roman, serif' font-weight='bold' font-size='24'>MARIE CLAIRE</text></svg>"
+          }
+        },
+        {
+          "type": "press_logo",
+          "settings": { 
+            "title": "ELLE Décoration",
+            "svg_code": "<svg viewBox='0 0 100 40' height='100%' width='100%'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-weight='900' letter-spacing='2' font-size='28'>ELLE</text></svg>"
+          }
+        },
+        {
+          "type": "press_logo",
+          "settings": { 
+            "title": "Vogue Living",
+            "svg_code": "<svg viewBox='0 0 150 40' height='100%' width='100%'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Didot, serif' font-weight='bold' font-size='26'>VOGUE</text></svg>"
+          }
+        },
+        {
+          "type": "press_logo",
+          "settings": { 
+            "title": "Le Journal des Femmes",
+            "svg_code": "<svg viewBox='0 0 250 40' height='100%' width='100%'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Helvetica, sans-serif' font-weight='bold' font-size='18' letter-spacing='1'>JOURNAL DES FEMMES</text></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,609 @@
+{% comment %}
+  Section: Vinyl Way Cluster V9
+  Version: 9.0 - Grille alignée avec proportions variées
+  Author: Architecte Vinyl Way
+{% endcomment %}
+
+{% style %}
+  /* ============================================
+     RESET
+     ============================================ */
+  .vw-cluster-section *,
+  .vw-cluster-section *::before,
+  .vw-cluster-section *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .vw-cluster-section {
+    padding: 3rem 1.5rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* ============================================
+     HEADER
+     ============================================ */
+  .vw-cluster-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .vw-cluster-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: #111827;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .vw-cluster-desc {
+    font-family: 'Inter', sans-serif;
+    color: #6B7280;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    max-width: 500px;
+    line-height: 1.5;
+  }
+
+  /* ============================================
+     GRILLE - CSS GRID ALIGNÉE
+     ============================================ */
+  .vw-collections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+    gap: 16px;
+  }
+  
+  @media (min-width: 768px) {
+    .vw-collections-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 220px;
+      gap: 20px;
+    }
+  }
+
+  /* ============================================
+     CARTE - Base
+     ============================================ */
+  .vw-col-card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #F3F4F6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .vw-col-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .vw-col-card:hover .vw-col-img {
+    transform: scale(1.03);
+  }
+
+  /* ============================================
+     TAILLES - Standard, Wide, Tall
+     ============================================ */
+  .vw-card-standard {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .vw-card-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .vw-card-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  /* Mobile: wide reste sur 2 colonnes */
+  @media (max-width: 767px) {
+    .vw-card-wide {
+      grid-column: span 2;
+    }
+  }
+
+  /* ============================================
+     IMAGE
+     ============================================ */
+  .vw-col-img-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .vw-col-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .vw-col-img-wrap svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ============================================
+     LABEL (haut gauche)
+     ============================================ */
+  .vw-card-label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 5;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: #111827;
+    color: #FFFFFF;
+  }
+
+  .vw-label-green { background: #059669; }
+  .vw-label-orange { background: #D97706; }
+  .vw-label-light { background: rgba(255,255,255,0.95); color: #111827; }
+
+  /* ============================================
+     BADGE (bas droite)
+     ============================================ */
+  .vw-card-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 5;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    background: rgba(255,255,255,0.95);
+    color: #374151;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  /* ============================================
+     CONTENU - Bas de la carte
+     ============================================ */
+  .vw-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 14px 14px;
+    background: linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.9) 70%, rgba(255,255,255,0) 100%);
+  }
+
+  .vw-col-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #111827;
+  }
+
+  .vw-card-wide .vw-col-title {
+    font-size: 1.05rem;
+  }
+
+  .vw-card-tall .vw-col-title {
+    font-size: 1rem;
+  }
+
+  .vw-col-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #6B7280;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* ============================================
+     BLOC PROMO BLANC
+     ============================================ */
+  .vw-promo-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 24px 20px;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .vw-promo-card:hover {
+    border-color: #D1D5DB;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  }
+
+  .vw-promo-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #111827;
+    margin-bottom: 8px;
+  }
+
+  .vw-promo-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #6B7280;
+    margin-bottom: 16px;
+    max-width: 90%;
+  }
+
+  .vw-btn-promo {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #111827;
+    background: #FFFFFF;
+    border: 1.5px solid #111827;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.2s ease, color 0.2s ease;
+    text-decoration: none;
+  }
+
+  .vw-btn-promo:hover {
+    background: #111827;
+    color: #FFFFFF;
+  }
+
+  /* ============================================
+     BLOC PROMO SOMBRE
+     ============================================ */
+  .vw-promo-dark {
+    background: #111827;
+    border: none;
+    text-align: left;
+    align-items: flex-start;
+    padding: 28px 24px;
+  }
+
+  .vw-promo-dark:hover {
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+  }
+
+  .vw-promo-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+  }
+
+  .vw-promo-dark .vw-promo-title {
+    color: #FFFFFF;
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+
+  .vw-promo-dark .vw-promo-text {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  .vw-promo-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: #F87171;
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+  }
+
+  .vw-promo-link::after {
+    content: '→';
+  }
+
+{% endstyle %}
+
+<div id="{{ section.settings.anchor_id }}" class="vw-cluster-section">
+  
+  {%- if section.settings.title != blank -%}
+    <div class="vw-cluster-header">
+      <h2 class="vw-cluster-title">{{ section.settings.title }}</h2>
+      {%- if section.settings.description != blank -%}
+        <p class="vw-cluster-desc">{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="vw-collections-grid">
+    {%- for block in section.blocks -%}
+      
+      {%- case block.type -%}
+      
+        {%- when 'collection_block' -%}
+          {%- assign collection = collections[block.settings.collection] -%}
+          {%- assign card_size = block.settings.card_size | default: 'standard' -%}
+          
+          {%- if collection.url != blank and collection.url != nil -%}
+            {%- assign card_url = collection.url -%}
+          {%- else -%}
+            {%- assign card_url = '#' -%}
+          {%- endif -%}
+          
+          <a href="{{ card_url }}" 
+             class="vw-col-card vw-card-{{ card_size }}" 
+             {{ block.shopify_attributes }}>
+            
+            <div class="vw-col-img-wrap">
+              {%- if collection.image -%}
+                {{ collection.image | image_url: width: 800 | image_tag: class: 'vw-col-img', loading: 'lazy' }}
+              {%- elsif collection.products.first.featured_image -%}
+                {{ collection.products.first.featured_image | image_url: width: 800 | image_tag: class: 'vw-col-img', loading: 'lazy' }}
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'vw-col-img' }}
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.label != blank -%}
+              <span class="vw-card-label vw-label-{{ block.settings.label_style | default: 'dark' }}">
+                {{ block.settings.label }}
+              </span>
+            {%- endif -%}
+
+            {%- if block.settings.badge != blank -%}
+              <span class="vw-card-badge">{{ block.settings.badge }}</span>
+            {%- endif -%}
+
+            <div class="vw-card-content">
+              <h3 class="vw-col-title">
+                {%- if block.settings.custom_title != blank -%}
+                  {{ block.settings.custom_title }}
+                {%- else -%}
+                  {{ collection.title | default: 'Collection' }}
+                {%- endif -%}
+              </h3>
+              {%- if block.settings.subtitle != blank -%}
+                <p class="vw-col-subtitle">{{ block.settings.subtitle }}</p>
+              {%- endif -%}
+            </div>
+          </a>
+
+        {%- when 'promo_block' -%}
+          {%- assign promo_link = block.settings.link -%}
+          {%- if promo_link == blank or promo_link == nil -%}
+            {%- assign promo_url = '#' -%}
+          {%- else -%}
+            {%- assign promo_url = promo_link -%}
+          {%- endif -%}
+          
+          <a href="{{ promo_url }}" 
+             class="vw-col-card vw-card-standard vw-promo-card" 
+             {{ block.shopify_attributes }}>
+            {%- if block.settings.title != blank -%}
+              <h3 class="vw-promo-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="vw-promo-text">{{ block.settings.text }}</p>
+            {%- endif -%}
+            {%- if block.settings.btn_text != blank -%}
+              <span class="vw-btn-promo">{{ block.settings.btn_text }}</span>
+            {%- endif -%}
+          </a>
+
+        {%- when 'promo_dark_block' -%}
+          {%- assign promo_link = block.settings.link -%}
+          {%- if promo_link == blank or promo_link == nil -%}
+            {%- assign promo_url = '#' -%}
+          {%- else -%}
+            {%- assign promo_url = promo_link -%}
+          {%- endif -%}
+          
+          <a href="{{ promo_url }}" 
+             class="vw-col-card vw-card-{{ block.settings.card_size | default: 'standard' }} vw-promo-card vw-promo-dark" 
+             {{ block.shopify_attributes }}>
+            {%- if block.settings.label != blank -%}
+              <span class="vw-promo-label">{{ block.settings.label }}</span>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h3 class="vw-promo-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="vw-promo-text">{{ block.settings.text }}</p>
+            {%- endif -%}
+            {%- if block.settings.link_text != blank -%}
+              <span class="vw-promo-link">{{ block.settings.link_text }}</span>
+            {%- endif -%}
+          </a>
+          
+      {%- endcase -%}
+
+    {%- endfor -%}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Univers Cluster V9",
+  "tag": "section",
+  "class": "vw-cluster-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre Univers"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "ID Ancre (sans #)"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "select",
+          "id": "card_size",
+          "label": "Taille",
+          "options": [
+            { "value": "standard", "label": "Standard (1:1)" },
+            { "value": "wide", "label": "Large (2:1)" },
+            { "value": "tall", "label": "Haute (1:2)" }
+          ],
+          "default": "standard"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Titre personnalisé"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sous-titre"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "info": "Ex: BEST SELLER"
+        },
+        {
+          "type": "select",
+          "id": "label_style",
+          "label": "Couleur label",
+          "options": [
+            { "value": "dark", "label": "Noir" },
+            { "value": "green", "label": "Vert" },
+            { "value": "orange", "label": "Orange" },
+            { "value": "light", "label": "Blanc" }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "info": "Ex: 8 Nuances"
+        }
+      ]
+    },
+    {
+      "type": "promo_block",
+      "name": "Promo Blanc",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Indécis ?"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texte"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Bouton",
+          "default": "COMMANDER (2€)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien"
+        }
+      ]
+    },
+    {
+      "type": "promo_dark_block",
+      "name": "Promo Sombre",
+      "settings": [
+        {
+          "type": "select",
+          "id": "card_size",
+          "label": "Taille",
+          "options": [
+            { "value": "standard", "label": "Standard (1:1)" },
+            { "value": "tall", "label": "Haute (1:2)" }
+          ],
+          "default": "standard"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "BEST SELLER"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Les Zelliges"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texte"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Texte du lien",
+          "default": "Explorer les 8 nuances"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Univers Cluster V9"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,366 @@
+{% comment %}
+  Section: Vinyl Way Reviews Grid (Preuve Sociale)
+  Author: Architecte Vinyl Way
+  Description: Grille d'avis clients stylisée façon éditoriale.
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-reviews-bg: {{ section.settings.bg_color }};
+    --vw-reviews-text: {{ section.settings.text_color }};
+    --vw-reviews-card-bg: {{ section.settings.card_bg_color }};
+    --vw-reviews-accent: {{ section.settings.accent_color }};
+  }
+
+  .vw-reviews-section {
+    padding: 6rem 1.5rem;
+    background-color: var(--vw-reviews-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--vw-reviews-text);
+    border-top: 1px solid #F3F4F6;
+  }
+
+  .vw-reviews-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* --- HEADER --- */
+  .vw-reviews-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+    gap: 2rem;
+  }
+
+  .vw-reviews-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    color: var(--vw-reviews-text);
+    margin: 0;
+  }
+
+  /* Badge Note Globale */
+  .vw-global-rating {
+    display: inline-flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    width: fit-content;
+  }
+
+  .vw-stars-container {
+    display: flex;
+    gap: 0.25rem;
+    margin-right: 0.75rem;
+    color: var(--vw-reviews-accent);
+  }
+
+  .vw-star-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+  }
+
+  .vw-rating-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--vw-reviews-text);
+  }
+
+  /* --- GRID --- */
+  .vw-reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* --- CARD --- */
+  .vw-review-card {
+    background-color: var(--vw-reviews-card-bg);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    min-height: 320px;
+  }
+
+  .vw-review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  }
+
+  .vw-card-stars {
+    display: flex;
+    gap: 0.125rem;
+    color: var(--vw-reviews-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .vw-card-star-small {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+  }
+
+  .vw-review-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #374151;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  .vw-review-author {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 1rem;
+  }
+
+  .vw-author-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--vw-reviews-text);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .vw-author-context {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+  }
+
+  /* --- FOOTER LINK --- */
+  .vw-reviews-footer {
+    text-align: center;
+    margin-top: 4rem;
+  }
+
+  .vw-all-reviews-link {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--vw-reviews-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--vw-reviews-text);
+    padding-bottom: 2px;
+    transition: all 0.3s;
+  }
+
+  .vw-all-reviews-link:hover {
+    color: var(--vw-reviews-accent);
+    border-color: var(--vw-reviews-accent);
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 768px) {
+    .vw-reviews-section {
+      padding: 8rem 3rem;
+    }
+
+    .vw-reviews-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .vw-reviews-title {
+      font-size: 3rem;
+    }
+
+    .vw-reviews-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+</style>
+
+<div class="vw-reviews-section">
+  <div class="vw-reviews-container">
+    
+    <!-- HEADER -->
+    <div class="vw-reviews-header">
+      <h2 class="vw-reviews-title">{{ section.settings.title | newline_to_br }}</h2>
+      
+      <div class="vw-global-rating">
+        <div class="vw-stars-container">
+          {% for i in (1..5) %}
+            <svg class="vw-star-icon" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          {% endfor %}
+        </div>
+        <span class="vw-rating-text">{{ section.settings.rating_text }}</span>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="vw-reviews-grid">
+      {% for block in section.blocks %}
+        <div class="vw-review-card" {{ block.shopify_attributes }}>
+          <div>
+            <div class="vw-card-stars">
+              {% for i in (1..5) %}
+                <svg class="vw-card-star-small" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              {% endfor %}
+            </div>
+            <p class="vw-review-text">"{{ block.settings.text }}"</p>
+          </div>
+          
+          <div class="vw-review-author">
+            <span class="vw-author-name">{{ block.settings.author }}</span>
+            <span class="vw-author-context">{{ block.settings.context }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- FOOTER LINK -->
+    {% if section.settings.link_url != blank %}
+      <div class="vw-reviews-footer">
+        <a href="{{ section.settings.link_url }}" class="vw-all-reviews-link">
+          {{ section.settings.link_text }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Reviews Grid",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Titre Principal",
+      "default": "La Parole aux Architectes\n(et à nos clients)"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Texte de la note globale",
+      "default": "4.9/5 Excellent"
+    },
+    {
+      "type": "header",
+      "content": "Lien Footer"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Texte du lien",
+      "default": "Lire les 1 240 avis vérifiés"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "URL du lien"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond Section",
+      "default": "#F9FAFB"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Fond Carte",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Étoiles)",
+      "default": "#0F766E"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Avis Client",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Témoignage",
+          "default": "J'étais sceptique sur le rendu 'sticker'. Une fois posé, impossible de faire la différence avec du vrai zellige. Mon entrepreneur n'en revenait pas."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Auteur",
+          "default": "Sophie L., Paris"
+        },
+        {
+          "type": "text",
+          "id": "context",
+          "label": "Contexte Achat",
+          "default": "Rénovation Cuisine • Zellige Blanc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Reviews Grid",
+      "category": "Preuve Sociale",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "text": "J'étais sceptique sur le rendu 'sticker'. Une fois posé, impossible de faire la différence avec du vrai zellige. Mon entrepreneur n'en revenait pas.",
+            "author": "Sophie L., Paris",
+            "context": "Rénovation Cuisine • Zellige Blanc"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "text": "La solution idéale pour mon appartement en location. J'ai pu refaire la crédence sans abîmer le mur d'origine. Le Vert Canard est sublime.",
+            "author": "Marc D., Lyon",
+            "context": "Salle de Bain • Metro Vert"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "text": "Livraison rapide, emballage soigné. La qualité du relief est impressionnante au toucher. C'est vraiment de la rénovation intelligente.",
+            "author": "Camille V., Bordeaux",
+            "context": "Crédence • Terrazzo"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1035 @@
+{{ 'main-product-page.css' | asset_url | stylesheet_tag }}
+{{ 'main-product-page.js' | asset_url | script_tag }}
+
+
+{% capture requestPath %}{{ request.path }}{% endcapture %}
+
+
+
+{% if request.locale.iso_code contains "fr" %}
+      {% assign localUrl = "" %}
+    {% else %}
+      {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+    {% endif %}
+
+{% if product.handle contains 'cadeau' %}
+  {% render 'product-gift' %}
+{% else %}
+
+{% if product.handle contains '-tiles' %}
+  {% assign productType = "tile" %}
+  {% elsif product.handle contains '-mural' %}
+  {% assign productType = "mural" %}
+  {% elsif product.handle contains '-backsplash' %}
+  {% assign productType = "backsplash" %}
+  {% elsif product.handle contains 'papier-peint' %}
+  {% assign productType = "papier_peint" %}
+  <style> 
+  .list-ship {
+    background: #f5f5f5;
+    padding: 20px;
+    justify-content: space-between;
+  }
+  </style>
+  {% endif %}
+  
+  {% unless customer and customer.tags contains 'pro' %}
+  {% else %}
+    {% assign customerPro = true %}
+  {% endunless %}
+
+  {% for tag in product.tags %}
+    {% if tag contains 'motifs_1' %}
+      {% assign nbMotifs = 1 %}
+    {% elsif tag contains 'motifs_2' %}
+      {% assign nbMotifs = 2 %}
+    {% elsif tag contains 'motifs_4' %}
+      {% assign nbMotifs = 4 %}
+    {% elsif tag contains 'motifs_8' %}
+      {% assign nbMotifs = 8 %}
+    {% endif %}
+  {% endfor %}
+
+<select style="display:none;" name="id" id="variant-select">
+  {% for variant in product.variants %}
+    <option value="{{ variant.option1 }}-{{ variant.option2 }}-{{ variant.option3 }}" id="{{ variant.id }}" data-price="{% if customerPro %}{{ variant.price | times : 0.7 | money_without_currency }}{% else %}{{ variant.price | money_without_currency }}{% endif %}" data-compare-price="{{ variant.price | money_without_currency }}">{{ variant.title }}</option>
+  {% endfor %}
+</select>
+
+  <section class="productImage">
+    <div class="sale-icon" style="display:none;">
+      <span>-33%</span>
+    </div>
+
+    <div class="ProductImageContent type-{{ productType }}">
+      {% if requestPath contains 'camping' and productType == "tile" %}  
+      <div class="slide slidecc1">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[15] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slidecc2">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[16] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slidecc3">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[17] | img_url: '900x' }}"
+        >
+      </div>
+      {% elsif requestPath contains 'mobilhome' and productType == "tile" %}  
+      <div class="slide slidembl1">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[18] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slidembl2">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[19] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slidembl3">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[20] | img_url: '900x' }}"
+        >
+      </div>
+    {% elsif productType == "tile" %}
+      <div class="slide slide1 active">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[14] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slide2">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[0] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slide3">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[9] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slide4">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[10] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slide5">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[11] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slide6">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[12] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slide7">
+        <img
+          alt="{{ 'vw.header.nav.carreaux' | t }} Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[13] | img_url: '900x' }}"
+        >
+      </div>
+    {% elsif productType =='backsplash' %}      
+        <div class="slide slide1 active">
+        <img
+          alt="Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[0] | img_url: '900x' }}"
+        >
+      </div>      
+      <div class="slide slide2">
+        <img
+          alt="Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[2] | img_url: '900x' }}"
+        >
+      </div>
+    {% elsif productType =='papier_peint' %}      
+        <div class="slide slide1 active">
+        <img
+          alt="Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[0] | img_url: '900x' }}"
+        >
+      </div>      
+      <div class="slide slide2">
+        <img
+          alt="Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[1] | img_url: '900x' }}"
+        >
+      </div>
+      <div class="slide slide3">
+        <img
+          alt="Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[2] | img_url: '900x' }}"
+        >
+      </div>
+      {% else %}
+      <div class="slide slide1 active">
+        <img
+          alt="Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[0] | img_url: '900x' }}"
+        >
+      </div>      
+      <div class="slide slide2">
+        <img
+          alt="Vinyl Way : {{ product.title }}"
+          loading="lazy"
+          src="{{ product.images[1] | img_url: '900x' }}"
+        >
+      </div>
+    {% endif %}
+    </div>
+
+    <div class="arrows">
+      <div>
+        <span id="productImagePrev">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+            <path
+                d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+            </path>
+          </svg>
+        </span>
+        <span id="productImageNext">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+            <path
+                d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+            </path>
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div class="pagination">
+      <ul>
+      {% if requestPath contains 'camping' and productType == "tile" %} 
+        <li id="slidecc1" class="active"></li>
+        <li id="slidecc2"></li>
+        <li id="slidecc3"></li>
+      {% elsif requestPath contains 'mobilhome' and productType == "tile" %} 
+        <li id="slidembl1" class="active"></li>
+        <li id="slidembl2"></li>
+        <li id="slidembl3"></li>
+      {% elsif productType == "tile" %} 
+        <li id="slide1" class="active"></li>
+        <li id="slide2"></li>
+        <li id="slide3"></li>
+        <li id="slide4"></li>
+        <li id="slide5"></li>
+        <li id="slide6"></li>
+        <li id="slide7"></li>
+      {% elsif productType == "papier_peint" %} 
+        <li id="slide1" class="active"></li>
+        <li id="slide2"></li>
+        <li id="slide3"></li>
+        {% else %}
+        <li id="slide1" class="active"></li>
+        <li id="slide2"></li>
+          {% endif %}
+      </ul>
+    </div>
+  </section>
+
+  <div class="contentProductContainer">
+    <section class="contentProduct">
+      {% if productType =='papier_peint' %}
+        {% assign title_parts = product.title | split: '"' %}
+      <h1>{{ title_parts[1] }}</h1>
+        {% else %}
+      <h1 class="notranslate">
+        {{ product.title }}
+      </h1>
+        {% endif %}
+  
+      {% if productType =='tile' %}
+      <h2 class="notranslate">
+        <strong>{{ 'vw.product_page.title_carreau' | t }}</strong> {{ 'vw.product_page.title_adhesif' | t }}
+     </h2>
+        {% elsif productType =='backsplash' %}
+      <h2>
+        <strong>Crédence</strong> adhésive
+        <br>
+        <small>40 x 198 cm</small>
+     </h2>
+        {% elsif productType =='papier_peint' %}
+      <h2>
+        <strong>Papier peint</strong> adhésif
+        <br>
+        <small>200 x 250 cm</small>
+     </h2>
+        {% else %}
+      <h2 class="notranslate">
+        <strong>{{ 'vw.product_page.title_fresque' | t }}</strong> {{ 'vw.product_page.title_adhesive' | t }}
+        <br>
+        <small>180 x 220 cm</small>
+     </h2>
+      {% endif %}
+
+      <div class="grc-product-summary" data-product-id="{{product.id}}"></div>
+      
+      {% if productType == 'papier_peint' %}
+      <div id="product-description">
+  {{ product.description }}
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Sélectionner l'élément de description du produit
+  var descriptionElement = document.getElementById('product-description');
+  
+  // Vérifier si l'élément existe
+  if (descriptionElement) {
+    // Récupérer le contenu texte de la description
+    var rawHTML = descriptionElement.textContent;
+    
+    // Remplacer le contenu texte par le HTML interprété
+    descriptionElement.innerHTML = rawHTML;
+  }
+});
+
+        </script>
+      {% endif %}
+      
+    {% if productType =='mural' %}
+      <p>Découvrez les nouvelles fresques adhésives de Vinyl Way, une révolution dans la décoration d'intérieur ! Conçues avec le même principe que nos célèbres carreaux adhésifs, ces fresques murales grand format (180 x 220 cm) transforment instantanément n'importe quel espace.
+        <p>
+Nos fresques adhésives offrent une variété de beaux visuels, allant des paysages apaisants à des motifs abstraits et contemporains. Elles sont parfaites pour ajouter une touche d'élégance à votre salon, chambre ou bureau.</p>
+      </p>  
+      {% elsif productType == 'backsplash' %}
+      <p>Renouvelez votre cuisine ou salle de bain en un clin d'œil avec les crédences adhésives Vinyl Way, résistantes à l'eau et faciles à poser. Transformez votre espace, sans travaux, avec élégance et praticité, sans compromis sur la qualité.</p>
+      {% endif %}
+      {% if productType =='tile' %}
+      <div class="grid-choice">
+        <div class="c20x20 active notranslate">
+          <p>
+            <strong>20x20 cm</strong>
+            <span>{{ 'vw.product_page.calcul_quantity.carreaux' | t }}
+    {% unless localUrl contains "it" %}
+      <small>(0.32 m²)</small></span>
+      {% endunless %}
+          </p>
+          <div>
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°1"
+              class="tile1"
+              src="{{ product.images[1] | img_url:'150x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°2"
+              class="tile2"
+              src="{{ product.images[2] | img_url:'150x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°3"
+              class="{% if product.tags contains 'ordre_carre' %}tile3{% else %}tile5{% endif %}"
+              src="{{ product.images[3] | img_url:'150x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°4"
+              class="{% if product.tags contains 'ordre_carre' %}tile4{% else %}tile6{% endif %}"
+              src="{{ product.images[4] | img_url:'150x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°5"
+              class="{% if product.tags contains 'ordre_carre' %}tile5{% else %}tile3{% endif %}"
+              src="{{ product.images[5] | img_url:'150x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°6"
+              class="{% if product.tags contains 'ordre_carre' %}tile6{% else %}tile4{% endif %}"
+              src="{{ product.images[6] | img_url:'150x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°7"
+              class="tile7"
+              src="{{ product.images[7] | img_url:'150x' }}"
+            >
+            <img
+              alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°8"
+              class="tile8"
+              src="{{ product.images[8] | img_url:'150x' }}"
+            >
+          </div>
+        </div>
+        <div class="c40x40 notranslate">
+          <p>
+            <strong>40x40 cm</strong>
+            <span>{{ 'vw.product_page.calcul_quantity.carreaux4' | t }}
+      {% unless localUrl contains "it" %}
+  <small>(0.64 m²)</small></span>
+        {% endunless %}
+          </p>
+          <div>
+            <div>
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°1"
+                
+                src="{{ product.images[1] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°2"
+                
+                src="{{ product.images[2] | img_url:'50x' }}"
+              >
+  
+              {% if product.tags contains 'ordre_carre' %}
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°3"
+                
+                src="{{ product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°4"
+                "
+                src="{{ product.images[4] | img_url:'50x' }}"
+              >                
+                {% else %}
+                <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°3"
+                
+                src="{{ product.images[5] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°4"
+                "
+                src="{{ product.images[6] | img_url:'50x' }}"
+              >        
+                {% endif %}
+            </div>
+            <div>
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°5"
+                src="{{ product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°6"
+                src="{{ product.images[4] | img_url:'50x' }}"
+              >
+              {% if product.tags contains 'ordre_ligne' %}
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°7"
+                
+                src="{{ product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°8"
+                "
+                src="{{ product.images[4] | img_url:'50x' }}"
+              >                
+                {% else %}
+                <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°7"
+                
+                src="{{ product.images[5] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°8"
+                "
+                src="{{ product.images[6] | img_url:'50x' }}"
+              >        
+                {% endif %}
+            </div>
+  <div>
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°1"
+                
+                src="{{ product.images[1] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°2"
+                
+                src="{{ product.images[2] | img_url:'50x' }}"
+              >
+  
+              {% if product.tags contains 'ordre_carre' %}
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°3"
+                
+                src="{{ product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°4"
+                "
+                src="{{ product.images[4] | img_url:'50x' }}"
+              >                
+                {% else %}
+                <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°3"
+                
+                src="{{ product.images[5] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°4"
+                "
+                src="{{ product.images[6] | img_url:'50x' }}"
+              >        
+                {% endif %}
+            </div>
+            <div>
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°5"
+                src="{{ product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°6"
+                src="{{ product.images[4] | img_url:'50x' }}"
+              >
+              {% if product.tags contains 'ordre_ligne' %}
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°7"
+                
+                src="{{ product.images[3] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°8"
+                "
+                src="{{ product.images[4] | img_url:'50x' }}"
+              >                
+                {% else %}
+                <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°7"
+                
+                src="{{ product.images[5] | img_url:'50x' }}"
+              >
+              <img
+                alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} Vinyl Way : {{ product.title }} - n°8"
+                "
+                src="{{ product.images[6] | img_url:'50x' }}"
+              >        
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+         {% elsif productType =='backsplash' %}
+      <div class="grid-choice grid-choice-backsplash">
+        <div class="backsplash active notranslate">
+          <p>
+            <strong>40x198 cm</strong>
+          </p>
+          <div>
+            <img
+              alt="Vinyl Way : {{ product.title }}"
+              src="{{ product.images[1] | img_url:'600x' }}"
+            >
+          </div>
+        </div>
+        </div>
+        {% endif %}
+
+      {% form 'product', product %}
+        <div class="productPrice">
+          <div>
+            <div class="discount enable"  {%- unless customerPro %}style="display:none;"{% endunless %}>
+              <div>
+                <span id="regularPrice">{{ product.price | money }}dd</span>€
+              </div>
+              <span id="discountPercent"><small>Pro -30%</small></span>
+            </div>
+            <span class="price"
+              ><span id="price">{%- if customerPro %}{{ product.price | times: 0.7 | money }}{% else %}{{ product.price | money }}{% endif %}</span>€
+              <small>
+                {%- if customerPro %}{{ 'vw.product_page.hors_taxe' | t }}{% else %}{% endif -%}
+              </small>
+            </span>
+          </div>
+          <div>
+            <span id="downQuantity">-</span>
+
+            <input name="quantity" id="quantityCheckout" type="hidden" value="1" min="1" max="999" maxlength="3">
+
+            <input id="quantityCheckoutDisplay" type="number" value="1" min="1" max="999" maxlength="3">
+
+            <span id="upQuantity">+</span>
+          </div>
+        </div>
+
+        {% if productType =='tile' %}
+        <span class="spanPromo">
+          {{- 'vw.product_page.soit' | t }}
+          <strong id="nbcarreaux">8</strong>
+        {{ 'vw.product_page.carreaux' | t }}
+        (<span id="nbsqin">0.32</span> m²)</span>
+          {% else %}
+          <span class="spanPromo"></span>
+    {% endif %}
+
+        <div class="btnsOrders">
+          <input id="variantId" name="id" value="{{ product.selected_or_first_available_variant.id }}" type="hidden">
+          <input
+            id="btnCheckout"
+            class="btnCheckout"
+            name="add"
+            value="{{ 'vw.product_page.btn_checkout' | t }}"
+            type="submit"
+          >
+        {% if productType =='tile' or productType =='backsplash' %}
+          <a class="btnSample">{{ 'vw.product_page.btn_sample' | t }}
+          <small>1 carreau 20x20 cm</small></a>
+          {% endif %}
+        </div>
+      {% endform %}
+
+  {% if productType =='tile' %}
+      <div class="btnsInfoProduct">
+        <a href="#calcul">{{ 'vw.product_page.btn_toquantity' | t }}</a>
+      </div>
+    {% endif %}
+
+      <div class="list-ship">
+        <p>
+          <img src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/shutterstock_674379841_Converti.svg?v=1674124053">
+          <span>
+            {{- 'vw.product_page.list-ship.livraison1' | t }}
+            <small>{{ 'vw.product_page.list-ship.livraison2' | t }}</small></span
+          >
+        </p>
+        <p>
+          <img src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/shutterstock_1691376184_Converti.svg?v=1674124053">
+          <span>
+            {{- 'vw.product_page.list-ship.free1' | t }}
+            <small>{{ 'vw.product_page.list-ship.free2' | t }}</small></span
+          >
+        </p>
+        <p>
+          <img src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/shutterstock_1363061234_Converti.svg?v=1674124053">
+          <span>
+            {{- 'vw.product_page.list-ship.retour1' | t }}
+            <small>{{ 'vw.product_page.list-ship.retour2' | t }}</small></span
+          >
+        </p>
+      </div>
+
+      {% unless productType == 'papier_peint' %}
+    <div class="iconesAdvantages notranslate">
+      <ul>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_OLD_JOINTS.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.joint1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.joint2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_WALLPAPER_KNIFE.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.cut1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.cut2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_SELF_ADHESIVE.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.colle1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.colle2' | t -}}
+          </span>
+        </li>
+        {% unless productType == "backsplash" %}
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_SHOWER.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.douche1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.douche2' | t -}}
+          </span>
+        </li>
+          {% endunless %}
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_HEAT_WATER.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.chaleur1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.chaleur2' | t -}}
+          </span>
+        </li>
+      </ul>
+    </div>
+
+      <div class="list-property">
+        <p>Avantages de notre revêtement adhésif</p>
+        <ul>
+          <li>{{ 'vw.product_page.list-property.li-a1' | t }}</li>
+          <li>{{ 'vw.product_page.list-property.li-a2' | t }}</li>
+          <li>{{ 'vw.product_page.list-property.li-a3' | t }}</li>
+          <li>{{ 'vw.product_page.list-property.li-a4' | t }}</li>
+          <li>{{ 'vw.product_page.list-property.li-a5' | t }}</li>
+          <li>{{ 'vw.product_page.list-property.li-a6' | t }}</li>
+          <li>{{ 'vw.product_page.list-property.li-a7' | t }}</li>
+        </ul>
+        <p>{{ 'vw.product_page.list-property.title-b' | t }}</p>
+        <ul class="listQuality">
+          <li>{{ 'vw.product_page.list-property.li-b1' | t }}</li>
+        </ul>
+        <p>{{ 'vw.product_page.list-property.title-c' | t }}</p>
+        <ul>
+          <li>{{ 'vw.product_page.list-property.li-c2' | t }}: 1,3 mm</li>
+          <li>{{ 'vw.product_page.list-property.li-c3' | t }}</li>
+        </ul>
+      </div>
+        
+    {% endunless %}
+      
+      {% if productType =='papier_peint' %}
+<div class="list-property" style="margin-top:20px;">
+<ul>
+    <li>Impression de haute qualité pour des couleurs élégantes et durables</li>
+    <li>Dimensions : 200x250 cm</li><li>2 lés de 100x250cm</li>
+    <li>Convient à différents types de surfaces et s’intègre harmonieusement à tous les styles de décoration</li>
+    <li>Faible teneur en COV, respectant la qualité de votre environnement intérieur</li>
+    <li>Résistant aux variations de température et d’humidité, garantissant une décoration qui dure dans le temps</li>
+    <li>Idéal pour créer une atmosphère chaleureuse et inspirante, favorisant la détente et l’évasion</li>
+</ul>
+<p>Optez pour ce papier peint adhésif d’exception, et offrez-vous une décoration unique, 
+sophistiquée et facile 
+        {% endif %}
+      
+    </section>
+
+    <section id="calcul" class="calculQuantity">
+      {% if productType == 'tile' %}
+      <h3>{{ 'vw.product_page.calcul_quantity.title' | t }}</h3>
+      <div class="inputsCalculQuantity">
+        <div>
+          <span>{{ 'vw.product_page.calcul_quantity.largeur' | t }}</span>
+          <input id="inputA" type="number" value="">
+          <span>cm</span>
+        </div>
+        <span>x</span>
+        <div>
+          <span>{{ 'vw.product_page.calcul_quantity.longueur' | t }}</span>
+          <input id="inputB" type="number" value="">
+          <span>cm</span>
+        </div>
+      </div>
+
+  <div class="resultCalculQuantity">
+      <div class="btnsCalculQuantity">
+        <div>
+          <span>20x20 cm :</span>
+          <input id="inputC" disabled="" type="number" value="1">
+          <span>{{ 'vw.product_page.calcul_quantity.carreaux' | t }}</span>
+        </div>
+        <div id="btnCheckoutCalcul2020" class="btnCheckout" style="display:none;">
+          {{ 'vw.product_page.btn_checkout' | t }}
+        </div>
+      </div>
+      <div class="btnsCalculQuantity">
+        <div>
+          <span>40x40 cm :</span>
+          <input id="inputD" disabled="" type="number" value="1">
+          <span>{{ 'vw.product_page.calcul_quantity.carreaux4' | t }}</span>
+        </div>
+        <div id="btnCheckoutCalcul4040" class="btnCheckout" style="display:none;">
+          {{ 'vw.product_page.btn_checkout' | t }}
+        </div>
+      </div>
+  </div>
+      
+    {% endif %}
+    </section>
+
+    <div class="grc-product-reviews" data-product-id="{{product.id}}"></div>
+
+    {% render 'reviews' %}
+
+    {% unless productType=='papier_peint' %}
+      <section id="recommendations" class="recommendations">
+      <h4>{{ 'vw.product_page.recommendations.title-a' | t }}</h4>
+      <ul>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/SHOWER.png?v=1674206770"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-a1' | t }}</span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/HEATING-FLOOR.png?v=1674206770"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-a2' | t }}</span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/COVERS-SURFACES.png?v=1674206770"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-a3' | t }}</span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/TILES.png?v=1674206769"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-a4' | t }}</span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PANELS.png?v=1674206770"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-a5' | t }}</span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PARQUET.png?v=1674206771"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-a6' | t }}</span>
+        </li>
+      </ul>
+      <h4>{{ 'vw.product_page.recommendations.title-b' | t }}</h4>
+      <ul>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/IRREGULAR.png?v=1674206770"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-b1' | t }}</span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/WOOD.png?v=1674206770"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-b2' | t }}</span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/WALLPAPER.png?v=1674206769"
+          >
+          <span>{{ 'vw.product_page.recommendations.li-b3' | t }}</span>
+        </li>
+      </ul>
+    </section>
+      {% endunless %}
+
+  
+<section class="faq notranslate">
+  <h3>FAQ</h3>
+  {% if productType == 'tile' or productType =='backsplash' %}
+    <div style="margin-top:20px"></div>
+  {{ pages.faq-carreaux.content }}
+  {% elsif productType == 'papier_peint' %}
+    <div style="margin-top:20px"></div>
+  {{ pages.faq-papier-peint.content }}
+  {% endif %}
+    <div style="margin-top:20px"></div>
+  {{ pages.faq-general.content }}
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    $(".faq .accordeonItem>span").click(function () {
+        $(this).parent().toggleClass("active");
+    });
+  });
+</script>
+
+
+      
+    <section class="Install" id="installation" {% unless productType == 'tile' %}style="display:none !important;"{% endunless %}>
+      <div>
+        <div>
+          <div>
+            <video
+              id="videoInstall"
+              poster="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/poster-site-web-comment-poser-ses-carreaux-adhesifs-vinyl-way.jpg?v=1670489425"
+              muted=""
+              loop=""
+              playsinline=""
+              alt="{{ 'vw.index.install.video_alt' | t }}"
+            >
+              <source
+                src="https://cdn.shopify.com/videos/c/o/v/175cfeafb8c34a6893392ecf568d9285.mp4"
+                type="video/mp4"
+              >
+              {{ 'vw.index.presentation.video_error' | t }}
+            </video>
+          </div>
+        </div>
+        <div>
+          <h2>
+            {{ 'vw.index.install.title.text1' | t }}
+            <small>{{ 'vw.index.install.title.text2' | t }}</small>
+          </h2>
+          <span class="btnInstall">
+            <svg id="btnInstall" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+              <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+              </path>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  {% render 'popupDelivery' %}
+
+  <script>
+
+    // sélectionner l'option correspondante lorsque le bouton 20x20 est cliqué
+$('.c20x20').click(function() {
+   {% if customer and customer.tags contains "pro"  %}
+  $('#variant-select').val('20x20-8-HT').change();
+   {% else  %}
+  $('#variant-select').val('20x20-8-TTC').change();
+  {% endif %}
+  $(this).addClass('active');
+  $('.c40x40').removeClass('active');
+  displayPrice();
+});
+
+// sélectionner l'option correspondante lorsque le bouton 40x40 est cliqué
+$('.c40x40').click(function() {
+   {% if customer and customer.tags contains "pro"  %}
+  $('#variant-select').val('40x40-4-HT').change();
+   {% else  %}
+  $('#variant-select').val('40x40-4-TTC').change();
+  {% endif %}
+  $(this).addClass('active');
+  $('.c20x20').removeClass('active');
+  displayPrice();
+});
+
+
+// afficher le prix de l'option sélectionnée
+function displayPrice() {
+  
+  let valQuantityDisplay = $('#quantityCheckoutDisplay').val();
+
+  // récupérer les données de l'option sélectionnée
+  let selectedOption = $('#variant-select option:selected');
+  let regularPrice = selectedOption.data('compare-price');
+  let discountPrice = selectedOption.data('price');
+  
+  let selectedVariantId = selectedOption.attr('id');
+  let checkoutVariantIdInput = $('#variantId');
+  
+  let valQuantity;
+  if (selectedOption.text().indexOf('20x20') !== -1) {
+    valQuantity = valQuantityDisplay * 8;
+  } else if (selectedOption.text().indexOf('40x40') !== -1) {
+    valQuantity = valQuantityDisplay * 4;
+  } else {
+    valQuantity = valQuantityDisplay * 1;
+  }
+  
+  checkoutVariantIdInput.val(selectedVariantId);
+  
+  $('#quantityCheckout').val(valQuantityDisplay).change();
+
+  regularPrice = parseFloat(regularPrice.replace(/,/g, '.'));
+  discountPrice = parseFloat(discountPrice.replace(/,/g, '.'));
+
+  $('#regularPrice').text((regularPrice * valQuantityDisplay).toFixed(2));
+  $('#price').text((discountPrice * valQuantityDisplay).toFixed(2));
+
+  // update inches & tiles
+  $("#nbcarreaux").text(valQuantity);
+  
+  if (selectedOption.text().indexOf('20x20') !== -1) {
+  $("#nbsqin").text(((0.2 * 0.2) * valQuantity).toFixed(2));
+  } else {
+  $("#nbsqin").text(((0.4 * 0.4) * valQuantity).toFixed(2));
+  }
+
+
+  
+}
+
+    displayPrice();
+
+      //loadVariantPro
+   {% if customer and customer.tags contains "pro"  %}
+    (function loadVariantPro(){      
+  let selectedOption = $('#variant-select option:selected').text();
+  if (selectedOption.indexOf('20x20') !== -1) {
+    $('#variant-select').val('20x20-8-HT').change();
+  } else if (selectedOption.indexOf('40x40') !== -1) {
+    $('#variant-select').val('40x40-4-HT').change();
+  } else if (selectedOption.indexOf('180x220') !== -1) {
+    $('#variant-select').val('180x220-1-HT').change();
+  }
+  displayPrice();
+})();
+
+{% endif %}
+
+    //buttonSample  
+    $(".template-product .btnSample").click(function () {  
+        $(".template-product #quantityCheckoutDisplay").val("1").change();
+   {% if customer and customer.tags contains "pro"  %}
+  $('#variant-select').val('20x20-1-HT').change();   
+    {% else %}
+  $('#variant-select').val('20x20-1-TTC').change();   
+    {% endif %} 
+    displayPrice();
+      $('#btnCheckout').trigger('click');
+    });
+    
+  </script>
+
+{% endif %}

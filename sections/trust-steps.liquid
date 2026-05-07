@@ -1,0 +1,405 @@
+{% comment %}
+  Section: Vinyl Way Trust Steps (Process Vidéo + Étapes)
+  Author: Architecte Vinyl Way
+  Description: Layout Split. Étapes en timeline verticale à gauche, Vidéo de pose verticale à droite.
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-steps-bg: {{ section.settings.bg_color }};
+    --vw-steps-text: {{ section.settings.text_color }};
+    --vw-steps-accent: {{ section.settings.accent_color }};
+    --vw-steps-circle-bg: {{ section.settings.circle_bg_color }};
+  }
+
+  .vw-steps-section {
+    padding: 6rem 1.5rem;
+    background-color: var(--vw-steps-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--vw-steps-text);
+    overflow: hidden;
+  }
+
+  .vw-steps-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  /* --- LAYOUT SPLIT --- */
+  .vw-steps-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* --- COLONNE CONTENU (Gauche) --- */
+  .vw-steps-content-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .vw-steps-header {
+    margin-bottom: 3rem;
+    text-align: left;
+  }
+
+  .vw-steps-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--vw-steps-text);
+  }
+
+  .vw-steps-desc {
+    font-size: 1.125rem;
+    color: #6B7280;
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  /* --- TIMELINE VERTICALE --- */
+  .vw-steps-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* La ligne verticale continue */
+  .vw-steps-line {
+    position: absolute;
+    top: 2rem;
+    bottom: 2rem;
+    left: 2rem; /* Centre de l'icône (4rem / 2) */
+    width: 2px;
+    background-color: #E5E7EB;
+    z-index: 0;
+  }
+
+  .vw-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vw-step-icon-wrapper {
+    flex-shrink: 0;
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--vw-steps-circle-bg);
+    border: 4px solid var(--vw-steps-bg); /* Contour blanc pour couper la ligne */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vw-steps-accent);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .vw-step-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    stroke-width: 1.5;
+  }
+
+  .vw-step-text-content {
+    padding-top: 0.5rem;
+  }
+
+  .vw-step-number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--vw-steps-accent);
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+  .vw-step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--vw-steps-text);
+    font-weight: 600;
+  }
+
+  .vw-step-desc {
+    font-size: 0.95rem;
+    color: #6B7280;
+    line-height: 1.5;
+    max-width: 400px;
+  }
+
+  /* --- COLONNE VIDÉO (Droite) --- */
+  .vw-steps-video-col {
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* Taille type smartphone */
+    margin: 0 auto;
+  }
+
+  .vw-video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16; /* Format Vertical TikTok/Reels */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background-color: #000;
+  }
+
+  .vw-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Badge "Play" décoratif si besoin */
+  .vw-video-badge {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--vw-steps-text);
+    letter-spacing: 0.1em;
+    pointer-events: none;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 1024px) {
+    .vw-steps-section {
+      padding: 8rem 3rem;
+    }
+
+    .vw-steps-wrapper {
+      grid-template-columns: 1fr 1fr; /* Split Desktop */
+      gap: 6rem;
+    }
+
+    .vw-steps-title {
+      font-size: 3rem;
+    }
+    
+    /* Alternance possible : Vidéo gauche ou droite */
+    .vw-steps-video-col {
+      order: 2; /* Vidéo à droite par défaut */
+    }
+  }
+</style>
+
+<div class="vw-steps-section">
+  <div class="vw-steps-container">
+    
+    <div class="vw-steps-wrapper">
+      
+      <!-- GAUCHE : Contenu & Étapes -->
+      <div class="vw-steps-content-col">
+        
+        <!-- HEADER -->
+        <div class="vw-steps-header">
+          {% if section.settings.title != blank %}
+            <h2 class="vw-steps-title">{{ section.settings.title | newline_to_br }}</h2>
+          {% endif %}
+          {% if section.settings.description != blank %}
+            <p class="vw-steps-desc">{{ section.settings.description }}</p>
+          {% endif %}
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="vw-steps-list">
+          <div class="vw-steps-line"></div> <!-- Ligne connecteur -->
+
+          {% for block in section.blocks %}
+            <div class="vw-step-item" {{ block.shopify_attributes }}>
+              
+              <div class="vw-step-icon-wrapper">
+                {% if block.settings.custom_icon_svg != blank %}
+                  {{ block.settings.custom_icon_svg }}
+                {% else %}
+                  <!-- Fallback Icons -->
+                  {% case forloop.index %}
+                    {% when 1 %}
+                      <!-- Sparkles -->
+                      <svg class="vw-step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M9 3v4"/><path d="M3 9h4"/></svg>
+                    {% when 2 %}
+                      <!-- Layers -->
+                      <svg class="vw-step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                    {% when 3 %}
+                      <!-- Heart -->
+                      <svg class="vw-step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                  {% endcase %}
+                {% endif %}
+              </div>
+
+              <div class="vw-step-text-content">
+                <span class="vw-step-number">ÉTAPE 0{{ forloop.index }}</span>
+                <h3 class="vw-step-title">{{ block.settings.title }}</h3>
+                <p class="vw-step-desc">{{ block.settings.text }}</p>
+              </div>
+
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      <!-- DROITE : VIDÉO VERTICALE -->
+      <div class="vw-steps-video-col">
+        <div class="vw-video-wrapper">
+          {% if section.settings.video_url != blank %}
+            <video class="vw-video-element" autoplay loop muted playsinline>
+              <source src="{{ section.settings.video_url }}" type="video/mp4">
+              Votre navigateur ne supporte pas la vidéo.
+            </video>
+          {% else %}
+             <!-- Placeholder si pas de vidéo -->
+             {{ 'collection-1' | placeholder_svg_tag: 'vw-video-element' }}
+          {% endif %}
+
+          <div class="vw-video-badge">
+            Installation 45s
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Trust Video",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Titre Principal",
+      "default": "Rénovation Simplifiée\nen 3 Actes"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Une pose sèche, propre et sans outils lourds. Accessible à tous, résultat professionnel garanti."
+    },
+    {
+      "type": "header",
+      "content": "Vidéo"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Lien de la Vidéo (MP4)",
+      "info": "Copiez ici le lien du fichier MP4 depuis la section 'Fichiers' de votre admin Shopify.",
+      "placeholder": "https://cdn.shopify.com/..."
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond Section",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte Principal",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Teal)",
+      "default": "#0F766E"
+    },
+    {
+      "type": "color",
+      "id": "circle_bg_color",
+      "label": "Fond des Icônes",
+      "default": "#F0FDFA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre de l'étape",
+          "default": "Nettoyer"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Préparez votre surface existante en la dégraissant parfaitement."
+        },
+        {
+          "type": "html",
+          "id": "custom_icon_svg",
+          "label": "SVG Personnalisé (Optionnel)",
+          "info": "Collez le code <svg> ici pour remplacer l'icône par défaut."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Trust Video",
+      "category": "Réassurance",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Nettoyer",
+            "text": "Préparez votre surface existante (carrelage, mur lisse) en la dégraissant parfaitement. Un support sain est la clé."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Coller",
+            "text": "Retirez le film protecteur et appliquez. Notre technologie micro-bulles assure une adhérence parfaite et repositionnable."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Admirer",
+            "text": "C'est terminé. Profitez immédiatement de votre nouvel intérieur, certifié résistant à l'eau et à la chaleur."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

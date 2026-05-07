@@ -1,0 +1,90 @@
+{% comment %}
+  Section: Vinyl Way Sticky Nav (Boussole Univers)
+  Author: Architecte Vinyl Way
+{% endcomment %}
+
+<style>
+  .vw-sticky-nav {
+    position: sticky;
+    top: 0; /* Ajuster si vous avez un header sticky (ex: top: 80px) */
+    z-index: 99;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #E5E7EB;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .vw-nav-scroll {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 0 1.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .vw-nav-scroll::-webkit-scrollbar { display: none; }
+
+  .vw-nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6B7280;
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .vw-nav-link:hover, .vw-nav-link.active {
+    color: #111827;
+    border-color: #0F766E;
+  }
+</style>
+
+<div class="vw-sticky-nav">
+  <div class="vw-nav-scroll">
+    {% for block in section.blocks %}
+      <a href="#{{ block.settings.anchor_id }}" class="vw-nav-link">
+        {{ block.settings.title }}
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Boussole Univers",
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Lien Univers",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nom de l'Univers",
+          "default": "Céramiques"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "ID Ancre (ex: ceramique)",
+          "info": "Doit correspondre à l'ID mis dans la section Cluster."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Boussole Univers"
+    }
+  ]
+}
+{% endschema %}

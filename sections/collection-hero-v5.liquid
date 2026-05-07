@@ -1,0 +1,144 @@
+{% comment %}
+  Section: Vinyl Way Collection Hero V5 (Immersif)
+  Author: Architecte Vinyl Way
+  Description: En-tête sombre avec image de fond et texte centré.
+{% endcomment %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --vw-ch-text: {{ section.settings.text_color }};
+    --vw-ch-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --vw-ch-bg: {{ section.settings.bg_color }};
+  }
+
+  .vw-collection-hero {
+    position: relative;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--vw-ch-bg);
+    color: var(--vw-ch-text);
+  }
+
+  /* Image de fond */
+  .vw-ch-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* Overlay sombre */
+  .vw-ch-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #000000;
+    opacity: var(--vw-ch-overlay);
+    z-index: 1;
+  }
+
+  /* Contenu */
+  .vw-ch-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 1.5rem;
+    max-width: 800px;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .vw-ch-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+    color: var(--vw-ch-text);
+  }
+
+  .vw-ch-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin: 0 auto;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (min-width: 768px) {
+    .vw-collection-hero { height: 450px; }
+    .vw-ch-title { font-size: 3.5rem; }
+    .vw-ch-desc { font-size: 1.15rem; }
+  }
+</style>
+
+<div class="vw-collection-hero">
+  <!-- Image : Priorité à l'image de la collection, sinon image par défaut -->
+  {% if collection.image %}
+    {{ collection.image | image_url: width: 2000 | image_tag: class: 'vw-ch-bg-image', loading: 'eager', alt: collection.title }}
+  {% elsif section.settings.default_image %}
+    {{ section.settings.default_image | image_url: width: 2000 | image_tag: class: 'vw-ch-bg-image', loading: 'eager', alt: collection.title }}
+  {% else %}
+    {{ 'lifestyle-1' | placeholder_svg_tag: 'vw-ch-bg-image' }}
+  {% endif %}
+  
+  <div class="vw-ch-overlay"></div>
+
+  <div class="vw-ch-content">
+    <h1 class="vw-ch-title">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="vw-ch-desc">
+        {{ collection.description | strip_html | truncatewords: 30 }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Hero V5",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "default_image",
+      "label": "Image par défaut (si collection sans image)"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 10,
+      "unit": "%",
+      "label": "Opacité du fond noir",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Couleur Texte",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Couleur Fond (si pas d'image)",
+      "default": "#111827"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Hero V5"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,185 @@
+{{ 'main-search.css' | asset_url | stylesheet_tag }}
+{{ 'collection-page.css' | asset_url | stylesheet_tag }}
+{{ 'collection-page.js' | asset_url | script_tag }}
+
+{% if request.locale.iso_code contains 'fr' %}
+  {% assign localUrl = '' %}
+{% else %}
+  {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+{% endif %}
+  
+    {% assign pageBest = "" %}   
+    
+<div class="collectionBest">
+        <div class="popupPreview" style="display:none!important;">
+            <div class="popupPreviewBg popupPreviewHide">
+
+            </div>
+            <div class="popupPreviewContent" role="img" alt="For all support">
+              
+                <span class="popupPreviewHide">x</span>
+                <div>
+                    <div class="listRooms">
+                        <div>
+                            <small>{{ 'vw.collection_page.destination' | t }} :</small> <span>{{ 'vw.collection_page.pieces.cuisine' | t }}</span>
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 40 40" width="18" height="18">
+                                <path
+                                    d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                                </path>
+                            </svg>
+                        </div>
+                        <ul>
+                            <li id="KITCHEN">{{ 'vw.collection_page.pieces.cuisine' | t }}</li>
+                            <li id="SHOWER">{{ 'vw.collection_page.pieces.douche' | t }}</li>
+                            <li id="BATHROOM">{{ 'vw.collection_page.pieces.sdb' | t }}</li>
+                            <li id="FURNITURE">{{ 'vw.collection_page.pieces.meuble' | t }}</li>
+                            <li id="WALL">{{ 'vw.collection_page.pieces.mur' | t }}</li>
+                            <li id="FLOOR">{{ 'vw.collection_page.pieces.sol' | t }}</li>
+                        </ul>
+                    </div>
+                    <a data-href="#"><span>{{ 'vw.collection_page.produit' | t }}</span></a>
+                </div>
+            </div>
+        </div>
+
+        <section class="headerCollection">
+
+            <div class="title">
+            </div>
+            <div class="blocFilters">
+
+             <form class="searchItems" action="{{ localUrl }}/search">
+             <div class="inputContainer">
+               <input type="text" placeholder="{{ 'vw.header.search' | t }}.." name="q" value="">
+             </div>
+             <button value="Search" name="someName" type="submit">
+             <img src="https://ftp.vinyl-wall.com/search.svg" alt="Search" class="icon">
+             </button>
+          </form>
+              
+                </ul>
+            </div>
+        </section>
+        <section class="Products">
+
+           <div class="black">
+                <ul class="productsList">  
+                  {% for item in search.results %}
+                 {% if item.object_type contains "product" %}
+                   {% unless item.handle contains "marketplace" %}
+                     
+                  <li class="notranslate">
+                        <span class="notranslate">{{ item.title }}</span>
+                        <a>
+                          <img alt="{{ 'vw.index.slide_collections.carreau_alt' | t }} {{ item.title }}" loading="lazy" src="{{ item.images[1] |  img_url: '200x' }}">
+                        </a>
+                        <div class="buttons">
+                            <a data-href="{{ item.url }}">{{ 'vw.collection_page.produit' | t }}</a>
+                            <span id="{% assign current_variant = item.selected_or_first_available_variant %}{{ current_variant.sku }}">
+                              <svg version="1.1" xmlns="https://www.w3.org/2000/svg"
+                                    xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
+                                    xml:space="preserve">
+                                    <path
+                                        d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                                </svg></span>
+                        </div>
+                    </li>     
+                     {% endunless %}
+                    {% endif %}
+              {% endfor %}    
+                </ul>
+                                    </div>
+                                      
+        
+            </div>
+        </section>
+                                    </div>
+
+
+                                      
+     <script>
+
+       // variables
+          
+   let selectedPiece = "KITCHEN";          
+   let selectedHref = "/products/adhesive-tiles-dublin-1";
+   let urlPiece = location.href.substring(location.href.indexOf('?') + 1);
+       
+   let resolutionMES = "1200x";
+      if ($(window).width() < 600) {
+      resolutionMES = "500x";
+      }       
+  let actualBackgroundRoom = $('.popupPreview .popupPreviewContent').css('background-image');
+       
+       //changeImageMES 
+       
+          $(".productsList li > div > span").click(function() {             
+   let refProduct = this.id.replace("VIR","");
+   let smallRefProduct = refProduct.slice(0, 5);
+   $(".popupPreview .popupPreviewContent").css("background-image", "url(https://ftp.vinyl-wall.com/vinylway-europe/mes/" + resolutionMES + "/" + smallRefProduct + "-MES-" + selectedPiece + ".jpg)");  
+   actualBackgroundRoom = $('.popupPreview .popupPreviewContent').css('background-image');
+   selectedHref = $(this).parent().children('a').data('href');
+   $(".popupPreview .popupPreviewContent > div > :nth-child(2)").data("href", selectedHref)
+          });
+
+       $(".productsList li > a img").hover(function() {             
+   let refProduct = $(this).closest('li').find('.buttons > span[id^="VIR"]').attr('id').replace("VIR","");
+   let smallRefProduct = refProduct.slice(0, 5);
+   $(".popupPreview .popupPreviewContent").css("background-image", "url(https://ftp.vinyl-wall.com/vinylway-europe/mes/" + resolutionMES + "/" + smallRefProduct + "-MES-" + selectedPiece + ".jpg)");  
+   actualBackgroundRoom = $('.template-collection .popupPreview .popupPreviewContent').css('background-image');
+   selectedHref = $(this).closest('li').find('.buttons > span[id^="VIR"]').siblings('a').data('href');
+   $(".popupPreview .popupPreviewContent > div > :nth-child(2)").data("href", selectedHref);
+});
+       
+
+       //changeRoomMES
+       
+        $(".popupPreview .popupPreviewContent > div > .listRooms ul li").click(function() {
+        selectedPiece = this.id;   
+        let newBackgroundRoom = actualBackgroundRoom.replace(/KITCHEN|WALL|BATHROOM|SHOWER|FLOOR|FURNITURE/g, selectedPiece);
+        $('.popupPreview .popupPreviewContent').css('background-image' , newBackgroundRoom);          
+        $('.popupPreview .popupPreviewContent > div > .listRooms > div span').text($(this).text());          
+        });
+        
+        $(".Products .filters ul li").click(function() {    
+          if ( $(this).hasClass('active') ) {
+        $(this).removeClass('active');
+          location.href = "{{ collection.url }}/?" + selectedPiece.toLowerCase();
+          } else {
+          location.href = "{{ collection.url }}/" + this.id + "?" + selectedPiece.toLowerCase();
+          } 
+          });
+       
+        $(".Products .filters ul li").each(function() {    
+        if (window.location.href.indexOf(this.id) > -1) {
+        $(this).addClass('active');
+        }
+        });
+
+       
+       // loadFirstProduct
+       function loadFirstProduct() {         
+          $(".productsList :nth-child(1) > div > span").trigger('click');            
+       }       
+       loadFirstProduct(); 
+       
+
+       // productHref
+         $(".Products .productsList li > div > a").click(function() {
+          let dataHref = $(this).data('href');
+          location.href = dataHref + "?" + selectedPiece.toLowerCase();
+        });
+         $(".Products .productsList li > a").click(function() {
+          let dataHref = $(this).parent().find("div").find("a").data('href');
+          location.href = dataHref + "/+" + selectedPiece.toLowerCase();
+        });
+         $(".popupPreview .popupPreviewContent > div > :nth-child(2)").click(function() {
+          let dataHref = $(this).data('href');
+          location.href = dataHref + "?" + selectedPiece.toLowerCase();
+        });
+
+        
+       
+    </script>
+    

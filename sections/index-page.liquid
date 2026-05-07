@@ -1,0 +1,446 @@
+{{ 'index-page.css' | asset_url | stylesheet_tag }}
+{{ 'index-page.js' | asset_url | script_tag }}
+
+{% if request.locale.iso_code contains "fr" %}
+      {% assign localUrl = "" %}
+    {% else %}
+      {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+    {% endif %}
+
+<div class="template-index">
+  
+    <section class="Presentation">
+        <video poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" autoplay=""
+            muted="" loop="" playsinline="" id="videointro" alt="{{ 'vw.index.presentation.video_alt' | t }}">
+           {{ 'vw.index.presentation.video_error' | t }}
+        </video>
+
+        <div class="titleH1">
+            <h1>
+                <span style="text-transform: uppercase">Spécialiste du carrelage adhésif</span>
+              <small>MULTI SUPPORT</small>
+            </h1>
+        </div>
+        <a class="mobileBtnPresentation btn btn-1" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/">{{ 'vw.index.presentation.btn_discover' | t }}</a>
+        <div class="contentPresentation">
+            <div>
+                <span style="visibility:hidden;">19,90€</span>
+                <p style="display:none;"><span>{{ 'vw.index.presentation.price_text1' | t }}</span> <span>{{ 'vw.index.presentation.price_text2' | t }}</span></p>
+                <a class="desktopBtnPresentation btn btn-1" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/">
+                  {{ 'vw.index.presentation.btn_discover' | t }}</a>
+              <div  style="display:none;" class="sale-icon">
+                  <span>29,90€</span>
+                  <span> </span>
+            </div>
+            </div>
+            <ul class="mobileIconsPresentation">
+                <li>{{ 'vw.index.presentation.icons_economique' | t }}</li>
+                <li>{{ 'vw.index.presentation.icons_facile' | t }}</li>
+                <li>{{ 'vw.index.presentation.icons_waterproof' | t }}</li>
+                <li>{{ 'vw.index.presentation.icons_thermo' | t }}</li>
+            </ul>
+            
+            <ul class="desktopIconsPresentation">
+      <li>
+        <img
+          alt="icon"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_OLD_JOINTS.svg?v=1674206770">
+        <span>{{ 'vw.index.presentation.icons2.joint1' | t }}<br>{{ 'vw.index.presentation.icons2.joint2' | t }}</span>
+      </li>
+      <li>
+        <img
+          alt="icon"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_WALLPAPER_KNIFE.svg?v=1674206770">
+        <span>{{ 'vw.index.presentation.icons2.cut1' | t }}<br>{{ 'vw.index.presentation.icons2.cut2' | t }}</span>
+      </li>
+      <li>
+        <img
+          alt="icon"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_SELF_ADHESIVE.svg?v=1674206770">
+        <span>{{ 'vw.index.presentation.icons2.colle1' | t }}<br>{{ 'vw.index.presentation.icons2.colle2' | t }}</span>
+      </li>
+      <li>
+        <img
+          alt="icon"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_SHOWER.svg?v=1674206770">
+        <span>{{ 'vw.index.presentation.icons2.douche1' | t }}<br>{{ 'vw.index.presentation.icons2.douche2' | t }}</span>
+      </li>
+      <li>
+        <img
+          alt="icon"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_HEAT_WATER.svg?v=1674206770">
+        <span>{{ 'vw.index.presentation.icons2.chaleur1' | t }}<br>{{ 'vw.index.presentation.icons2.chaleur2' | t }}</span>
+      </li>
+            </ul>
+        </div>
+    </section>
+
+    
+    <section class="Transform transformRevert">
+
+      <div class="bgImg" role="img" alt="{{ 'vw.index.transform.bg_alt' | t }}"
+        style="background-image: url('https://cdn.shopify.com/s/files/1/0648/8670/2332/files/Sans-titre-1.gif?v=1665584574');"></div>
+      
+      <div>
+            <h2><span>{{ 'vw.index.transform.title_text1' | t }}</span> <span>{{ 'vw.index.transform.title_text2' | t }}</span></h2>
+            <p>{{ 'vw.index.transform.paragraph_text1' | t }}</p>
+          <p>{{ 'vw.index.transform.paragraph_text2' | t }}</p>
+            <a class="btn btn-2" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/">{{ 'vw.index.transform.btn_collections' | t }}</a>
+            <a class="btn btn-3" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-couleurs' | t }}/">{{ 'vw.index.transform.btn_carreaux' | t }}</a>
+        </div>
+      
+    </section>
+    <section class="SlideRealisations" id="dada-art"
+      >
+        <h2>
+            <b>DADA ART</b>
+            <p style="font-size: 14px;">
+            Découvrez notre nouvelle marque de décoration 100 % imaginée et fabriquée en France.
+              <br>
+            Des créations originales et toujours avec la qualité qui a fait le succès de Vinyl Way.
+            </p>
+        </h2>
+        <div id="splideDada" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                   <li class="splide__slide">
+  <a href="https://dada-art.fr/collections/tapis-vinyle" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/032879CC_1_ba00d954-93b3-4e2a-b4ae-5f539fcdf872.jpg">
+    <span>Tapis vinyle</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/set-de-table" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/048808VD_1_9521ea73-011f-4709-89e0-f70260d02c9d.jpg">
+    <span>Set de table</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/credence-aluminium" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/id_23617_slide_1_mes_mix1_display_neutre.jpg">
+    <span>Crédence Aluminium</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/papier-peint" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/id_PPA90344-95x140_slide_1_mes_adulte1.jpg">
+    <span>Papier peint</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/toile-imprimee" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/id_57432_type_toile_cadre_naturel_slide_1_format_60x90_e406985e-9f56-4ff7-9663-73ea7d70978f.webp">
+    <span>Toile encadrée</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/affiche" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/id_23278_type_affiche_cadre_sans_slide_1_format_40x50_817da48e-d85a-4116-8538-d61a990a33d2.webp">
+    <span>Affiche</span>
+  </a>
+</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <style>
+      
+      #splideDada li.splide__slide {
+        position: relative;
+      }
+      #splideDada li.splide__slide span {
+        position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999999;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+    text-shadow: 0px 0px 25px rgba(0, 0, 0, 1);
+      }
+    </style>
+  
+  
+    <section class="SlideCollections">
+        <h2>Nos collections de carreaux adhésifs</h2>
+        <div id="splideCollections" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+
+                  {% for collection in collections %}
+                  {%
+          if collection.handle contains 'beton'
+          or collection.handle contains 'arche'
+          or collection.handle contains 'bois'
+          or collection.handle contains 'brique'
+          or collection.handle contains 'carreaux-de-ciment'
+          or collection.handle contains 'carreaux-de-metro'
+          or collection.handle contains 'carreaux-marocains'
+          or collection.handle contains 'couleurs-unies'
+          or collection.handle contains 'marbre'
+          or collection.handle contains 'mosaique'
+          or collection.handle contains 'osier'
+          or collection.handle contains 'zelliges'
+          or collection.handle contains 'quad'
+          or collection.handle contains 'mono'
+          or collection.handle contains 'cuir'
+          or collection.handle contains 'mono'
+          or collection.handle contains 'terra'
+          %}
+
+                  <li class="splide__slide bgCollection {{ collection.handle }}">
+                        <h3>{{ collection.title }}</h3>
+                    <div  class="slideCollectionsImage">    
+                    <a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-collections' | t }}/#{{ collection.handle }}">
+                            <img alt="Vinyl Way - Collection {{ collection.title }} - {{ 'vw.index.slide_collections.bg_alt' | t }}" loading="lazy" src="{{ collection.products.first | img_url: '500x' }}">
+                        </a>
+                              <div>                              
+                              {% for product in collection.products %}
+                                                    {% unless product.handle contains "marketplace" %}
+                                <a class="linkProduct" href="{{ product.url }}">
+                                  <img alt="Vinyl Way - {{ 'vw.index.slide_collections.carreau_alt' | t }} {{ product.title }} - Collection {{ collection.title }}" loading="lazy" src="{{ product.images[1] | img_url: '100x' }}">
+                                </a>
+                                                      {% endunless %}
+                                {% endfor %}                    
+                            </div>
+                       </div> 
+                        <a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-collections' | t }}/#{{ collection.handle }}" class="slideCollectionsBtn">{{ 'vw.index.slide_collections.btn_voir' | t }}</a>
+                    </li>
+                    
+                  {% endif %}
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="Transform Designs">
+
+       <div class="bgImg bgTiles parallax-container">
+         <img class="parallax" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/tile-bg_copie.jpg?v=1669199154" alt="{{ 'vw.index.designs.bg_alt' | t }}"
+           data-parallax data-translate="true" data-speed="2">
+         </div>
+      
+      <div>
+            <h2><span>{{ 'vw.index.designs.title_text1' | t }} 200</span> <span>{{ 'vw.index.designs.title_text2' | t }}</span></h2>
+            <p>{{ 'vw.index.designs.paragraph1' | t }}</p>
+            <p>{{ 'vw.index.designs.paragraph2' | t }}</p>
+            <a class="btn btn-2" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/">{{ 'vw.index.transform.btn_collections' | t }}</a>
+            <a class="btn btn-3" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-couleurs' | t }}/">{{ 'vw.index.transform.btn_carreaux' | t }}</a>
+        </div>
+      
+    </section>
+
+    <section class="SlideProducts">
+        <h2>Meilleures ventes de carrelage adhésif</h2>
+        <div id="splideProducts" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                  {% for product in collections.carreaux-adhesifs-bestsellers.products %}
+                    {% for tag in product.tags %}
+                      {% if tag contains '#' %}
+                      {% assign dataColor = tag %}
+                      {% endif %}
+                    {% endfor %}
+                    {% for tag in product.tags %}
+                      {% if tag contains '#' %}
+                    <li class="splide__slide" data-color="{{ dataColor }}">
+                        <a href="{{ product.url }}">
+                        <img alt="{{ 'vw.index.best.carreau_alt' | t }} Vinyl Way {{ product.title }}" loading="lazy" src="{{ product.images[1] | img_url: 'master' }}">
+                            <span>{{ product.title }}</span>
+                        </a>
+                    </li>
+                      {% endif %}
+                  {% endfor %}
+                  {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <a class="btn btn-2" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-bestsellers' | t }}/">{{ 'vw.index.best.btn' | t }}</a>
+    </section>
+
+    <div class="grc-site-iframe" data-type="horizontal" style="background: #F5F5F5;"></div>
+
+  {% render 'reviews' %}
+  
+    <section class="Quality">
+        <div>
+            <h2><span>{{ 'vw.index.quality.title.text1' | t }} <img alt="{{ 'vw.index.quality.title.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/madeinfrance.svg?v=1666779214">
+                </span>
+                <b>{{ 'vw.index.quality.title.text2' | t }}</b></span>
+            </h2>
+            <p>{{ 'vw.index.quality.paragraph1' | t }}</p>
+          <ul class="listTexts">
+            <li>{{ 'vw.index.quality.list.li1' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li2' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li3' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li4' | t }}</li>
+          </ul>
+          <p>{{ 'vw.index.quality.paragraph2' | t }}</p>
+        </div>
+        <div>
+
+            <div class="bgDiag">
+                <div>
+                </div>
+            </div>
+
+            <ul>
+                <li>{{ 'vw.index.quality.couches.li1' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li2' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li3' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li4' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li5' | t }}</li>
+            </ul>
+            <div id=" couches2" class="couches">
+                <svg class="svg-couches couchesthumbslide" version="1.1" id="Calque_1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 483 420" xml:space="preserve">
+                    <g>
+                        <polygon class="st0" points="258,373 22,327 242,221 480,267 " />
+                    </g>
+                    <g>
+                        <polygon class="st1" points="258,313 22,267 22,264 258,310 " />
+                    </g>
+                    <g>
+                        <polygon class="st2" points="258,313 258,310 480,204 480,207 " />
+                    </g>
+                    <g>
+                        <polygon class="st3" points="258,310 22,264 242,158 480,204 " />
+                    </g>
+                    <g>
+                        <polygon class="st6" points="258,250 22,203 22,193 258,239 	" />
+                    </g>
+                    <g>
+                        <polygon class="st5" points="258,250 258,239 480,133 480,143 " />
+                    </g>
+                    <g>
+                        <polygon class="st4" points="258,239 22,193 242,87 480,133 	" />
+                    </g>
+                    <g class="st7">
+                        <polygon class="st8" points="258,164 22,118 242,12 480,58 	" />
+                    </g>
+                </svg>
+
+                <div class="img-svg">
+                    <img alt="carreau adhésif Viynl Way" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <div>
+            <img alt="logo Castorama" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/Castorama_Logo.png?v=1667830799">
+            <img alt="logo Salon Maison et Objet" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/MaisonObjet-1line-logotype_black.png?v=1667831417">
+            <img alt="logo Messe FrankFurt - Salon Ambiente" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/ambiente-datum-2020.png?v=1667830799">
+            <img alt="logo MIF EXPO - Salon du Made In France" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/mif-2.png?v=1667831417">
+            <img alt="logo Marie Claire Maison" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/logo.png?v=1635941585">
+            <img alt="logo Le Journal des Femmes" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/logo-jdf.png?v=1635941585">
+        </div>
+    </section>
+
+    <section class="Install notranslate" id="{{ 'vw.url.installation' | t }}">
+        <div>
+            <div>
+                <div>
+                <video id="videoInstall" poster="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/poster-site-web-comment-poser-ses-carreaux-adhesifs-vinyl-way.jpg?v=1670489425" muted="" loop="" playsinline="" id="videointro"
+                    alt="{{ 'vw.index.install.video_alt' | t }}">
+                    <source src="https://cdn.shopify.com/videos/c/o/v/175cfeafb8c34a6893392ecf568d9285.mp4" type="video/mp4">
+                 {{ 'vw.index.presentation.video_error' | t }}
+                </video>
+                </div>
+                <div class="bgDiag"></div>
+            </div>
+            <div>
+                <h2>
+                    {{ 'vw.index.install.title.text1' | t }} <small>{{ 'vw.index.install.title.text2' | t }}</small>
+                </h2>
+                <div class="listInstall">
+                    <div>
+                        <span>01</span>
+                        <span>{{ 'vw.index.install.list.li1.title' | t }}</span>
+                    </div>
+                    <p>{{ 'vw.index.install.list.li1.text' | t }}</p>
+                <div>
+                    <span>02</span>
+                    <span>{{ 'vw.index.install.list.li2.title' | t }}</span>
+                </div>
+                <p style="margin:0;">{{ 'vw.index.install.list.li2.text1' | t }}.</p>
+                <p>{{ 'vw.index.install.list.li2.text2' | t }}.</p>
+                <div>
+                <span>03</span>
+                <span>{{ 'vw.index.install.list.li3.title' | t }}</span>
+            </div>
+            <p>{{ 'vw.index.install.list.li3.text' | t }}</p>
+        </div>
+        <span class="btnInstall"><svg id="btnInstall" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+                <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                </path>
+            </svg></span>
+        </div>
+        </div>
+    </section>
+    <section class="SlideRealisations" id="{{ 'vw.url.realisations' | t }}">
+        <h2>
+            <b>{{ 'vw.index.realisations.title_text1' | t }}</b>
+            <span>{{ 'vw.index.realisations.title_text2' | t }}</span>
+        </h2>
+        <div id="splideRealisations" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client2.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client3.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client4.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client5.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client6.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client7.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client8.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client9.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client10.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client11.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client12.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client13.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client1.jpg">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    </div>
+
+    
+{{ 'parallax-js.js' | asset_url | script_tag }}

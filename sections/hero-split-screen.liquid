@@ -1,0 +1,471 @@
+{% comment %}
+  Section: Hero Split Screen (Vinyl Way V5) - Version Design Amélioré + Clin d'oeil France
+  Author: Architecte Vinyl Way
+  Description: Ajout d'un surtitre structurant, amélioration hiérarchie et badge France.
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-bg-color: {{ section.settings.bg_color }};
+    --vw-text-main: {{ section.settings.text_color }};
+    --vw-text-light: {{ section.settings.subtext_color }};
+    --vw-accent: {{ section.settings.accent_color }};
+    --vw-accent-hover: {{ section.settings.accent_hover_color }};
+  }
+
+  .vw-hero-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh; /* Hauteur ajustée mobile */
+    background-color: var(--vw-bg-color);
+    font-family: 'Inter', sans-serif;
+    color: var(--vw-text-main);
+    overflow: hidden;
+  }
+
+  /* Partie Gauche : Texte */
+  .vw-hero-content {
+    width: 100%;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    order: 2; /* Mobile : Texte en dessous */
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards; /* Animation d'entrée douce */
+    animation-delay: 0.2s;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Container Surtitre + Badge */
+  .vw-hero-meta-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Surtitre "Eyebrow" */
+  .vw-hero-eyebrow {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--vw-accent);
+  }
+
+  .vw-hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background-color: var(--vw-accent);
+    margin-right: 1rem;
+  }
+
+  /* Badge France */
+  .vw-france-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--vw-text-light);
+    background-color: #F3F4F6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .vw-flag-icon {
+    display: inline-flex;
+    margin-right: 0.5rem;
+    height: 8px;
+    width: 12px;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  
+  .vw-flag-stripe {
+    width: 33.33%;
+    height: 100%;
+  }
+  .vw-flag-blue { background-color: #002654; }
+  .vw-flag-white { background-color: #FFFFFF; }
+  .vw-flag-red { background-color: #ED2939; }
+
+
+  /* Titre Principal */
+  .vw-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    color: var(--vw-text-main);
+    letter-spacing: -0.02em;
+  }
+
+  .vw-hero-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--vw-text-light);
+    margin-bottom: 3rem;
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  .vw-hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .vw-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.125rem 2.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .vw-btn-primary {
+    background-color: var(--vw-accent);
+    color: #FFFFFF;
+    border: 1px solid var(--vw-accent);
+    box-shadow: 0 4px 10px rgba(15, 118, 110, 0.2); /* Ombre portée subtile */
+  }
+
+  .vw-btn-primary:hover {
+    background-color: var(--vw-accent-hover);
+    border-color: var(--vw-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(15, 118, 110, 0.3);
+  }
+
+  .vw-btn-outline {
+    background-color: transparent;
+    color: var(--vw-text-main);
+    border: 1px solid #E5E7EB;
+  }
+
+  .vw-btn-outline:hover {
+    border-color: var(--vw-text-main);
+    background-color: #FAFAFA;
+  }
+
+  /* Partie Droite : Image */
+  .vw-hero-image-wrapper {
+    width: 100%;
+    height: 40vh; /* Hauteur ajustée mobile */
+    position: relative;
+    order: 1; /* Mobile : Image au dessus */
+    overflow: hidden;
+  }
+
+  /* Gestion unifiée Image/Vidéo */
+  .vw-hero-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .vw-image-caption {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 1.25rem 1.75rem;
+    max-width: 320px;
+    display: none;
+    z-index: 10;
+    border-left: 3px solid var(--vw-accent); /* Accent sur la légende */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .vw-caption-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--vw-text-light);
+    margin-bottom: 0.25rem;
+    display: block;
+    font-weight: 700;
+  }
+
+  .vw-caption-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.125rem;
+    color: var(--vw-text-main);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  @media (min-width: 768px) {
+    .vw-hero-container {
+      flex-direction: row;
+      height: 85vh; /* Hauteur ajustée Desktop */
+      min-height: 650px;
+    }
+    .vw-hero-content {
+      width: 45%; /* Un peu plus large pour le texte */
+      padding: 0 5rem;
+      order: 1;
+      align-items: flex-start; /* Alignement gauche strict */
+    }
+    .vw-hero-image-wrapper {
+      width: 55%;
+      height: auto;
+      order: 2;
+    }
+    .vw-hero-title {
+      font-size: 5rem; /* Titre plus impactant */
+    }
+    .vw-hero-actions {
+      flex-direction: row;
+    }
+    .vw-image-caption {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1440px) {
+     .vw-hero-title {
+      font-size: 6rem; /* Très grand sur les grands écrans */
+    }
+  }
+</style>
+
+<div class="vw-hero-container">
+  
+  <!-- Content (Left) -->
+  <div class="vw-hero-content">
+    
+    <div class="vw-hero-meta-header">
+      {% if section.settings.eyebrow != blank %}
+        <span class="vw-hero-eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+
+      {% if section.settings.show_france_badge %}
+        <div class="vw-france-badge">
+          <div class="vw-flag-icon">
+            <div class="vw-flag-stripe vw-flag-blue"></div>
+            <div class="vw-flag-stripe vw-flag-white"></div>
+            <div class="vw-flag-stripe vw-flag-red"></div>
+          </div>
+          {{ section.settings.france_text }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if section.settings.title != blank %}
+      <h1 class="vw-hero-title">{{ section.settings.title | newline_to_br }}</h1>
+    {% endif %}
+
+    {% if section.settings.subtitle != blank %}
+      <div class="vw-hero-subtitle">{{ section.settings.subtitle }}</div>
+    {% endif %}
+
+    <div class="vw-hero-actions">
+      {% if section.settings.btn_primary_text != blank %}
+        <a href="{{ section.settings.btn_primary_link }}" class="vw-btn vw-btn-primary">
+          {{ section.settings.btn_primary_text }}
+        </a>
+      {% endif %}
+      {% if section.settings.btn_secondary_text != blank %}
+        <a href="{{ section.settings.btn_secondary_link }}" class="vw-btn vw-btn-outline">
+          {{ section.settings.btn_secondary_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Media (Right) -->
+  <div class="vw-hero-image-wrapper">
+    {% if section.settings.video != blank %}
+      <!-- VIDEO MODE -->
+      {{ section.settings.video | video_tag: 
+        autoplay: true, 
+        loop: true, 
+        muted: true, 
+        controls: false, 
+        class: 'vw-hero-media',
+        image_size: '2000x' 
+      }}
+    {% elsif section.settings.image != blank %}
+      <!-- IMAGE MODE (Fallback) -->
+      {{ section.settings.image | image_url: width: 2000 | image_tag: 
+        class: 'vw-hero-media', 
+        loading: 'eager', 
+        alt: section.settings.image.alt | default: section.settings.title 
+      }}
+    {% else %}
+      <!-- SVG PLACEHOLDER -->
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'vw-hero-media' }}
+    {% endif %}
+
+    {% if section.settings.show_caption %}
+      <div class="vw-image-caption">
+        <span class="vw-caption-label">{{ section.settings.caption_label }}</span>
+        <p class="vw-caption-text">{{ section.settings.caption_text }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Hero (Split)",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contenu Texte"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre (Eyebrow)",
+      "default": "SPÉCIALISTE DU REVÊTEMENT ADHÉSIF"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_france_badge",
+      "label": "Afficher le badge France",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "france_text",
+      "label": "Texte Badge France",
+      "default": "FABRIQUÉ EN FRANCE"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Titre Principal",
+      "default": "Rénover.\nSans tout\ncasser."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "L'alternative architecturale."
+    },
+    {
+      "type": "header",
+      "content": "Média Principal"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Vidéo (MP4 Shopify Hosted) - Prioritaire sur l'image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (si pas de vidéo)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_caption",
+      "label": "Afficher la légende",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "caption_label",
+      "label": "Label Légende",
+      "default": "EN VIDÉO"
+    },
+    {
+      "type": "text",
+      "id": "caption_text",
+      "label": "Texte Légende",
+      "default": "Tutoriel de pose : 45 secondes"
+    },
+    {
+      "type": "header",
+      "content": "Boutons"
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_text",
+      "label": "Texte Bouton 1",
+      "default": "DÉCOUVRIR"
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_link",
+      "label": "Lien Bouton 1"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_text",
+      "label": "Texte Bouton 2",
+      "default": "CONCEPT"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_link",
+      "label": "Lien Bouton 2"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte Principal",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Texte Secondaire",
+      "default": "#6B7280"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Teal)",
+      "default": "#0F766E"
+    },
+    {
+      "type": "color",
+      "id": "accent_hover_color",
+      "label": "Accent Hover",
+      "default": "#0d635c"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Hero (Split)",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}

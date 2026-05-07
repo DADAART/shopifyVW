@@ -1,0 +1,423 @@
+{% comment %}
+  Section: Vinyl Way Featured Collection Grid (Les Locomotives)
+  Author: Architecte Vinyl Way
+  Description: Grille de mise en avant des produits stars. 3 Colonnes. Images Portrait.
+{% endcomment %}
+
+<style>
+  /* Import des polices si non déjà chargées */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-grid-bg: {{ section.settings.bg_color }};
+    --vw-grid-text: {{ section.settings.text_color }};
+    --vw-grid-accent: {{ section.settings.accent_color }};
+  }
+
+  .vw-grid-section {
+    padding: 6rem 1.5rem;
+    background-color: var(--vw-grid-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--vw-grid-text);
+  }
+
+  .vw-grid-container {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  /* --- HEADER SECTION --- */
+  .vw-grid-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .vw-grid-text-content {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .vw-grid-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--vw-grid-text);
+  }
+
+  .vw-grid-desc {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #4B5563; /* Gris Anthracite doux */
+  }
+
+  /* Lien "Tout Voir" Desktop */
+  .vw-grid-link-desktop {
+    display: none; /* Masqué sur mobile */
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--vw-grid-accent);
+    text-decoration: none;
+    transition: opacity 0.3s;
+    margin-top: 1.5rem;
+  }
+
+  .vw-grid-link-desktop:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* --- GRID LAYOUT --- */
+  .vw-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 colonne mobile */
+    gap: 3rem;
+  }
+
+  /* --- CARD COMPONENT --- */
+  .vw-card {
+    display: block;
+    text-decoration: none;
+    /* Crée un contexte pour le hover */
+  }
+
+  .vw-card-image-wrapper {
+    position: relative;
+    aspect-ratio: 3 / 4; /* Format Portrait élégant */
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background-color: #F3F4F6;
+  }
+
+  .vw-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  /* Zoom doux au survol */
+  .vw-card:hover .vw-card-image {
+    transform: scale(1.05);
+  }
+
+  /* Overlay subtil au survol */
+  .vw-card-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 0.5s ease;
+  }
+
+  .vw-card:hover .vw-card-overlay {
+    background-color: rgba(0,0,0,0.05);
+  }
+
+  .vw-card-meta {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vw-card-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--vw-grid-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .vw-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: var(--vw-grid-text);
+    margin-bottom: 0.75rem;
+    transition: color 0.3s;
+    line-height: 1.2;
+  }
+
+  .vw-card:hover .vw-card-title {
+    color: var(--vw-grid-accent);
+  }
+
+  .vw-card-cta {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--vw-grid-text);
+    padding-bottom: 2px;
+    border-bottom: 1px solid #E5E7EB;
+    width: fit-content;
+    transition: all 0.3s;
+  }
+
+  .vw-card:hover .vw-card-cta {
+    border-color: var(--vw-grid-accent);
+    color: var(--vw-grid-accent);
+  }
+
+  .vw-arrow-icon {
+    width: 1em;
+    height: 1em;
+    margin-left: 0.5rem;
+    transition: transform 0.3s;
+  }
+
+  .vw-card:hover .vw-arrow-icon {
+    transform: translateX(4px);
+  }
+
+  /* --- MOBILE BUTTON --- */
+  .vw-mobile-btn-container {
+    margin-top: 3rem;
+    text-align: center;
+  }
+  
+  .vw-mobile-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem;
+    background-color: #FFFFFF;
+    border: 1px solid var(--vw-grid-text);
+    color: var(--vw-grid-text);
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .vw-mobile-btn:hover {
+    background-color: var(--vw-grid-text);
+    color: #FFFFFF;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (min-width: 768px) {
+    .vw-grid-section {
+      padding: 6rem 3rem;
+    }
+
+    .vw-grid-header {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+    
+    .vw-grid-title {
+      font-size: 3.5rem;
+    }
+
+    .vw-cards-grid {
+      grid-template-columns: repeat(3, 1fr); /* 3 colonnes desktop */
+      gap: 3rem;
+    }
+
+    .vw-grid-link-desktop {
+      display: flex; /* Visible desktop */
+      margin-top: 0;
+      margin-bottom: 0.5rem; /* Aligné avec le bas du texte */
+    }
+
+    .vw-mobile-btn-container {
+      display: none; /* Masqué desktop */
+    }
+  }
+</style>
+
+<div class="vw-grid-section">
+  <div class="vw-grid-container">
+    
+    <!-- HEADER -->
+    <div class="vw-grid-header">
+      <div class="vw-grid-text-content">
+        {% if section.settings.title != blank %}
+          <h2 class="vw-grid-title">{{ section.settings.title | newline_to_br }}</h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="vw-grid-desc">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.settings.link_url != blank %}
+        <a href="{{ section.settings.link_url }}" class="vw-grid-link-desktop">
+          {{ section.settings.link_text }}
+          <svg class="vw-arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- GRID -->
+    <div class="vw-cards-grid">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.url }}" class="vw-card" {{ block.shopify_attributes }}>
+          <div class="vw-card-image-wrapper">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 800 | image_tag: class: 'vw-card-image', loading: 'lazy', alt: block.settings.title }}
+            {% else %}
+              {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'vw-card-image' }}
+            {% endif %}
+            <div class="vw-card-overlay"></div>
+          </div>
+          
+          <div class="vw-card-meta">
+            {% if block.settings.category != blank %}
+              <span class="vw-card-category">{{ block.settings.category }}</span>
+            {% endif %}
+            
+            <h3 class="vw-card-title">{{ block.settings.title }}</h3>
+            
+            <span class="vw-card-cta">
+              Explorer la gamme
+              <svg class="vw-arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    <!-- MOBILE BUTTON -->
+    {% if section.settings.link_url != blank %}
+      <div class="vw-mobile-btn-container">
+        <a href="{{ section.settings.link_url }}" class="vw-mobile-btn">
+          {{ section.settings.link_text }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Featured Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Titre",
+      "default": "La Collection Signature"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Notre best-seller. Une épaisseur technique de 2mm, un relief 3D au toucher et une résistance à l'eau certifiée."
+    },
+    {
+      "type": "header",
+      "content": "Lien Global"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Texte du lien",
+      "default": "TOUT VOIR"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "URL du lien"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte Principal",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Teal)",
+      "default": "#0F766E"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Produit Star",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (Portrait 3:4)"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Catégorie / Tag",
+          "default": "BEST-SELLER"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nom du Produit",
+          "default": "Le Zellige"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Lien vers Collection/Produit"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Featured Grid",
+      "category": "Produits",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Le Zellige",
+            "category": "Best-Seller Cuisine"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Le Terrazzo Minéral",
+            "category": "Salle de Bain"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Le Metro Intemporel",
+            "category": "Classique Chic"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

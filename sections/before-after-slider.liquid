@@ -1,0 +1,338 @@
+{% comment %}
+  Section: Vinyl Way Before/After Slider
+  Author: Architecte Vinyl Way
+  Description: Comparateur interactif. Mobile: Hauteur fixe 450px. Desktop: Ratio naturel.
+{% endcomment %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --vw-ba-accent: {{ section.settings.accent_color }};
+    --vw-ba-text: {{ section.settings.text_color }};
+    --vw-ba-bg: {{ section.settings.bg_color }};
+  }
+
+  .vw-ba-section {
+    padding: 4rem 1.5rem;
+    background-color: var(--vw-ba-bg);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .vw-ba-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .vw-ba-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--vw-ba-text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .vw-ba-subtitle {
+    font-size: 1.125rem;
+    color: #6B7280;
+  }
+
+  /* --- CONTAINER PRINCIPAL --- */
+  .vw-ba-container {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    /* MOBILE : Hauteur fixe pour éviter l'écrasement */
+    height: 450px; 
+    overflow: hidden;
+    user-select: none;
+    /* Variable CSS dynamique JS */
+    --pos: 50%;
+  }
+
+  /* --- GESTION DES IMAGES --- */
+  
+  /* Wrapper Image 1 (Fond/Après) */
+  .vw-ba-after-wrapper {
+    /* MOBILE : Absolute pour remplir le cadre */
+    position: absolute; 
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 0;
+  }
+
+  /* L'image de référence (Fond) */
+  .vw-ba-img-base {
+    width: 100%;
+    height: 100%;
+    /* MOBILE : Object-fit Cover pour remplir sans déformer */
+    object-fit: cover; 
+    display: block;
+  }
+
+  /* Wrapper Image 2 (Dessus/Avant) */
+  .vw-ba-before-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* Magie du reveal */
+    clip-path: polygon(0 0, var(--pos) 0, var(--pos) 100%, 0 100%);
+    border-right: 2px solid #FFFFFF;
+  }
+
+  /* L'image overlay */
+  .vw-ba-img-overlay {
+    width: 100%;
+    height: 100%;
+    /* Important : Doit être identique à l'image de base */
+    object-fit: cover; 
+    display: block;
+  }
+
+  /* --- INTERFACE (Labels & Curseur) --- */
+
+  .vw-ba-label {
+    position: absolute;
+    top: 1.5rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 20;
+    pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .vw-ba-label-left {
+    left: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #111827;
+  }
+
+  .vw-ba-label-right {
+    right: 1.5rem;
+    background-color: var(--vw-ba-accent);
+    color: #FFFFFF;
+  }
+
+  .vw-ba-range {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: ew-resize;
+    opacity: 0;
+    z-index: 30;
+    margin: 0;
+    touch-action: pan-y;
+  }
+
+  .vw-ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    width: 0;
+    pointer-events: none;
+    z-index: 25;
+  }
+
+  .vw-ba-handle-circle {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 3rem;
+    height: 3rem;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  .vw-ba-handle-bar {
+    width: 4px;
+    height: 16px;
+    background-color: var(--vw-ba-accent);
+    border-radius: 2px;
+    margin: 0 2px;
+  }
+
+  /* --- DESKTOP (Adaptation Grand Écran) --- */
+  @media (min-width: 768px) {
+    .vw-ba-title {
+      font-size: 3.5rem;
+    }
+    
+    /* DESKTOP : Hauteur Auto (Ratio Naturel) */
+    .vw-ba-container {
+      height: auto; 
+    }
+
+    .vw-ba-after-wrapper {
+      position: relative; /* Reprend le flux normal */
+      height: auto;
+    }
+    
+    .vw-ba-img-base {
+      height: auto;
+      object-fit: contain; /* Affiche toute l'image */
+    }
+
+    .vw-ba-label {
+      top: 2rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+    }
+
+    .vw-ba-label-left { left: 2rem; }
+    .vw-ba-label-right { right: 2rem; }
+  }
+</style>
+
+<div id="evidence" class="vw-ba-section">
+  
+  <div class="vw-ba-header">
+    {% if section.settings.title != blank %}
+      <h2 class="vw-ba-title">{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.subtitle != blank %}
+      <p class="vw-ba-subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+  </div>
+
+  <div class="vw-ba-container" id="slider-{{ section.id }}">
+    
+    <!-- Image APRES (Fond) -->
+    <div class="vw-ba-after-wrapper">
+      {% if section.settings.image_after != blank %}
+        {{ section.settings.image_after | image_url: width: 2000 | image_tag: class: 'vw-ba-img-base', loading: 'lazy', alt: 'Resultat Apres' }}
+      {% else %}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'vw-ba-img-base' }}
+      {% endif %}
+      
+      <span class="vw-ba-label vw-ba-label-right">{{ section.settings.label_after }}</span>
+    </div>
+
+    <!-- Image AVANT (Dessus) -->
+    <div class="vw-ba-before-wrapper">
+      {% if section.settings.image_before != blank %}
+        {{ section.settings.image_before | image_url: width: 2000 | image_tag: class: 'vw-ba-img-overlay', loading: 'lazy', alt: 'Etat Avant' }}
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'vw-ba-img-overlay' }}
+      {% endif %}
+
+      <span class="vw-ba-label vw-ba-label-left">{{ section.settings.label_before }}</span>
+    </div>
+
+    <!-- Controleur -->
+    <input 
+      type="range" 
+      min="0" 
+      max="100" 
+      value="50" 
+      class="vw-ba-range" 
+      aria-label="Controle avant apres"
+      oninput="this.parentElement.style.setProperty('--pos', this.value + '%')"
+    >
+
+    <!-- Curseur -->
+    <div class="vw-ba-handle">
+      <div class="vw-ba-handle-circle">
+        <div class="vw-ba-handle-bar"></div>
+        <div class="vw-ba-handle-bar"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Avant Apres",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Textes"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre Section",
+      "default": "L'Evidence du Resultat"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Glissez pour reveler le potentiel de votre interieur."
+    },
+    {
+      "type": "header",
+      "content": "Images Comparatives"
+    },
+    {
+      "type": "paragraph",
+      "content": "Important : Pour un resultat parfait, les deux images doivent avoir exactement les memes dimensions."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_before",
+      "label": "Image AVANT (Gauche)",
+      "info": "Sera superposee a gauche."
+    },
+    {
+      "type": "text",
+      "id": "label_before",
+      "label": "Label Avant",
+      "default": "AVANT TRAVAUX"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_after",
+      "label": "Image APRES (Droite)",
+      "info": "Sera en fond. Determine la taille du bloc."
+    },
+    {
+      "type": "text",
+      "id": "label_after",
+      "label": "Label Apres",
+      "default": "APRES VINYL WAY"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond de section",
+      "default": "#F9FAFB"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Label & Curseur)",
+      "default": "#0F766E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Avant Apres",
+      "category": "Interactivite"
+    }
+  ]
+}
+{% endschema %}

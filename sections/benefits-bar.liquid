@@ -1,0 +1,276 @@
+{% comment %}
+  Section: Vinyl Way Benefits Bar (Atouts Clés)
+  Author: Architecte Vinyl Way
+  Description: Bandeau horizontal d'icônes pour mettre en avant les caractéristiques techniques (Étanche, Chaleur, etc.)
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    --vw-ben-bg: {{ section.settings.bg_color }};
+    --vw-ben-text: {{ section.settings.text_color }};
+    --vw-ben-icon: {{ section.settings.icon_color }};
+    --vw-ben-border: {{ section.settings.border_color }};
+  }
+
+  .vw-benefits-section {
+    background-color: var(--vw-ben-bg);
+    border-bottom: 1px solid var(--vw-ben-border);
+    padding: 2.5rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .vw-benefits-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* Grid Layout */
+  .vw-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Mobile : 2 par ligne */
+    gap: 2rem 1rem;
+    justify-items: center; /* Centré horizontalement */
+  }
+
+  /* Item */
+  .vw-benefit-item {
+    display: flex;
+    flex-direction: column; /* Mobile : Vertical (Icône dessus) */
+    align-items: center;
+    text-align: center;
+    max-width: 200px;
+  }
+
+  /* Icon Wrapper */
+  .vw-benefit-icon-box {
+    margin-bottom: 1rem;
+    color: var(--vw-ben-icon);
+    transition: transform 0.3s ease;
+  }
+  
+  .vw-benefit-item:hover .vw-benefit-icon-box {
+    transform: translateY(-3px);
+  }
+
+  .vw-benefit-svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    stroke-width: 1.2; /* Trait fin élégant */
+  }
+
+  /* Textes */
+  .vw-benefit-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--vw-ben-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .vw-benefit-subtitle {
+    font-size: 0.8125rem;
+    color: #6B7280;
+    line-height: 1.4;
+  }
+
+  /* RESPONSIVE DESKTOP */
+  @media (min-width: 1024px) {
+    .vw-benefits-section {
+      padding: 3rem;
+    }
+
+    .vw-benefits-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 sur une ligne */
+      gap: 4rem;
+      justify-content: space-between;
+    }
+
+    .vw-benefit-item {
+      flex-direction: row; /* Desktop : Horizontal (Icône à gauche) */
+      text-align: left;
+      align-items: center;
+      max-width: none;
+      width: auto;
+    }
+
+    .vw-benefit-icon-box {
+      margin-bottom: 0;
+      margin-right: 1.25rem;
+    }
+
+    .vw-benefit-svg {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .vw-benefit-title {
+        font-size: 1rem;
+    }
+  }
+</style>
+
+<div class="vw-benefits-section">
+  <div class="vw-benefits-container">
+    <div class="vw-benefits-grid">
+      {% for block in section.blocks %}
+        <div class="vw-benefit-item" {{ block.shopify_attributes }}>
+          
+          <div class="vw-benefit-icon-box">
+            <!-- Gestion SVG Custom ou Icônes par défaut -->
+            {% if block.settings.custom_svg != blank %}
+              {{ block.settings.custom_svg }}
+            {% else %}
+              {% case block.settings.icon_type %}
+                {% when 'water' %}
+                  <!-- Goutte d'eau simplifiée -->
+                  <svg class="vw-benefit-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16.346c-3.536 0-6.406-2.806-6.406-6.277 0-4.386 5.791-10.425 6.406-11.069.615.644 6.406 6.683 6.406 11.069 0 3.471-2.87 6.277-6.406 6.277z" /></svg>
+                {% when 'heat' %}
+                  <svg class="vw-benefit-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" /><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" /></svg>
+                {% when 'adhesive' %}
+                  <!-- Icône Sticker / Papier qui se décolle -->
+                  <svg class="vw-benefit-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                {% when 'relief' %}
+                  <svg class="vw-benefit-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                {% when 'cut' %}
+                  <svg class="vw-benefit-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" /></svg>
+                {% when 'time' %}
+                  <svg class="vw-benefit-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                {% else %}
+                  <svg class="vw-benefit-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              {% endcase %}
+            {% endif %}
+          </div>
+
+          <div>
+            <div class="vw-benefit-title">{{ block.settings.title }}</div>
+            {% if block.settings.subtitle != blank %}
+              <div class="vw-benefit-subtitle">{{ block.settings.subtitle }}</div>
+            {% endif %}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vinyl Way Benefits Bar",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond",
+      "default": "#F9FAFB"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icônes",
+      "default": "#0F766E"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Bordure Bas",
+      "default": "#E5E7EB"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Atout",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icône",
+          "options": [
+            { "value": "water", "label": "Goutte (Étanche)" },
+            { "value": "heat", "label": "Feu (Chaleur)" },
+            { "value": "adhesive", "label": "Sticker (Autocollant)" },
+            { "value": "relief", "label": "Texture (3D)" },
+            { "value": "cut", "label": "Ciseaux (Découpe)" },
+            { "value": "time", "label": "Horloge (Rapide)" },
+            { "value": "check", "label": "Check (Validé)" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "html",
+          "id": "custom_svg",
+          "label": "SVG Custom (Optionnel)",
+          "info": "Collez votre code <svg> ici pour remplacer l'icône par défaut."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre (Bénéfice)",
+          "default": "100% ÉTANCHE"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sous-titre (Preuve)",
+          "default": "Compatible Douche & Bain"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinyl Way Benefits Bar",
+      "category": "Réassurance",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon_type": "water",
+            "title": "100% Étanche",
+            "subtitle": "Compatible Douche"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon_type": "heat",
+            "title": "Résiste à la Chaleur",
+            "subtitle": "Compatible Gaz & Induction"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon_type": "adhesive",
+            "title": "Support Autocollant",
+            "subtitle": "Pose sans colle"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon_type": "cut",
+            "title": "Découpe Facile",
+            "subtitle": "Cutter ou Ciseaux"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
