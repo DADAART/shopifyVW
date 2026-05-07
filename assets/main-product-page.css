@@ -175,6 +175,51 @@ main > :nth-child(1) {
   display: none;
 }
 
+.contentProduct .product-description {
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.contentProduct .product-description h1,
+.contentProduct .product-description h2,
+.contentProduct .product-description h3,
+.contentProduct .product-description h4 {
+  display: block;
+  border-bottom: none;
+  padding-bottom: 0;
+  text-transform: none;
+  font-weight: 700;
+  margin: 1.2rem 0 0.5rem;
+}
+
+.contentProduct .product-description h1 {
+  font-size: 1.5rem;
+}
+
+.contentProduct .product-description h2 {
+  font-size: 1.25rem;
+}
+
+.contentProduct .product-description h3,
+.contentProduct .product-description h4 {
+  font-size: 1.1rem;
+}
+
+.contentProduct .product-description p {
+  margin: 0.5rem 0;
+}
+
+.contentProduct .product-description ul,
+.contentProduct .product-description ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.contentProduct .product-description a {
+  text-decoration: underline;
+}
+
 .contentProduct .franceTrust {
   display: flex;
   justify-content: space-around;

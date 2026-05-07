@@ -295,7 +295,13 @@
       {% endif %}
 
       <div class="grc-product-summary" data-product-id="{{product.id}}"></div>
-      
+
+      {% if productType != 'papier_peint' and product.description != blank %}
+      <div class="product-description">
+        {{ product.description }}
+      </div>
+      {% endif %}
+
       {% if productType == 'papier_peint' %}
       <div id="product-description">
   {{ product.description }}
