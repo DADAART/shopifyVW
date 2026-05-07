@@ -56,6 +56,7 @@
   {% endfor %}
 </select>
 
+<div class="vw-pdp-hero">
   <section class="productImage">
     <div class="sale-icon" style="display:none;">
       <span>-33%</span>
@@ -259,7 +260,6 @@
     </div>
   </section>
 
-  <div class="contentProductContainer">
     <section class="contentProduct">
       {% if productType =='papier_peint' %}
         {% assign title_parts = product.title | split: '"' %}
@@ -744,7 +744,9 @@ sophistiquée et facile
         {% endif %}
       
     </section>
+</div>
 
+<div class="vw-pdp-below">
     <section id="calcul" class="calculQuantity">
       {% if productType == 'tile' %}
       <h3>{{ 'vw.product_page.calcul_quantity.title' | t }}</h3>
