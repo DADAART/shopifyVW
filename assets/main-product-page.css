@@ -1266,9 +1266,9 @@ main > :nth-child(1) {
   }
   .vw-pdp-hero .productImage {
     position: sticky;
-    top: 0;
+    top: var(--vw-header-h, 96px);
     align-self: flex-start;
-    height: 100vh;
+    height: calc(100vh - var(--vw-header-h, 96px));
     background: var(--vw-cream);
   }
   .vw-pdp-hero .productImage .ProductImageContent {

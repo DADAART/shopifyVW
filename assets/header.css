@@ -13,12 +13,20 @@
   --vw-line: #d9d0c1;
 
   width: 100%;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 100;
   font-family: 'Montserrat', 'Assistant', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--vw-ink);
   background: var(--vw-paper);
 }
+
+/* Approx. height of the sticky header (32 topbar + 65 nav).
+   Exposed as a CSS variable so other pages can offset their
+   sticky/fixed elements correctly. */
+:root { --vw-header-h: 96px; }
+@media (max-width: 1024px) { :root { --vw-header-h: 88px; } }
+@media (max-width: 600px)  { :root { --vw-header-h: 84px; } }
 
 .Header * { box-sizing: border-box; }
 
