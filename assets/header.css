@@ -21,12 +21,13 @@
   background: var(--vw-paper);
 }
 
-/* Approx. height of the sticky header (32 topbar + 65 nav).
-   Exposed as a CSS variable so other pages can offset their
-   sticky/fixed elements correctly. */
-:root { --vw-header-h: 96px; }
-@media (max-width: 1024px) { :root { --vw-header-h: 88px; } }
-@media (max-width: 600px)  { :root { --vw-header-h: 84px; } }
+/* Fallback for --vw-header-h while header.js hasn't measured the
+   actual height yet. JS overrides this on DOMContentLoaded and on
+   resize. Keep slightly bigger than reality so nothing slides under
+   the header before JS kicks in. */
+:root { --vw-header-h: 110px; }
+@media (max-width: 1024px) { :root { --vw-header-h: 92px; } }
+@media (max-width: 600px)  { :root { --vw-header-h: 86px; } }
 
 .Header * { box-sizing: border-box; }
 
