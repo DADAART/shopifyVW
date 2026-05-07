@@ -1249,7 +1249,7 @@ main > :nth-child(1) {
 @media (min-width: 1025px) {
   .vw-pdp-hero {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 50% 50%;
     align-items: flex-start;
     max-width: 100%;
     margin: 0;
