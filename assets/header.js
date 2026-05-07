@@ -1,13 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // // scrollTop
-  // $(window).scroll(function () {
-  //     if ($(this).scrollTop() >= 3) {
-  //         $(".Header").addClass('scroll');
-  //     }
-  //     else {
-  //         $(".Header").removeClass('scroll');
-  //     }
-  // });
+  // Expose the actual header height as a CSS variable so other pages
+  // (collection sticky bars, product sticky gallery, etc.) can offset
+  // their sticky/fixed elements correctly without hardcoded pixels.
+  var headerEl = document.querySelector(".Header");
+  function syncHeaderHeight() {
+    if (!headerEl) return;
+    var h = headerEl.offsetHeight;
+    document.documentElement.style.setProperty("--vw-header-h", h + "px");
+  }
+  syncHeaderHeight();
+  window.addEventListener("resize", syncHeaderHeight);
+  if (window.ResizeObserver && headerEl) {
+    new ResizeObserver(syncHeaderHeight).observe(headerEl);
+  }
 
   // menuHamburger
   if ($(window).width() < 1025) {
