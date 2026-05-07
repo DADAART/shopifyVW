@@ -14,24 +14,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btnInstallSpan.addEventListener("click", playInstall);
 
-    // Autoplay on desktop — like the homepage install video
+    // Autoplay (muted) on desktop — give the user native controls and
+    // hide the redundant custom play button so it can't look broken.
     if (window.innerWidth >= 1025) {
       videoInstall.setAttribute("autoplay", "true");
+      videoInstall.setAttribute("controls", "true");
       videoInstall.muted = true;
       videoInstall.play().catch(function () {});
+      btnInstallSpan.style.display = "none";
     }
   }
 
   // calculQuantity
-  let calculA, calculB, calculC, calculD, calculE, CalculF;
-  calculC = 1;
+  // Surface-based: a lot of 8x(20x20) covers 0.32 m², a lot of 4x(40x40)
+  // covers 0.64 m² (twice as much). Using surface keeps the two formats
+  // consistent with reality — a wall that needs 1 lot of 40x40 should not
+  // need 2 lots of 20x20.
+  let calculD = 0;
+  let calculF = 0;
+  let LOT_20_M2 = 8 * 0.04; // 0.32 m²
+  let LOT_40_M2 = 4 * 0.16; // 0.64 m²
   $(".inputsCalculQuantity input").change(function () {
-    calculA = $("#inputA").val();
-    calculB = $("#inputB").val();
-    calculC = Math.ceil(calculA / 20) * Math.ceil(calculB / 20);
-    calculD = Math.ceil(calculC / 8);
-    calculE = Math.ceil(calculA / 40) * Math.ceil(calculB / 40);
-    calculF = Math.ceil(calculE / 4);
+    let largeurCm = parseFloat($("#inputA").val()) || 0;
+    let longueurCm = parseFloat($("#inputB").val()) || 0;
+    let surfaceM2 = (largeurCm * longueurCm) / 10000;
+    calculD = surfaceM2 > 0 ? Math.ceil(surfaceM2 / LOT_20_M2) : 0;
+    calculF = surfaceM2 > 0 ? Math.ceil(surfaceM2 / LOT_40_M2) : 0;
     $("#inputC").val(calculD);
     $("#inputD").val(calculF);
   });
