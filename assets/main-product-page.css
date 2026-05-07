@@ -1249,10 +1249,10 @@ main > :nth-child(1) {
 @media (min-width: 1025px) {
   .vw-pdp-hero {
     display: grid;
-    grid-template-columns: 55% 45%;
+    grid-template-columns: 33.333% 1fr;
     align-items: flex-start;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     gap: 0;
   }
   .vw-pdp-hero .productImage {
@@ -1268,13 +1268,13 @@ main > :nth-child(1) {
   }
   .vw-pdp-hero .contentProduct {
     margin: 0 auto;
-    width: 88%;
-    max-width: 520px;
-    padding: 3rem 0 4rem;
+    width: 80%;
+    max-width: 640px;
+    padding: 4rem 0 5rem;
   }
   .vw-pdp-below {
-    max-width: 1100px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     padding: 1rem 0;
   }
   .template-product .Install > div {
