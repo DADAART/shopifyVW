@@ -1,0 +1,12 @@
+<section class="faq notranslate">
+  <h3>FAQ</h3>
+  {{ pages.faq.content }}
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    $(".faq .accordeonItem>span").click(function () {
+        $(this).parent().toggleClass("active");
+    });
+  });
+</script>

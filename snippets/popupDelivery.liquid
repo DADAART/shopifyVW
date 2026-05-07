@@ -1,0 +1,30 @@
+<div class="popupDelivery">
+            <div class="popupDeliveryBg popupDeliveryHide">
+
+            </div>
+            <div class="popupDeliveryContent">
+                <span class="popupDeliveryHide">x</span>
+              <div>
+                <div>
+                   <span>{{ 'vw.popup_delivery.reductions.title' | t }}</span>
+                  {% unless customer and customer.tags contains 'pro' %}
+                  <p>{{ 'vw.popup_delivery.reductions.text_plus' | t }} <strong>30</strong> {{ 'vw.product_page.calcul_quantity.carreaux' | t }} : <span class="reduc">-10%</span></p>
+                  <p>{{ 'vw.popup_delivery.reductions.text_plus' | t }} <strong>60</strong> {{ 'vw.product_page.calcul_quantity.carreaux' | t }} : <span class="reduc">-15%</span></p>
+                    {% else %}
+                  <p> <p>{{ 'vw.popup_delivery.reductions.tarif' | t }} <strong>{{ 'vw.popup_delivery.reductions.pro' | t }}</strong> : <span class="reduc">-30%</span></p>
+                  {% endunless %}
+                </div>
+                <div>
+                   <span>{{ 'vw.popup_delivery.livraison.title' | t }}</span>
+                  <p>{{ 'vw.popup_delivery.livraison.text_livraison' | t }} <strong>5  {{ 'vw.popup_delivery.livraison.jours' | t }}</strong> {{ 'vw.popup_delivery.livraison.france' | t }},
+                  <br />                  
+                  <strong>7 {{ 'vw.popup_delivery.livraison.jours' | t }} </strong> {{ 'vw.popup_delivery.livraison.europe' | t }}.
+                  </p>
+                  <p><span class="deli">{{ 'vw.popup_delivery.livraison.livraison_offerte' | t }}</span> {{ 'vw.popup_delivery.livraison.pour' | t }} 
+                  <strong>1 {{ 'vw.popup_delivery.livraison.echantillon' | t }}</strong> 
+                  {{ 'vw.popup_delivery.livraison.ou' | t }} <strong>{{ 'vw.popup_delivery.livraison.a_partir' | t }} 49€</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>

@@ -1,0 +1,125 @@
+{{ 'main-product-page.css' | asset_url | stylesheet_tag }}
+{{ 'main-product-page.js' | asset_url | script_tag }}
+
+<style>
+  .btnsVariants {
+    display:flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content: center;
+    margin: 2rem 0;
+    cursor: pointer;
+  }
+  .btnsVariants > div {
+    background: #000;
+    padding: 1rem;
+    color: #fff;
+    opacity:0.7;
+  }
+  .btnsVariants > div:hover {
+    opacity:0.85;
+  }
+  .btnsVariants > div.active {
+    opacity:1;
+    cursor: default;
+  }
+</style>
+
+<section class="productImage">
+  <div class="ProductImageContent">
+    <div class="slide slide1 active">
+      <img
+        alt="Carte cadeau Vinyl Way"
+        loading="lazy"
+        src="{{ product.images[0] | img_url: '1100x' }}"
+      >
+    </div>
+  </div>
+
+</section>
+
+<div class="contentProductContainer">
+  <section class="contentProduct">
+    <h1>
+      <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/R.png?v=1671720502" style="width:50px;">
+      Carte cadeau
+    </h1>
+
+    {{ product.description }}
+
+
+    {% form 'product', product %}
+
+    
+<div class="btnsVariants">
+{% for variant in product.variants %}
+  <div id="{{ variant.id }}">
+  {{ variant.price | money_with_currency }}
+  </div>
+{% endfor %}
+    </div>
+
+    
+      <div class="btnsOrders">
+        <input name="id" id="inputVariantID" value="{{ product.selected_or_first_available_variant.id }}" type="hidden">
+          <input name="quantity" id="quantityCheckout" type="hidden" value="1" min="1" max="999" maxlength="3">
+        <input id="btnCheckout" class="btnCheckout" name="add" value="Ajouter au panier" type="submit">
+      </div>
+    {% endform %}
+
+  </section>
+
+  <div class="iconesAdvantages">
+    <ul>
+      <li>
+        <img
+          alt="icône économique"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/eco.svg?v=1667834089"
+        >
+        <span>économique </span>
+      </li>
+      <li>
+        <img
+          alt="icône facile à poser"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/speed.svg?v=1667834089"
+        >
+        <span>facile à poser </span>
+      </li>
+      <li>
+        <img
+          alt="icône waterproof"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/waterproof.svg?v=1667834089"
+        >
+        <span>waterproof </span>
+      </li>
+      <li>
+        <img
+          alt="icône thermo-résistant"
+          loading="lazy"
+          src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/resistant.svg?v=1667834089"
+        >
+        <span>thermo-résistant </span>
+      </li>
+    </ul>
+  </div>
+
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  
+  $('.btnsVariants > div').click(function () {
+  $('.btnsVariants > div').removeClass('active');
+    $(this).addClass('active');    
+    $('#inputVariantID').val(this.id);
+  });
+
+  
+  });
+  
+</script>
