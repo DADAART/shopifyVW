@@ -175,16 +175,53 @@ main > :nth-child(1) {
   display: none;
 }
 
-.contentProduct .product-description {
+.contentProduct .product-description-toggle {
   margin: 1.5rem 0;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.contentProduct .product-description-toggle .product-description-title {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding: 1rem 2rem 1rem 0;
+  font-weight: 900;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.contentProduct .product-description-toggle .product-description-title::after {
+  content: "+";
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.contentProduct .product-description-toggle.active .product-description-title::after {
+  content: "-";
+}
+
+.contentProduct .product-description-toggle .product-description-content {
+  display: none;
+  padding: 0 0 1rem;
   font-size: 1rem;
   line-height: 1.6;
 }
 
-.contentProduct .product-description h1,
-.contentProduct .product-description h2,
-.contentProduct .product-description h3,
-.contentProduct .product-description h4 {
+.contentProduct .product-description-toggle.active .product-description-content {
+  display: block;
+}
+
+.contentProduct .product-description-content h1,
+.contentProduct .product-description-content h2,
+.contentProduct .product-description-content h3,
+.contentProduct .product-description-content h4 {
   display: block;
   border-bottom: none;
   padding-bottom: 0;
@@ -193,30 +230,30 @@ main > :nth-child(1) {
   margin: 1.2rem 0 0.5rem;
 }
 
-.contentProduct .product-description h1 {
+.contentProduct .product-description-content h1 {
   font-size: 1.5rem;
 }
 
-.contentProduct .product-description h2 {
+.contentProduct .product-description-content h2 {
   font-size: 1.25rem;
 }
 
-.contentProduct .product-description h3,
-.contentProduct .product-description h4 {
+.contentProduct .product-description-content h3,
+.contentProduct .product-description-content h4 {
   font-size: 1.1rem;
 }
 
-.contentProduct .product-description p {
+.contentProduct .product-description-content p {
   margin: 0.5rem 0;
 }
 
-.contentProduct .product-description ul,
-.contentProduct .product-description ol {
+.contentProduct .product-description-content ul,
+.contentProduct .product-description-content ol {
   margin: 0.5rem 0;
   padding-left: 1.5rem;
 }
 
-.contentProduct .product-description a {
+.contentProduct .product-description-content a {
   text-decoration: underline;
 }
 

@@ -296,12 +296,6 @@
 
       <div class="grc-product-summary" data-product-id="{{product.id}}"></div>
 
-      {% if productType != 'papier_peint' and product.description != blank %}
-      <div class="product-description">
-        {{ product.description }}
-      </div>
-      {% endif %}
-
       {% if productType == 'papier_peint' %}
       <div id="product-description">
   {{ product.description }}
@@ -725,7 +719,16 @@ Nos fresques adhésives offrent une variété de beaux visuels, allant des paysa
       </div>
         
     {% endunless %}
-      
+
+      {% if product.description != blank and productType != 'papier_peint' %}
+      <div class="product-description-toggle">
+        <span class="product-description-title">Description</span>
+        <div class="product-description-content">
+          {{ product.description }}
+        </div>
+      </div>
+      {% endif %}
+
       {% if productType =='papier_peint' %}
 <div class="list-property" style="margin-top:20px;">
 <ul>
@@ -889,6 +892,9 @@ sophistiquée et facile
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     $(".faq .accordeonItem>span").click(function () {
+        $(this).parent().toggleClass("active");
+    });
+    $(".product-description-toggle .product-description-title").click(function () {
         $(this).parent().toggleClass("active");
     });
   });
