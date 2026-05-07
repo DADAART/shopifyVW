@@ -111,12 +111,15 @@
     </div>
 
     <div class="vw-bento">
-      {% assign bento_handles = 'zelliges,carreaux-marocains,marbre,carreaux-de-ciment,terra,bois,couleurs-unies' | split: ',' %}
-      {% assign bento_index = 0 %}
-      {% for handle in bento_handles %}
-        {% assign col = collections[handle] %}
-        {% if col and col.products.size > 0 %}
-          <a class="vw-bento__cell vw-bento__cell--{{ bento_index }}"
+      {% assign priority_handles = 'zelliges,carreaux-marocains,marbre,carreaux-de-ciment,terra,bois,couleurs-unies,carreaux-de-metro,mosaique,beton,brique' | split: ',' %}
+      {% assign bento_used = '' %}
+      {% assign bento_count = 0 %}
+
+      {%- for handle in priority_handles -%}
+        {%- if bento_count >= 6 -%}{%- break -%}{%- endif -%}
+        {%- assign col = collections[handle] -%}
+        {%- if col and col.products.size > 0 -%}
+          <a class="vw-bento__cell{% if bento_count == 0 %} vw-bento__cell--feature{% endif %}"
              href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-collections' | t }}/#{{ col.handle }}">
             <img loading="lazy"
                  alt="Vinyl Way — Collection {{ col.title }}"
@@ -127,9 +130,32 @@
               <span class="vw-bento__cta">Explorer →</span>
             </div>
           </a>
-          {% assign bento_index = bento_index | plus: 1 %}
-        {% endif %}
-      {% endfor %}
+          {%- assign bento_used = bento_used | append: ',' | append: col.handle -%}
+          {%- assign bento_count = bento_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if bento_count < 6 -%}
+        {%- for col in collections -%}
+          {%- if bento_count >= 6 -%}{%- break -%}{%- endif -%}
+          {%- unless bento_used contains col.handle -%}
+            {%- if col.products.size > 0 and col.handle != 'all' and col.handle != 'frontpage' -%}
+              <a class="vw-bento__cell{% if bento_count == 0 %} vw-bento__cell--feature{% endif %}"
+                 href="{{ localUrl }}/collections/{{ col.handle }}">
+                <img loading="lazy"
+                     alt="Vinyl Way — Collection {{ col.title }}"
+                     src="{{ col.products.first.featured_image | img_url: '900x' }}">
+                <div class="vw-bento__label">
+                  <span class="vw-bento__kicker">Collection</span>
+                  <h3>{{ col.title }}</h3>
+                  <span class="vw-bento__cta">Explorer →</span>
+                </div>
+              </a>
+              {%- assign bento_count = bento_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </section>
 
@@ -221,7 +247,7 @@
   </section>
 
   <section class="vw-press">
-    <span class="vw-eyebrow vw-eyebrow--light">Vu dans</span>
+    <span class="vw-eyebrow">Vu dans</span>
     <div class="vw-press__marquee" aria-hidden="true">
       <div class="vw-press__track">
         {% for i in (1..2) %}
