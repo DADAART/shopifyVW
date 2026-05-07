@@ -47,11 +47,16 @@
 .vw-topbar__group {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  flex: 1;
+  gap: 1.25rem;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .vw-topbar__group--left { justify-content: flex-start; }
-.vw-topbar__group--center { justify-content: center; flex: 0 0 auto; text-align: center; }
+.vw-topbar__group--center {
+  justify-content: center;
+  flex: 0 0 auto;
+  text-align: center;
+}
 .vw-topbar__group--right { justify-content: flex-end; }
 
 .vw-topbar .madeinfrance {
@@ -61,14 +66,20 @@
   white-space: nowrap;
 }
 .vw-topbar .madeinfrance img {
-  width: 14px;
+  width: 16px;
   height: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
 }
 
 .vw-topbar__rating { display: inline-flex; align-items: center; }
-.vw-topbar__rating .grc-site-rating { color: #fff; }
+.vw-topbar__rating .grc-site-rating,
+.vw-topbar__rating .grc-site-rating *,
+.vw-topbar .grc-site-rating,
+.vw-topbar .grc-site-rating * {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: 0.78rem;
+}
+.vw-topbar .grc-site-rating a { color: #fff !important; text-decoration: none; }
+.vw-topbar .grc-site-rating svg { fill: #fbb800; }
 
 .vw-topbar__group--center span {
   white-space: nowrap;
@@ -125,8 +136,6 @@
   background: var(--vw-paper);
   border-bottom: 1px solid var(--vw-line);
 }
-
-/* ── Hamburger (mobile only) ── */
 .menuHamburger {
   display: none;
   align-items: center;
@@ -283,6 +292,10 @@
    MEGA MENU (Carreaux adhésifs)
    ========================================================================== */
 
+/* Make the mega menu position relative to the .vw-nav (full width)
+   instead of its menu item parent. */
+.vw-nav__item--mega { position: static; }
+
 .vw-mega {
   position: absolute;
   top: 100%;
@@ -291,7 +304,7 @@
   width: 100%;
   background: var(--vw-paper);
   border-top: 1px solid var(--vw-line);
-  box-shadow: 0 30px 60px rgba(42, 37, 32, 0.08);
+  box-shadow: 0 30px 60px rgba(42, 37, 32, 0.10);
   z-index: 50;
   padding: 0;
 }
@@ -356,12 +369,13 @@
 }
 .vw-mega__swatch {
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  border: 1.5px solid rgba(42, 37, 32, 0.10);
+  border: 1.5px solid rgba(42, 37, 32, 0.22);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(42, 37, 32, 0.06);
 }
 .vw-mega__swatches li a:hover .vw-mega__swatch {
   transform: scale(1.15);
