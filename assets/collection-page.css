@@ -27,9 +27,14 @@
 }
 
 .Products > div {
-  padding-top: 1.6rem;
+  padding-top: 3rem;
+  padding-bottom: 2.5rem;
   order: 0;
   background-color: var(--vw-cream);
+  position: relative;
+}
+.Products > div + div {
+  border-top: 1px dashed rgba(42, 37, 32, 0.12);
 }
 
 /* Ordre collections crédences */
@@ -107,13 +112,14 @@ section { width: 100%; }
   display: flex;
   width: 100%;
   height: 50px;
-  background-color: var(--vw-paper);
+  background-color: var(--vw-ink);
+  color: #fff;
   justify-content: center;
   align-content: center;
   align-items: center;
   padding: 0.8rem;
   margin: 0;
-  border-bottom: 1px solid var(--vw-line);
+  border-bottom: 0;
   z-index: 3;
   position: fixed;
   transition: all 0.1s ease;
@@ -121,11 +127,18 @@ section { width: 100%; }
 
 .headerCollection .title h1 {
   font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   margin: 0;
-  color: var(--vw-ink);
+  color: #fff;
+}
+.headerCollection .title h1::before {
+  content: "✦";
+  display: inline-block;
+  margin-right: 0.6rem;
+  color: var(--vw-accent);
+  font-weight: 400;
 }
 
 .headerCollection .title h1 > small {
@@ -134,7 +147,7 @@ section { width: 100%; }
   opacity: 0;
   position: absolute;
   letter-spacing: 0.05em;
-  color: var(--vw-muted);
+  color: rgba(255,255,255,0.7);
 }
 .headerCollection .title h1 small:nth-child(1) { animation: tileInfoAnimation 8s infinite; }
 .headerCollection .title h1 small:nth-child(2) { animation: tileInfoAnimation 8s infinite; animation-delay: 4s; }
@@ -162,7 +175,8 @@ section { width: 100%; }
   flex-direction: column;
   background: var(--vw-paper);
   border-radius: 16px;
-  box-shadow: 0 4px 18px rgba(42, 37, 32, 0.06);
+  box-shadow: 0 8px 28px rgba(42, 37, 32, 0.10);
+  border: 1px solid var(--vw-line);
   list-style: none;
 }
 
@@ -226,10 +240,11 @@ section { width: 100%; }
 
 .headerCollection .blocFilters ul li.active {
   display: flex;
-  background-color: var(--vw-ink);
+  background-color: var(--vw-accent);
   color: #fff;
   fill: #fff;
   order: 1;
+  box-shadow: 0 4px 12px rgba(196, 118, 87, 0.3);
 }
 .headerCollection .blocFilters ul li.active small { color: rgba(255, 255, 255, 0.7); }
 
@@ -252,7 +267,7 @@ section { width: 100%; }
 .headerCollection .blocFilters ul:hover li.active small { color: var(--vw-muted); }
 
 .headerCollection .blocFilters ul.active li { display: flex; }
-.headerCollection .blocFilters ul.active li.active { background: var(--vw-ink); color: #fff; }
+.headerCollection .blocFilters ul.active li.active { background: var(--vw-accent); color: #fff; box-shadow: 0 4px 12px rgba(196, 118, 87, 0.3); }
 .headerCollection .blocFilters ul.active li.active small { color: rgba(255,255,255,0.7); }
 
 .headerCollection .blocFilters ul.active li.active svg { transform: rotate(-90deg); fill: #fff; }
@@ -301,40 +316,60 @@ section { width: 100%; }
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
   color: var(--vw-ink);
+  position: relative;
 }
 
+.Products h2::before {
+  content: "Collection";
+  display: block;
+  width: 100%;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--vw-accent);
+  margin-bottom: 0.4rem;
+  font-style: normal;
+}
+.Products .white h2::before { color: var(--vw-blush); }
+
 .Products h2 small {
-  padding: 0.45rem 1rem;
+  padding: 0.4rem 0.9rem;
   background-color: var(--vw-accent);
   color: #fff;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
   width: max-content;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   border-radius: 999px;
+  font-style: normal;
 }
 
 .Products .productsList li > span {
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 700;
+  font-size: 1.05rem;
   letter-spacing: -0.005em;
   color: var(--vw-ink);
 }
 
 .Products .productsList li > a img {
-  margin: 0.8rem auto;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  margin: 0.9rem auto;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s;
   width: 150px;
   border-radius: 10px;
   background: #fff;
-  box-shadow: 0 6px 20px rgba(42, 37, 32, 0.08);
+  box-shadow: 0 8px 24px rgba(42, 37, 32, 0.12);
 }
-.Products .productsList li > a img:hover { transform: scale(1.04); }
+.Products .productsList li > a img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 14px 36px rgba(42, 37, 32, 0.18);
+}
 
 .Products .productsList li > div {
   display: flex;
@@ -387,11 +422,14 @@ section { width: 100%; }
   background-color: var(--vw-ink);
   color: #fff;
   border: 1.5px solid var(--vw-ink);
+  font-weight: 600;
+  letter-spacing: 0.12em;
 }
 .Products .productsList li > div > :nth-child(1):hover {
   background-color: var(--vw-accent);
   border-color: var(--vw-accent);
   color: #fff;
+  box-shadow: 0 6px 14px rgba(196, 118, 87, 0.3);
 }
 .Products .black .productsList li > div > :nth-child(2) {
   border-color: var(--vw-ink);
@@ -473,20 +511,24 @@ section { width: 100%; }
   aspect-ratio: 1/1;
   height: auto;
   background-color: red;
-  border: 1px solid rgba(42, 37, 32, 0.15);
+  border: 1.5px solid rgba(42, 37, 32, 0.12);
   cursor: pointer;
-  max-width: 26px;
-  max-height: 26px;
+  max-width: 30px;
+  max-height: 30px;
   border-radius: 50%;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(42, 37, 32, 0.08);
 }
-.Products .filterColors ul li:hover { transform: scale(1.12); }
+.Products .filterColors ul li:hover {
+  transform: scale(1.18);
+  box-shadow: 0 4px 12px rgba(42, 37, 32, 0.15);
+}
 .Products .filterColors ul li.active {
-  transform: scale(1.3);
+  transform: scale(1.35);
   transform-origin: 40%;
-  box-shadow: 0 0 0 2px var(--vw-paper), 0 0 0 4px var(--vw-accent);
+  box-shadow: 0 0 0 2px var(--vw-paper), 0 0 0 4px var(--vw-accent), 0 6px 14px rgba(196, 118, 87, 0.3);
 }
-.Products .filterColors ul li.active:hover { transform: scale(1.3); }
+.Products .filterColors ul li.active:hover { transform: scale(1.35); }
 
 .Products .filterStyles ul {
   width: 100%;
