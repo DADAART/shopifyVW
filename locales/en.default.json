@@ -1,0 +1,1291 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "vw": {
+    "url": {
+      "carreaux-adhesifs": "carreaux-adhesifs",
+      "carreaux-adhesifs-couleurs": "carreaux-adhesifs-couleurs",
+      "carreaux-adhesifs-style": "carreaux-adhesifs-style",
+      "carreaux-adhesifs-collections": "carreaux-adhesifs-collections",
+      "carreaux-adhesifs-bestsellers": "carreaux-adhesifs-bestsellers",
+      "fresques": "fresques-adhesives",
+      "installation": "installation",
+      "realisations": "realisations",
+      "retour": "bon-retour",
+      "social": "vinylwayfrance"
+    },
+    "header": {
+      "topbar": {
+        "made_france": "Made in France",
+        "livraison1": "Livraison offerte",
+        "livraison2": "à partir de 49€",
+        "promo": "de réduction!"
+      },
+      "nav": {
+        "carreaux": "Carreaux adhésifs",
+        "fresques": "Fresques adhésives",
+        "installation": "Installation",
+        "realisations": "Réalisations",
+        "professionnels": "Professionnels",
+        "retour": "Bon de retour",
+        "legal-notice": "Mentions légales",
+        "terms-of-sale": "Conditions de vente",
+        "contact": "Contact",
+        "account": "Mon compte"
+      },
+      "search": "Recherche"
+    },
+    "footer": {
+      "about": {
+        "title": "à propos",
+        "text": "Vinyl Way propose des carreaux adhésifs, imaginés pour transformer votre intérieur."
+      },
+      "navigation": {
+        "title": "Navigation"
+      },
+      "copyright": "Tous droits réservés."
+    },
+    "register": {
+      "title": "Inscription",
+      "title_pro": "Professionnel",
+      "text_pro": "Profitez de tarifs exclusifs aux professionels.",
+      "entreprise": "Entreprise",
+      "pays": {
+        "label": "Pays",
+        "title": "Choisissez un pays",
+        "france": "France",
+        "belgique": "Belgique",
+        "suisse": "Suisse",
+        "luxembourg": "Luxembourg",
+        "allemagne": "Allemagne",
+        "espagne": "Espagne",
+        "italie": "Italie"
+      },
+      "siret": "Siret",
+      "tva": "N° de TVA",
+      "no-numero": "Pas de numéro",
+      "contact": "Contactez-nous",
+      "creer": "Crée mon compte",
+      "btn_pro": "Je suis un professionnel",
+      "btn_particulier": "Je suis un particulier",
+      "error1": "La vérification de votre numéro de TVA à échouée, veuillez vérifier vos informations.",
+      "error2": "Une erreur est survenue lors de la vérification. Veuillez recommencer.",
+      "verification": "Vérification..."
+    },
+    "reviews": {
+      "title": "93% de clients satisfaits",
+      "review1": {
+        "title": "Super produit très facile d'utilisation !",
+        "text": "J'avais déjà utilisé ces carreaux de vinyl l'année dernière et j'en étais très satisfaite ! C'est pourquoi, j'ai repris un complément du même motif pour faire un autre petit mur de ma cuisine !",
+        "author": "Sylvie C."
+      },
+      "review2": {
+        "title": "Une nouvelle crédence de cuisine",
+        "text": " Je suis ravie!! Super facile a poser, on peut les repositionner si on ne met pas le carreau au bon endroit du 1er coup. Le rendu est vraiment top, c est comme si j avais une nouvelle cuisine!!! Super facile à nettoyer.",
+        "author": "Anne F."
+      },
+      "review3": {
+        "title": "Carreaux magiques",
+        "text": "Je suis entrain de modifier quelques décorations dans la salle d eau et les carreaux vont apporter une nouvelle touche de couleur. Il y a un choix de couleurs sur la page du site.",
+        "author": "Daniel L."
+      },
+      "review4": {
+        "title": "Au top!",
+        "text": "Le visuel est chouette La matière est très agréable En prenant notre temps, la crédence a été installée sans encombres À voir dans le temps, pour l'instant très contente",
+        "author": "Dando H."
+      },
+      "review5": {
+        "title": "Très bel effet",
+        "text": " Très satisfaite de mon achat. J'ai habillé le plateau d'un bar que j'ai repeint et qui avait quelques défauts. L'effet est superbe.",
+        "author": "Sylviane L."
+      }
+    },
+    "index": {
+      "presentation": {
+        "video_alt": "Vidéo de présentation des carreaux adhésifs Vinyl Way",
+        "video_error": "Un problème est survenu lors de la lecture de la vidéo.",
+        "title_h1": "Carreaux adhésifs",
+        "price_text1": "Lot de 8",
+        "price_text2": "carreaux",
+        "btn_discover": "Découvrir les collections",
+        "icons_economique": "économique",
+        "icons_facile": "facile à poser",
+        "icons_waterproof": "waterproof",
+        "icons_thermo": "thermo-résistant",
+        "icons2": {
+          "chauffage1": "Adapté au",
+          "chauffage2": "chauffage au sol",
+          "joint1": "Couvre les",
+          "joint2": "ancients joints",
+          "cut1": "Découpable",
+          "cut2": "au cutter",
+          "colle1": "Support",
+          "colle2": "autocollant",
+          "douche1": "Adapté pour",
+          "douche2": "votre douche",
+          "chaleur1": "Résiste à",
+          "chaleur2": "l'eau et la chaleur"
+        }
+      },
+      "transform": {
+        "bg_alt": "Carreaux adhésifs Vinyl Way collés sur une crédence de cuisine et une douche",
+        "title_text1": "Transformez",
+        "title_text2": "votre intérieur",
+        "paragraph_text1": "Grâce aux carreaux adhésifs Vinyl Way, fruits d’une innovation française, changez le look de votre logement en seulement quelques minutes!",
+        "paragraph_text2": "C’est facile et rapide. Pas besoin d’outils ni d’artisans. Vous allez pouvoir tout transformer (vos murs, sols, meubles, crédences…) à volonté.",
+        "btn_collections": "Nos collections",
+        "btn_carreaux": "Tous nos carreaux"
+      },
+      "slide_collections": {
+        "title": "Nos collections",
+        "bg_alt": "carreaux adhésifs collés sur une crédence de cuisine",
+        "carreau_alt": "Carreau adhésif",
+        "btn_voir": "voir"
+      },
+      "designs": {
+        "bg_alt": "Mosaïc de carreaux adhésifs Vinyl Way",
+        "title_text1": "plus de",
+        "title_text2": "designs disponibles",
+        "paragraph1": "Laissez libre cours à votre créativité grâce à un large choix de designs et de couleurs disponibles (plus de 200!).",
+        "paragraph2": "Du célèbre carreau de métro à des imitations bois, en passant par des styles plus contemporains, on vous garantit que vous trouverez les dalles qu’il vous faut!"
+      },
+      "best": {
+        "carreau_alt": "Meilleure vente - Carreau adhésif",
+        "btn": "Voir tous les Best Sellers"
+      },
+      "quality": {
+        "title": {
+          "text1": "Qualité",
+          "text2": "Made in France",
+          "img_alt": "Logo Made in France - créé et fabriqué en France"
+        },
+        "paragraph1": "Le revêtement Vinyl Way, en plus d’être facile à poser et à entretenir, est pourvu de très nombreuses qualités:",
+        "list": {
+          "li1": "Son épaisseur (de 1,3 mm) permet de couvrir les aspérités et les joints de carrelage.",
+          "li2": "Résistants à l’eau les carreaux peuvent se coller dans une douche ou en crédence de cuisine.",
+          "li3": "Résistant aux fortes chaleurs, vous pourrez le poser en fond de hotte (à condition de respecter une distance de 10 cm avec la source de chaleur).",
+          "li4": "Flexible, vous pourrez le découper en toute facilité à l’aide d’une simple paire de ciseaux ou d’un cutter."
+        },
+        "paragraph2": "Pour finir, le Vinyl Way est recyclable et ne contient ni plomb ni phtalate.",
+        "couches": {
+          "li1": "Visuel imprimé",
+          "li2": "Couche d'usure",
+          "li3": "Vinyle 1.3 mm",
+          "li4": "Adhésif Vinyl Way",
+          "li5": "Film Polypropylène"
+        }
+      },
+      "install": {
+        "title": {
+          "text1": "Comment poser",
+          "text2": "ses carreaux ?"
+        },
+        "video_alt": "Vidéo d'Installation - Comment poser ses carreaux adhésifs Vinyl Way",
+        "list": {
+          "li1": {
+            "title": "Nettoyer",
+            "text": "Assurez-vous que la surface est lisse, puis nettoyez-là avec un produit dégraissant."
+          },
+          "li2": {
+            "title": "Coller",
+            "text1": "Retirez le film plastique et commencez à coller votre Vinyl Way en vous assurant qu'il est correctement aligné.",
+            "text2": "Collez la dernière partie lorsque vous êtes satisfait(e)s du résultat."
+          },
+          "li3": {
+            "title": "Admirer",
+            "text": "Ça y est, vous n'avez plus qu'à admirer le résultat !"
+          }
+        }
+      },
+      "realisations": {
+        "title_text1": "Réalisations",
+        "title_text2": "de nos clients",
+        "img_alt": "Réalisation d'un client avec des carreaux adhésifs Vinyl Way"
+      }
+    },
+    "pieces_page": {
+      "title_special": "spécial",
+      "votre": "votre",
+      "douche": {
+        "text1": {
+          "p1": "Les carreaux adhésifs Vinyl Way sont résistants à l'eau et donc parfaitement adaptés à un usage sous la douche.",
+          "p2": "Sans matériel, posez-les en quelques minutes. Effet bluffant garanti!"
+        },
+        "title_1": "La rénovation",
+        "title_2": "facile et abordable",
+        "text2": {
+          "p1": "Plus besoin de vous lancer dans de grands travaux pour métamorphoser votre douche. Plus besoin de payer un artisan pour remettre au goût du jour votre intérieur.",
+          "p2": "Laissez libre cours à vos envies et votre créativité. Vous avez le pouvoir de tout changer rapidement et à moindre coût."
+        }
+      },
+      "cuisine": {
+        "text1": {
+          "p1": "Donnez un coup de jeune à votre cuisine grâce à un large choix de carreaux adhésifs. Jouez avec les effets de matières ou les motifs afin de créer une crédence de toute beauté. Effet waouh garanti! "
+        },
+        "title_1": "Une crédence de cuisine",
+        "title_2": "à moindre coût",
+        "text2": {
+          "p1": "Transformez votre crédence de cuisine en quelques minutes, sans outils, ni artisans.",
+          "p2": "Les carreaux autocollants se collent facilement, que ce soit sur une ancienne crédence, un mur peint, du placo ou toute autre surface lisse."
+        }
+      },
+      "sdb": {
+        "text1": {
+          "p1": "Vinyl Way est le revêtement mural idéal pour relooker votre salle de bain rapidement et facilement. Les dalles adhésives sont résistantes à l’eau et aux fortes chaleurs.",
+          "p2": "Autocollantes, vous pouvez les coller sur n’importe quelle surface (relativement) lisse – un ancien carrelage, des murs peints, ou même au sol!"
+        },
+        "title_1": "Une rénovation",
+        "title_2": "à moindre coût",
+        "text2": {
+          "p1": "Les dalles se collent en toute simplicité, sans outils (hormis une paire de ciseaux si une découpe est nécessaire) et sans artisans!",
+          "p2": "Vous pourrez ainsi décorer votre salle de bain au grès de vos envies. Comptez sur un large choix de designs, renouvelés fréquemment."
+        }
+      }
+    },
+    "collection_page": {
+      "destination": "Destination",
+      "produit": "détails",
+      "filtre": "Filtre par",
+      "pieces": {
+        "cuisine": "Cuisine",
+        "douche": "Douche",
+        "sdb": "S. de bain",
+        "meuble": "Meuble",
+        "mur": "Mur",
+        "sol": "Sol"
+      },
+      "collections": {
+        "collections": "collections",
+        "couleurs": "couleurs",
+        "style": "style",
+        "best": "bestsellers",
+        "beton": "beton",
+        "bois": "bois",
+        "brique": "brique",
+        "carreaux-de-ciment-bleu": "carreaux-de-ciment-bleu",
+        "carreaux-de-ciment-mixte": "carreaux-de-ciment-mixte",
+        "carreaux-de-ciment-multicolore": "carreaux-de-ciment-multicolore",
+        "carreaux-de-ciment-noir-blanc": "carreaux-de-ciment-noir-blanc",
+        "carreaux-de-ciment-provencaux": "carreaux-de-ciment-provencaux",
+        "carreaux-marocains": "carreaux-marocains",
+        "couleurs-unies": "couleurs-unies",
+        "carreaux-de-metro": "carreaux-de-metro",
+        "marbre": "marbre",
+        "montreal": "montreal",
+        "mosaique-carre": "mosaique-carre",
+        "osier": "osier"
+      },
+      "style": {
+        "matiere": "Matière",
+        "carreaux_ciment": "Carreau de ciment",
+        "carrelage": "Carrelage"
+      }
+    },
+    "product_page": {
+      "mural_sentence": "generic",
+      "slide": {
+        "cuisine_alt": "collés sur une crédence de cuisine. Résiste à la chaleur",
+        "mur_alt": "collés sur un mur. Adhère sur toutes surfaces lisses",
+        "sdb_alt": "collés sur une crédence de salle de bain. Couvre les joints de carrelage",
+        "douche_alt": "collés dans une douche. Résiste à l'eau",
+        "sol_alt": "collés sur le sol. Matière ultra-résistante",
+        "meuble_alt": "collés sur un meuble. Adhère sur toutes surfaces lisses",
+        "motifs": {
+          "visuel": "Ce visuel contient",
+          "motif": "motifs",
+          "differents": "différents",
+          "ordre": "Vos carreaux seront livrés dans cet ordre"
+        }
+      },
+      "soit": "Soit",
+      "carreaux": "carreaux",
+      "list-ship": {
+        "livraison1": "Livraison Express",
+        "livraison2": "2-5 jours ouvrés",
+        "free1": "Livraison offerte",
+        "free2": "à partir de 49€",
+        "retour1": "Retour - 30 jours",
+        "retour2": "Satisfait ou remboursé"
+      },
+      "list-property": {
+        "title-a": "Avantages des carreaux adhésifs",
+        "li-a1": "Facile à installer",
+        "li-a2": "Adhère sur toutes surfaces lisses",
+        "li-a3": "Recouvre les joints de carrelage",
+        "li-a4": "Imperméable",
+        "li-a5": "Compatible avec le chauffage au sol",
+        "li-a6": "Utilisable derrière une plaque de cuisson",
+        "li-a7": "Facilement coupable avec des ciseaux / cutter",
+        "title-b": "Emplacements recommandés",
+        "li-b1": "Cuisine, Douche, Salle de bain, Meubles, Mur, Sol...",
+        "title-c": "Propriétés",
+        "li-c1": "Taille",
+        "li-c2": "Épaisseur",
+        "li-c3": "Matériel: PVC"
+      },
+      "lots_carreaux": "Lot de 8 carreaux",
+      "title_carreau": "Carreaux",
+      "title_adhesif": "adhésifs",
+      "title_fresque": "Fresque",
+      "title_adhesive": "adhesive",
+      "list_quality": {
+        "li1": "Adhère sur toutes surfaces lisses",
+        "li2": "Matière ultra-résistante de 1.3 mm",
+        "li3": "Couvre les joints de carrelage",
+        "li4": "Adapté à toutes vos pièces"
+      },
+      "hors_taxe": "HT",
+      "toute_taxe": "TTC",
+      "promo_1": "Bénéficiez de",
+      "promo_2": "à partir de 30 carreaux",
+      "btn_checkout": "Ajouter au panier",
+      "btn_sample": "commander un échantillon",
+      "btn_popupdiscounts": "Réductions & livraison",
+      "btn_toquantity": "Calculer ma quantité",
+      "calcul_quantity": {
+        "img_alt": "Mesure d'une crédence de cuisine pour calculer sa quantité de carreaux Vinyl Way",
+        "title": "Calculateur",
+        "largeur": "Largeur",
+        "longueur": "Longueur",
+        "carreaux": "lots de 8 carreaux",
+        "carreaux4": "lots de 4 carreaux"
+      },
+      "recommendations": {
+        "title-a": "Recommendations",
+        "li-a1": "sous la douche",
+        "li-a2": "chauffage au sol",
+        "li-a3": "murs lisses",
+        "li-a4": "Carellage avec joints",
+        "li-a5": "panneaux muraux",
+        "li-a6": "stratifié/parquet",
+        "title-b": "Surfaces inadaptées",
+        "li-b1": "surface irrégulière",
+        "li-b2": "bois non traité",
+        "li-b3": "papier peint granuleux"
+      }
+    },
+    "popup_delivery": {
+      "reductions": {
+        "title": "Réductions",
+        "text_plus": "Plus de",
+        "tarif": "Tarif",
+        "pro": "Professionnels"
+      },
+      "livraison": {
+        "title": "Livraison",
+        "text_livraison": "Livré sous",
+        "jours": "jours",
+        "france": "en France",
+        "europe": "dans l'Union Européenne",
+        "livraison_offerte": "Livraison offerte",
+        "pour": "pour",
+        "echantillon": "échantillon",
+        "ou": "OU",
+        "a_partir": "à partir de"
+      }
+    },
+    "panier": {
+      "lot-de": "lots de",
+      "title": "Votre panier",
+      "continue": "Continuer mes achats",
+      "btn_checkout": "Procéder au paiement",
+      "btn_checkout_small1": "4 fois sans frais",
+      "btn_checkout_small2": "disponible",
+      "subtotal": "Sous-total",
+      "empty": "Votre panier est vide."
+    }
+  },
+  "general": {
+    "password_page": {
+      "login_form_heading": "Accéder à la boutique à l'aide d'un mot de passe :",
+      "login_password_button": "Saisir avec un mot de passe",
+      "login_form_password_label": "Mot de passe",
+      "login_form_password_placeholder": "Votre mot de passe",
+      "login_form_error": "Mot de passe incorrect !",
+      "login_form_submit": "Saisir",
+      "admin_link_html": "La boutique vous appartient-elle ? <a href=\"/admin\" class=\"link underlined-link\">Se connecter ici</a>",
+      "powered_by_shopify_html": "Cette boutique sera propulsée par {{ shopify }}"
+    },
+    "social": {
+      "alt_text": {
+        "share_on_facebook": "Partager sur Facebook",
+        "share_on_twitter": "Tweeter sur Twitter",
+        "share_on_pinterest": "Épingler sur Pinterest"
+      },
+      "links": {
+        "twitter": "Twitter",
+        "facebook": "Facebook",
+        "pinterest": "Pinterest",
+        "instagram": "Instagram",
+        "tumblr": "Tumblr",
+        "snapchat": "Snapchat",
+        "youtube": "YouTube",
+        "vimeo": "Vimeo",
+        "tiktok": "TikTok"
+      }
+    },
+    "continue_shopping": "Continuer les achats",
+    "pagination": {
+      "label": "Pagination",
+      "page": "Page {{ number }}",
+      "next": "Page suivante",
+      "previous": "Page précédente"
+    },
+    "search": {
+      "search": "Recherche"
+    },
+    "cart": {
+      "view": "Afficher mon panier ({{ count }})",
+      "item_added": "Article ajouté au panier"
+    },
+    "share": {
+      "copy_to_clipboard": "Copier le lien",
+      "share_url": "Lien",
+      "success_message": "Lien copié dans le presse-papiers",
+      "close": "Fermer le partage"
+    },
+    "slider": {
+      "of": "de",
+      "next_slide": "Faire glisser vers la droite",
+      "previous_slide": "Faire glisser vers la gauche",
+      "name": "Carrousel"
+    }
+  },
+  "newsletter": {
+    "label": "E-mail",
+    "success": "Merci de votre inscription",
+    "button_label": "S'inscrire"
+  },
+  "accessibility": {
+    "skip_to_text": "Ignorer et passer au contenu",
+    "close": "Fermer",
+    "unit_price_separator": "par",
+    "vendor": "Distributeur :",
+    "error": "Erreur",
+    "refresh_page": "Le choix d'une sélection entraîne l'actualisation de la page entière.",
+    "link_messages": {
+      "new_window": "S'ouvre dans une nouvelle fenêtre.",
+      "external": "Ouvre un site web externe."
+    },
+    "loading": "Chargement en cours...",
+    "skip_to_product_info": "Passer aux informations produits",
+    "total_reviews": "total des critiques",
+    "star_reviews_info": "{{ rating_value }} sur {{ rating_max }} étoiles",
+    "collapsible_content_title": "Contenu réductible",
+    "complementary_products": "Produits complémentaires"
+  },
+  "blogs": {
+    "article": {
+      "blog": "Blog",
+      "read_more_title": "Lire la suite : {{ title }}",
+      "comments": {
+        "one": "{{ count }} commentaire",
+        "other": "{{ count }} commentaires",
+        "many": "{{ count }} commentaires"
+      },
+      "moderated": "Veuillez noter que les commentaires doivent être approuvés avant d'être publiés.",
+      "comment_form_title": "Laisser un commentaire",
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Commentaire",
+      "post": "Publier le commentaire",
+      "back_to_blog": "Retour au blog",
+      "share": "Partager cet article",
+      "success": "Votre commentaire a bien été publié ! Merci !",
+      "success_moderated": "Votre commentaire a bien été publié. Nous le publierons sous peu, conformément au processus de modération de notre blog."
+    }
+  },
+  "onboarding": {
+    "product_title": "Titre du produit",
+    "collection_title": "Le nom de votre collection"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Ajouter au panier",
+      "description": "Description",
+      "on_sale": "Vente",
+      "product_variants": "Variantes de produits",
+      "quantity": {
+        "label": "Quantité",
+        "input_label": "Quantité pour {{ product }}",
+        "increase": "Augmenter la quantité de {{ product }}",
+        "decrease": "Réduire la quantité de {{ product }}"
+      },
+      "price": {
+        "from_price_html": "Du {{ price }}",
+        "regular_price": "Prix habituel",
+        "sale_price": "Prix soldé",
+        "unit_price": "Prix unitaire"
+      },
+      "share": "Partager ce produit",
+      "sold_out": "Épuisé",
+      "unavailable": "Non disponible",
+      "vendor": "Distributeur",
+      "video_exit_message": "{{ title }} ouvre la vidéo en plein écran dans la même fenêtre.",
+      "xr_button": "Afficher dans son espace",
+      "xr_button_label": "Affichage dans votre espace, charge l'article dans une fenêtre de réalité augmentée",
+      "pickup_availability": {
+        "view_store_info": "Afficher les informations de la boutique",
+        "check_other_stores": "Vérifier la disponibilité dans d'autres boutiques",
+        "pick_up_available": "Service de retrait disponible",
+        "pick_up_available_at_html": "Service de retrait disponible à <span class=\"color-foreground\">{{ location_name }}</span>",
+        "pick_up_unavailable_at_html": "Service de retrait non disponible actuellement à <span class=\"color-foreground\">{{ location_name }}</span>",
+        "unavailable": "Impossible de charger la disponibilité du service de retrait",
+        "refresh": "Actualiser"
+      },
+      "media": {
+        "open_media": "Ouvrir le média {{ index }} dans une fenêtre modale",
+        "play_model": "Lire la visionneuse 3D",
+        "play_video": "Lire la vidéo",
+        "gallery_viewer": "Visionneuse de la galerie",
+        "load_image": "Charger l'image {{ index }} dans la galerie",
+        "load_model": "Charger le modèle 3D {{ index }} dans la galerie",
+        "load_video": "Lire la vidéo {{ index }} dans la galerie",
+        "image_available": "L'image {{ index }} est maintenant disponible dans la galerie"
+      },
+      "view_full_details": "Afficher tous les détails",
+      "include_taxes": "Taxes incluses.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Frais d'expédition</a> calculés à l'étape de paiement.",
+      "choose_options": "Choisir des options",
+      "choose_product_options": "Choisir des options pour {{ product_name }}"
+    },
+    "modal": {
+      "label": "Galerie de supports multimédias"
+    },
+    "facets": {
+      "apply": "Appliquer",
+      "clear": "Effacer",
+      "clear_all": "Tout supprimer",
+      "from": "De",
+      "filter_and_sort": "Filtrer et trier",
+      "filter_by_label": "Filtre :",
+      "filter_button": "Filtrer",
+      "filters_selected": {
+        "one": "{{ count }} sélectionné",
+        "other": "{{ count }} sélectionnés",
+        "many": "{{ count }} sélectionnés"
+      },
+      "max_price": "Le prix le plus élevé est de {{ price }}",
+      "product_count": {
+        "one": "{{ product_count }} produit sur {{ count }}",
+        "other": "{{ product_count }} produits sur {{ count }}",
+        "many": "{{ product_count }} produits sur {{ count }}"
+      },
+      "product_count_simple": {
+        "one": "{{ count }} produit",
+        "other": "{{ count }} produits",
+        "many": "{{ count }} produits"
+      },
+      "reset": "Réinitialiser",
+      "sort_button": "Trier",
+      "sort_by_label": "Trier par :",
+      "to": "À",
+      "clear_filter": "Supprimer le filtre",
+      "filter_selected_accessibility": "{{ type }} ({{ count }} filtres sélectionnés)",
+      "show_more": "Afficher plus",
+      "show_less": "Afficher moins"
+    }
+  },
+  "templates": {
+    "search": {
+      "no_results": "Aucun résultat trouvé pour « {{ terms }} ». Vérifiez l'orthographe ou utilisez un autre mot ou une autre expression.",
+      "results_with_count": {
+        "one": "{{ count }} résultat",
+        "other": "{{ count }} résultats",
+        "many": "{{ count }} résultats"
+      },
+      "title": "Résultats de la recherche",
+      "page": "Page",
+      "products": "Produits",
+      "productstest": "tes tproduit",
+      "search_for": "Rechercher « {{ terms }} »",
+      "results_with_count_and_term": {
+        "one": "{{ count }} résultat trouvé pour « {{ terms }} »",
+        "other": "{{ count }} résultats trouvés pour « {{ terms }} »",
+        "many": "{{ count }} résultats trouvés pour « {{ terms }} »"
+      }
+    },
+    "cart": {
+      "cart": "Panier"
+    },
+    "contact": {
+      "form": {
+        "name": "Nom",
+        "email": "E-mail",
+        "phone": "Numéro de téléphone",
+        "comment": "Commentaire",
+        "send": "Envoyer",
+        "post_success": "Merci de nous avoir contactés. Nous vous répondrons dès que possible.",
+        "error_heading": "Veuillez ajuster les éléments suivants :",
+        "title": "Formulaire de contact"
+      }
+    },
+    "404": {
+      "title": "Page non trouvée",
+      "subtext": "404"
+    }
+  },
+  "sections": {
+    "header": {
+      "announcement": "Annonce",
+      "menu": "Menu",
+      "cart_count": {
+        "one": "{{ count }} article",
+        "other": "{{ count }} articles",
+        "many": "{{ count }} articles"
+      }
+    },
+    "cart": {
+      "title": "Votre panier",
+      "caption": "Articles du panier",
+      "remove_title": "Supprimer {{ title }}",
+      "subtotal": "Sous-total",
+      "new_subtotal": "Nouveau sous-total",
+      "note": "Instructions spéciales concernant la commande",
+      "checkout": "Procéder au paiement",
+      "empty": "Votre panier est vide",
+      "cart_error": "Une erreur est survenue lors de l’actualisation de votre panier. Veuillez réessayer.",
+      "cart_quantity_error_html": "Vous ne pouvez pas ajouter plus de {{ quantity }} de ce produit à votre panier.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes et <a href=\"{{ link }}\">frais d'expédition</a> calculés lors du paiement",
+      "taxes_included_but_shipping_at_checkout": "Taxes incluses et frais d'expédition calculés lors du paiement",
+      "taxes_included_and_shipping_policy_html": "Taxes incluses. <a href=\"{{ link }}\">Frais d'expédition</a> calculés à l'étape de paiement.",
+      "taxes_and_shipping_at_checkout": "Taxes et frais d'expédition calculés lors du paiement",
+      "headings": {
+        "product": "Produit",
+        "price": "Prix",
+        "total": "Total",
+        "quantity": "Quantité",
+        "image": "Image de produit"
+      },
+      "update": "Mettre à jour",
+      "login": {
+        "title": "Vous possédez un compte ?",
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Connectez-vous</a> pour payer plus vite."
+      }
+    },
+    "footer": {
+      "payment": "Moyens de paiement"
+    },
+    "featured_blog": {
+      "view_all": "Tout afficher",
+      "onboarding_title": "Article de blog",
+      "onboarding_content": "Donnez à vos clients un résumé de votre article de blog"
+    },
+    "featured_collection": {
+      "view_all": "Tout afficher",
+      "view_all_label": "Afficher tous les produits de la collection {{ collection_name }}"
+    },
+    "collection_list": {
+      "view_all": "Tout afficher"
+    },
+    "collection_template": {
+      "title": "Collection",
+      "empty": "Aucun produit trouvé",
+      "use_fewer_filters_html": "Utiliser moins de filtres ou <a class=\"{{ class }}\" href=\"{{ link }}\">tout supprimer</a>"
+    },
+    "video": {
+      "load_video": "Charger la vidéo : {{ description }}"
+    },
+    "slideshow": {
+      "load_slide": "Charger la diapositive",
+      "previous_slideshow": "Diapositive précédente",
+      "next_slideshow": "Diapositive suivante",
+      "pause_slideshow": "Interrompre le diaporama",
+      "play_slideshow": "Lire le diaporama",
+      "carousel": "Carrousel",
+      "slide": "Diapositive"
+    },
+    "page": {
+      "title": "Titre de la page"
+    }
+  },
+  "localization": {
+    "country_label": "Pays/région",
+    "language_label": "Langue",
+    "update_language": "Mettre à jour la langue",
+    "update_country": "Mettre à jour le pays/la région"
+  },
+  "customer": {
+    "account": {
+      "title": "Compte",
+      "details": "Détails du compte",
+      "view_addresses": "Voir les adresses",
+      "return": "Retour aux détails du compte"
+    },
+    "account_fallback": "Compte",
+    "activate_account": {
+      "title": "Activer le compte",
+      "subtext": "Créez votre mot de passe pour activer le compte.",
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer le mot de passe",
+      "submit": "Activer le compte",
+      "cancel": "Décliner l'invitation"
+    },
+    "addresses": {
+      "title": "Adresses",
+      "default": "Par défaut",
+      "add_new": "Ajouter une nouvelle adresse",
+      "edit_address": "Modifier l'adresse",
+      "first_name": "Prénom",
+      "last_name": "Nom de famille",
+      "company": "Entreprise",
+      "address1": "Adresse 1",
+      "address2": "Adresse 2",
+      "city": "Ville",
+      "country": "Pays/région",
+      "province": "Province",
+      "zip": "Code postal",
+      "phone": "Téléphone",
+      "set_default": "Définir comme adresse par défaut",
+      "add": "Ajouter l'adresse",
+      "update": "Mettre à jour l'adresse",
+      "cancel": "Annuler",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "delete_confirm": "Êtes-vous certain(e) de vouloir supprimer cette adresse ?"
+    },
+    "log_in": "Connexion",
+    "log_out": "Déconnexion",
+    "login_page": {
+      "cancel": "Annuler",
+      "create_account": "Créer un compte",
+      "email": "E-mail",
+      "forgot_password": "Mot de passe oublié ?",
+      "guest_continue": "Continuer",
+      "guest_title": "Continuer en tant qu'invité(e)",
+      "password": "Mot de passe",
+      "title": "Connexion",
+      "sign_in": "Connexion",
+      "submit": "Envoyer"
+    },
+    "orders": {
+      "title": "Historique des commandes",
+      "order_number": "Commande",
+      "order_number_link": "Numéro de commande {{ number }}",
+      "date": "Date",
+      "payment_status": "Statut des paiements",
+      "fulfillment_status": "Statut des commandes",
+      "total": "Total",
+      "none": "Vous n'avez encore passé aucune commande."
+    },
+    "recover_password": {
+      "title": "Réinitialiser son mot de passe",
+      "subtext": "Nous vous ferons parvenir un e-mail pour réinitialiser votre mot de passe",
+      "success": "Nous vous avons envoyé un e-mail contenant un lien pour mettre à jour votre mot de passe."
+    },
+    "register": {
+      "title": "Créer un compte",
+      "first_name": "Prénom",
+      "last_name": "Nom de famille",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "submit": "Créer"
+    },
+    "reset_password": {
+      "title": "Réinitialiser le mot de passe du compte",
+      "subtext": "Saisissez un nouveau mot de passe",
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer le mot de passe",
+      "submit": "Réinitialiser le mot de passe"
+    },
+    "order": {
+      "title": "Commande {{ name }}",
+      "date_html": "Passée le {{ date }}",
+      "cancelled_html": "Commande annulée le {{ date }}",
+      "cancelled_reason": "Motif : {{ reason }}",
+      "billing_address": "Adresse de facturation",
+      "payment_status": "Statut de paiement",
+      "shipping_address": "Adresse d'expédition",
+      "fulfillment_status": "Statut des commandes",
+      "discount": "Réduction",
+      "shipping": "Expédition",
+      "tax": "Taxes",
+      "product": "Produit",
+      "sku": "SKU",
+      "price": "Prix",
+      "quantity": "Quantité",
+      "total": "Total",
+      "fulfilled_at_html": "Traitée le {{ date }}",
+      "track_shipment": "Suivre l'envoi",
+      "tracking_url": "Lien de suivi",
+      "tracking_company": "Transporteur",
+      "tracking_number": "Numéro de suivi",
+      "subtotal": "Sous-total",
+      "total_duties": "Frais de douane"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Voici votre carte-cadeau {{ shop }} d'une valeur de {{ value }} !",
+      "subtext": "Votre carte-cadeau",
+      "gift_card_code": "Code de la carte-cadeau",
+      "shop_link": "Continuer les achats",
+      "remaining_html": "Reste {{ balance }}",
+      "add_to_apple_wallet": "Ajouter à Apple Wallet",
+      "qr_image_alt": "Code QR : scannez-le pour utiliser votre carte-cadeau",
+      "copy_code": "Copier le code",
+      "expired": "Expiré",
+      "copy_code_success": "Le code a bien été copié",
+      "print_gift_card": "Imprimer"
+    }
+  },
+  "flits": {
+    "general": {
+      "greeting": "Hello",
+      "cant_add_more_quantity": "You have reached the maximum limit. You cannot add any more items.",
+      "cart_updated": "Some items are no longer available. Your cart has been updated.",
+      "getting_customer_details": "Getting/Syncing Customer Details",
+      "something_went_wrong": "Something went wrong. Please try again.",
+      "morning": "Good Morning",
+      "afternoon": "Good Afternoon",
+      "evening": "Good Evening"
+    },
+    "navigation": {
+      "profile": "My Profile",
+      "delivery_address": "Delivery Address",
+      "my_orders": "My Orders",
+      "top_ordered_products": "Top Ordered Products",
+      "wishlist": "My Wishlist",
+      "recently_viewed_products": "Recently Viewed",
+      "store_credit": "My Credits",
+      "how_to_manage_credit": "How To Manage Credits",
+      "how_to_earn_credit": "How To Earn",
+      "how_to_spend_credit": "How To Spend",
+      "from_admin": "From Store Owner",
+      "refer_friend": "Refer Friend",
+      "change_password": "Change Password",
+      "log_out": "Log Out"
+    },
+    "profile_page": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "contact_number": "Contact Number",
+      "birthdate": "Birthdate",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "edit_button": "Edit",
+      "cancel_button": "Cancel",
+      "save_button": "Save",
+      "invalid_email": "Email is not valid",
+      "invalid_email_domain": "Email contains an invalid domain name",
+      "email_already_taken": "This email is already in use. Please enter a different email address.",
+      "invalid_contact_number": "Contact number is not valid",
+      "contact_number_already_taken": "This contact number is already in use. Please enter a different contact number.",
+      "save_details": "Saving profile details...",
+      "saved_successfully": "Profile updated successfully"
+    },
+    "address_page": {
+      "add_new_address": "Add New Address",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "address1": "Address Line 1",
+      "address2": "Address Line 2",
+      "company": "Company",
+      "zip": "Postal/Zip Code",
+      "contact_number": "Contact Number",
+      "city": "City",
+      "country": "Country",
+      "province": "Province",
+      "mark_as_default_checkbox": "Mark as Default Address",
+      "cancel_button": "Cancel",
+      "save_button": "Save",
+      "first_name_is_long": "First name is too long (maximum is 255 characters)",
+      "last_name_is_long": "Last name is too long (maximum is 255 characters)",
+      "address1_is_long": "Address Line 1 is too long (maximum is 255 characters)",
+      "address2_is_long": "Address Line 2 is too long (maximum is 255 characters)",
+      "company_name_is_long": "Company name is too long (maximum is 255 characters)",
+      "city_is_long": "City is too long (maximum is 255 characters)",
+      "zip_is_long": "Zip is too long (maximum is 255 characters)",
+      "invalid_contact_number": "Contact number is not valid",
+      "address_already_taken": "This address already exists.",
+      "country_invalid": "Country is not valid",
+      "adding_new_address": "Adding New Address...",
+      "address_added_successfully": "Delivery address added successfully",
+      "default_address_label": "Default",
+      "mark_as_default_button": "Mark as Default",
+      "edit_button": "Edit",
+      "edit_address": "Edit Address",
+      "updating_address": "Updating Address...",
+      "address_updated_successfully": "Delivery address updated successfully",
+      "delete_button": "Delete",
+      "delete_confirmation_message": "Are you sure you want to delete this address?",
+      "deleting_address": "Deleting Address...",
+      "address_deleted_successfully": "Address deleted successfully",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "order_page": {
+      "blank_screen_line_1_html": "You haven't placed any orders yet.<br>We can't wait to have you as a customer.",
+      "blank_screen_line_2_html": "Take a look at our products here",
+      "order_date": "Date",
+      "order_date_format": "%B %d %Y",
+      "order_number": "Order",
+      "total_items": "Total Items",
+      "payment_status": "Payment",
+      "show_order_details": "View Order",
+      "hide_order_details": "Hide Order",
+      "reorder": "Re-order",
+      "product_unavailable": "Unavailable",
+      "sold_out": "Sold Out",
+      "some_products_unavailable": "Some of the products are unavailable",
+      "one_product_unavailable": "One of the products is unavailable",
+      "some_products_sold_out": "Some of the products are sold out",
+      "one_product_sold_out": "One of the products is sold out.",
+      "cost_breakup": "Cost Breakup",
+      "subtotal": "Sub Total",
+      "discount_code": "Discount",
+      "shipping_and_handling": "Shipping Cost",
+      "grand_total": "Grand Total",
+      "shipping_address": "Shipping Address",
+      "billing_address": "Billing Address",
+      "cancel_at": "Cancelled at",
+      "fulfillment_status": "Fulfillment Status",
+      "payment_type": "Payment Type",
+      "address": "Address"
+    },
+    "order_contact_us": {
+      "contact_us_button": "Contact Us",
+      "form_title": "Contact Us",
+      "header_text": "Your satisfaction is our top priority",
+      "customer_name_label": "Customer Name",
+      "first_name_label": "First Name",
+      "first_name_placeholder": "James",
+      "last_name_label": "Last Name",
+      "last_name_placeholder": "Grey",
+      "email_label": "Email",
+      "email_placeholder": "abc@xyz.com",
+      "email_required_warning": "Email is required",
+      "invalid_email_warning": "Please enter a valid email address",
+      "contact_number_label": "Contact Number",
+      "contact_number_placeholder": "1234567890",
+      "invalid_contact_number_warning": "Please enter a valid contact number",
+      "reason_label": "Reason to Contact",
+      "select_any_reason": "Select a Reason",
+      "order_cancel_related_reason": "Cancel Order",
+      "order_and_shipping_related_reason": "Order/Shipping",
+      "return_and_exchange_related_reason": "Return/Exchange",
+      "product_related_reason": "Product",
+      "price_related_reason": "Price",
+      "other_reason": "Other",
+      "reason_required_warning": "Please select a reason",
+      "message_label": "Message",
+      "message_placeholder": "Hello Support Team, when can I expect my order?",
+      "message_required_warning": "Message is required",
+      "attachment_link_label": "Attachment Link",
+      "attachment_link_placeholder": "You can upload files on your drive and paste the link here.",
+      "invalid_attachment_link_warning": "Please enter a valid attachment link",
+      "order_number_label": "Order Number",
+      "order_name_label": "Order Name",
+      "order_date_label": "Order Date",
+      "order_total_price_label": "Order Total Price",
+      "order_fulfillment_status_label": "Order Fulfillment Status",
+      "order_payment_status_label": "Order Payment Status",
+      "order_link_label": "View Order in Shopify",
+      "customer_link_label": "View Customer in Shopify",
+      "submit_button": "Submit",
+      "success_button": "OK",
+      "success_message_line_1": "Your request has been submitted.",
+      "success_message_line_2": "You will receive a reply in the email address which you have submitted in the query form.",
+      "success_message_line_3": "Thank you for contacting us.",
+      "already_contacted_message": "You have contacted us last on {{ date_time }}"
+    },
+    "top_ordered_products_page": {
+      "blank_screen_line_1_html": "There are no top ordered products to display.<br>We are pretty sure that a few products<br>from our fantastic collection<br>will make it to your top products.",
+      "search_placeholder": "Search product here",
+      "search_product_not_found": "No product/s found",
+      "filter": "Filter",
+      "none": "None",
+      "sort_by_price_low_to_high": "Sort by price (Low to High)",
+      "sort_by_price_high_to_low": "Sort by price (High to Low)",
+      "number_of_order_low_to_high": "Number of order (Low to High)",
+      "number_of_order_high_to_low": "Number of order (High to Low)",
+      "last_30_days": "Last 30 days",
+      "last_60_days": "Last 60 days",
+      "number_of_order": "Total quantity ordered till now",
+      "sort_by": "Sort By"
+    },
+    "wishlisted_product_page": {
+      "blank_screen_line_1_html": "Your wish is our command but<br>you haven’t wishlisted any products.",
+      "blank_screen_line_2_html": "You can wishlist products<br>and buy them later",
+      "add_to_wishlist_button": "Add to Wishlist",
+      "remove_from_wishlist_button": "Added to Wishlist",
+      "product_added_to_wishlist": "Product has been added to your wishlist",
+      "product_remove_from_wishlist": "Product removed from your wishlist",
+      "what_is_your_email": "What's Your Email?",
+      "email_placeholder": "Email address",
+      "create_account_through": "Please create account/login through {{ customer_email }} email",
+      "view_your_wishlist_message": "You can view your wishlist by creating account or logging-in an existing account.",
+      "login": "Login",
+      "register": "Register"
+    },
+    "recently_viewed_product_page": {
+      "blank_screen_line_1_html": "Looks like you haven’t checked out<br>any of our products recently.<br>We have a vast collection of quality products.",
+      "blank_screen_line_2_html": "So why wait? Check out our products."
+    },
+    "credit_page": {
+      "blank_screen_line_1_html": "You are missing out on taking advantage of<br>our Reward Program.",
+      "blank_screen_line_2_html": "So why wait? Start shopping our products to start earning rewards.",
+      "earned_credit": "Earned Credit",
+      "spent_credit": "Spent Credit",
+      "current_credit": "Current Credit",
+      "credit_activity": "Recent Transactions",
+      "time": "Date",
+      "reason_for_credit": "Credit Reason",
+      "credit": "CR/DR",
+      "registration_credit": "Registration Credit",
+      "subscribe_credit": "Subscribe Credit",
+      "first_order_credit": "First Order Credit",
+      "spent_in_order": "Spent in {{ order_number }} order",
+      "spent_in_order_through_pos": "Spent in {{ order_number }} order through POS",
+      "loyal_customer": "Loyal Customer",
+      "repeat_customer": "Repeat Customer",
+      "fault_in_product": "Fault in product",
+      "canceled_order_first_time_by_customer": "Canceled order first time by customer",
+      "delay_in_delivery_time": "Delay in delivery time",
+      "header_line_html": "Save Money <strong>Through Rewards</strong>",
+      "chart1_header": "Credit infosphere",
+      "how_to_earn": "How to Earn?",
+      "how_to_spend": "How to Spend?",
+      "balance": "Balance"
+    },
+    "how_to_earn_credit_page": {
+      "no_rule_found": "The store has not set up any rules yet",
+      "register_credit_rule_title": "Register credit",
+      "register_credit_rule_description": "Register and get {{ credit }} credit.",
+      "subscribe_credit_rule_title": "Subscriber credit",
+      "subscribe_credit_rule_description": "Subscribe and get {{ credit }} credit.",
+      "specific_order_credit_rule_title": "Credit on specific order",
+      "specific_order_credit_rule_description": "Earn {{ credit }} credit on your order number {{ order_count }}",
+      "specific_order_and_next_orders_credit_rule_title": "Credit on order number {{ order_count }} and next orders",
+      "specific_order_and_next_orders_credit_rule_description": "You can earn {{ credit }} credit on order number {{ order_count }} and next orders {{ order_count+1 }}, {{ order_count+2 }}..... {{ order_count+n }}",
+      "birthdate_credit_rule_title": "Birthday credit*",
+      "birthdate_credit_rule_description_1": "Share your birthdate with us to get {{ credit }} credit on your birthday.",
+      "birthdate_credit_rule_description_2": "{{ days }} day/s left for a birthday reward of {{ credit }} credit.",
+      "birthdate_credit_rule_description_3": "*You can avail this credit only once in a year.",
+      "monthly_credit_rule_title": "Monthly credit",
+      "monthly_credit_rule_description": "You will get {{ credit }} credit on {{ date }} of every month.",
+      "special_day_credit_rule_title": "Bonus day credit",
+      "special_day_credit_rule_description": "Get special day credit on {{ date }}",
+      "product_review_credit_rule_title": "Product review credit",
+      "product_review_credit_rule_description": "Write a product review and get {{ credit }} credit.",
+      "product_tag_credit_rule_title": "Credit for specific product collection",
+      "product_tag_credit_rule_description": "Buy product/s with (any tag) {{ tag }} and get {{ credit }} credit.",
+      "wishlisted_product_credit_rule_title": "Wishlisted product credit",
+      "wishlisted_product_credit_rule_description": "You can earn {{ credit }} credit when you add product/s in wishlist.",
+      "header_line_html": "Earn More <strong>Spend More</strong>",
+      "chart1_header": "Your Earned Credit",
+      "subscribed_successfully": "Hurray! You will recieve subscriber credit in a short while.",
+      "add_birthdate": "Add your Birthdate",
+      "unlock_fixed_credit": "Unlock {{ credit }}",
+      "unlock_some_percentage_credit": "Unlock {{ credit }} cashback",
+      "rule_not_applicable": "*Not Applicable",
+      "why_rule_not_applicable_description": "Rule may have been set up on a later date.",
+      "total_earned_credit_by_rule": "Total earn credit till date: {{ credit }}"
+    },
+    "how_to_spend_credit_page": {
+      "spend_credit_on_cart_rule_title": "Spend on cart",
+      "spend_credit_on_cart_rule_description_1": "Your cart value is between {{ min_cart_value }}-{{ max_cart_value }}. Congratulations you are eligible to use {{ credit }} credit.",
+      "spend_credit_on_cart_rule_description_2": "Your cart value is between {{ min_cart_value }}-{{ max_cart_value }}. Congratulations you are eligible to use {{ credit }} of cart value as credit.",
+      "spend_credit_on_cart_rule_description_3": "Your cart value is {{ min_cart_value }} (or more). Congratulations you can use {{ credit }} credit.",
+      "spend_credit_on_cart_rule_description_4": "Your cart value is {{ min_cart_value }} (or more). Congratulations you are eligible to use {{ credit }} of cart value as credit.",
+      "spend_credit_on_shipping_rule_title": "Free Shipping",
+      "spend_credit_on_shipping_rule_description": "You can use your credit on shipping charges.",
+      "header_line_html": "Spend More <strong>Save More</strong>",
+      "chart1_header": "Your Total Savings",
+      "chart2_header": "Your Current Credit",
+      "still_you_have_remaining_credit": "You have {{ credit }} credit remaining",
+      "no_rule_found": "The store has not set up any rules yet",
+      "select_cart_value": "Click on the circles to check the amount of credit you can spend based on cart value.",
+      "how_to_spend_credit_header": "How to Spend Credit?",
+      "how_to_spend_credit_step_1": "Add product to the cart",
+      "how_to_spend_credit_step_2": "Choose available credit to spend on your order",
+      "how_to_spend_credit_step_3": "Proceed to checkout"
+    },
+    "refer_friend_page": {
+      "popup_greetings": "Welcome Newcomer",
+      "popup_message": "You were referred by {{ inviter_name }}. Please help us in giving you credit by signing up here.",
+      "refer_program_how_it_work_title": "How it works",
+      "refer_program_how_it_work_step_1": "Share your referral link",
+      "refer_program_how_it_work_step_2": "When your friend signs-up",
+      "refer_program_how_it_work_step_3": "You get rewarded",
+      "copy": "Copy",
+      "referral_link_copied": "Link Copied",
+      "facebook_share": "Share",
+      "whatsapp_share": "Share",
+      "share": "Share",
+      "referral_program_invitation_message": "You can earn credit for creating an account with {{ shop_name }}. Use this link and get rewarded : {{ link }}",
+      "blank_screen_line_1_html": "You have no referrals so far.<br>You can earn rewards by referring our store to your friends.<br>Copy the above link and share it with your friends or",
+      "blank_screen_line_2_html": "Share the link directly via WhatsApp and Facebook.",
+      "referrer_credit_rule_title": "Referral Program",
+      "referrer_credit_rule_description": "Invite your friends and get {{ credit }} credit when they sign up.",
+      "referee_credit_rule_title": "Referral Program",
+      "referee_credit_rule_description": "When your friends accept the invitation, they will get {{ credit }} credit.",
+      "credit_on_number_of_referrals_rule_title": "Credit on numbers of referrals",
+      "credit_on_number_of_referrals_rule_description": "When you reach {{ referral_count }} referrals you get {{ credit }} credit.",
+      "referrals_specific_order_credit_rule_title": "Credit on specific order by referee",
+      "referrals_specific_order_credit_rule_description": "You can earn {{ credit }} credit on your referee's order number {{ order_count }}.",
+      "referrals_specific_order_and_next_orders_credit_rule_title": "Credit on referee's order number {{ order_count }} and next orders ",
+      "referrals_specific_order_and_next_orders_credit_rule_description": "You can earn {{ credit }} credit on referee's order number {{ order_count }} and next orders {{ order_count+1 }}, {{ order_count+2 }}... {{ order_count+n }}",
+      "credit_on_referrals_total_spent_amount_rule_title": "Credit after referral's total spent amount",
+      "credit_on_referrals_total_spent_amount_rule_description": "You can earn {{ credit }} credit when your referral's total spent amount is {{ total_spent_amount }} or more.",
+      "credit_activity": "Referral History",
+      "earned_credit": "Earned Credit",
+      "referral_customer_name": "Referred To",
+      "referral_customer_email": "Referral's Email",
+      "credit": "Credit",
+      "time": "Referred Since",
+      "you_are_referred_by": "Referred by",
+      "customer_deleted": "Customer Deleted",
+      "chart1_header": "Your Earned Credit",
+      "unlock_referral_rewards": "Unlock your referral Rewards",
+      "total_referral": "Total Referrals",
+      "share_referral_link_title": "Share referral link via"
+    },
+    "from_admin_page": {
+      "header_line_html": "From Store Owner"
+    },
+    "update_password_page": {
+      "new_password": "New Password",
+      "new_password_placeholder": "Enter New Password",
+      "confirm_new_password": "Confirm New Password",
+      "confirm_password_placeholder": "Confirm New Password",
+      "update_password_button": "Update Password",
+      "password_empty_message": "The password is empty",
+      "password_hint_message": "Password must be between 6 to 40 characters",
+      "password_not_match": "Passwords didn't match. Try again.",
+      "updating_password": "Updating password...",
+      "password_updated_successfully": "Your password for account {{ email }} has been successfully updated",
+      "header_line_html": "Update your password for"
+    },
+    "buttons": {
+      "back": "Back",
+      "shop_now": "View Products",
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "product_unavailable_text": "Currently Unavailable",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "social_login_page": {
+      "facebook": "Facebook",
+      "google": "Google",
+      "twitter": "Twitter",
+      "amazon": "Amazon",
+      "loading_message": "Logging you in"
+    },
+    "cart_page": {
+      "adding_items_to_cart": "Adding items to cart...",
+      "select_credit_option": "Select option to use store credit",
+      "credit_cart_percentage": "You can use {{ credit }} credit out of {{ total_credit }}.",
+      "free_shipping": "You can get free shipping",
+      "applying_credit_message": "Applying credit please wait",
+      "credit_applied": "Store Credit Applied"
+    },
+    "invoice": {
+      "invoice_title": "INVOICE",
+      "invoice_no": "Invoice",
+      "payment_method": "Payment Method",
+      "order_no": "Order",
+      "issue_date": "Issue Date",
+      "order_date": "Order Date",
+      "billing_address_title": "Bill To",
+      "no_billing_address": "No billing address provided",
+      "shipping_address_title": "Ship To",
+      "no_shipping_address": "No shipping address provided",
+      "money_format": "{{ symbol }}{{ amount }}",
+      "item_title": "Item",
+      "item_quantity": "Quantity",
+      "item_price": "Unit Price",
+      "item_discount": "Discount",
+      "item_tax_rate": "Tax Rate",
+      "item_tax_type": "Tax Type",
+      "item_tax_amount": "Tax Amount",
+      "item_total": "Total",
+      "subtotal": "Sub Total",
+      "shipping_discount": "Shipping Discount",
+      "shipping_cost": "Shipping Cost",
+      "tax": "Tax",
+      "grand_total": "Grand Total",
+      "you_saved": "You Saved",
+      "amount_in_words": "Amount in words",
+      "for_store_name": "For {{ store_name }}",
+      "authorised_signatory": "Authorised Signatory",
+      "greeting_line1": "Thank You",
+      "greeting_line2": "We hope you enjoy your purchase.",
+      "email": "Email",
+      "phone": "Phone no",
+      "fax": "Fax",
+      "page_no": "Page {{ current_page }} of {{ total_page }}",
+      "zero": "Zero",
+      "one": "One",
+      "two": "Two",
+      "three": "Three",
+      "four": "Four",
+      "five": "Five",
+      "six": "Six",
+      "seven": "Seven",
+      "eight": "Eight",
+      "nine": "Nine",
+      "ten": "Ten",
+      "eleven": "Eleven",
+      "twelve": "Twelve",
+      "thirteen": "Thirteen",
+      "fourteen": "Fourteen",
+      "fifteen": "Fifteen",
+      "sixteen": "Sixteen",
+      "seventeen": "Seventeen",
+      "eighteen": "Eighteen",
+      "nineteen": "Nineteen",
+      "twenty": "Twenty",
+      "thirty": "Thirty",
+      "forty": "Forty",
+      "fifty": "Fifty",
+      "sixty": "Sixty",
+      "seventy": "Seventy",
+      "eighty": "Eighty",
+      "ninety": "Ninety",
+      "hundred": "Hundred",
+      "thousand": "Thousand",
+      "million": "Million",
+      "billion": "Billion",
+      "trillion": "Trillion",
+      "zero_only": "Zero only",
+      "only": "only",
+      "and": "and",
+      "invoice_is_generating": "Generating invoice...",
+      "saving_invoice": "Saving invoice"
+    },
+    "order_status_page": {
+      "total_earned_credit_on_order": "Congratulations! You have earned {{ credit }} credit on this purchase.",
+      "earned_credit_on_order_number": "You earned {{ credit }} credit for this order.",
+      "earned_credit_on_product_tag": "You earned {{ credit }} credit by purchasing from {{ tag }} collection.",
+      "total_credit_balance": "Your total credit balance is {{ credit }}.",
+      "shop_more_to_earn_credit_html": "Want to earn more credits and save big bucks? Then dive into our collection and shop more!",
+      "shop_more_to_spent_credit_html": "Still have credits left? Shop more to utilise them all."
+    }
+  }
+}
