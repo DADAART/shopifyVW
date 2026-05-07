@@ -1014,32 +1014,32 @@ main > :nth-child(1) {
   margin: 0 auto 2rem;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 0.75rem;
-  max-width: 900px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  max-width: 1100px;
 }
 .template-product .recommendations li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 0.5rem;
+  gap: 0.85rem;
+  padding: 1.75rem 1rem;
   background: var(--vw-paper);
   border-radius: var(--vw-radius);
   text-align: center;
 }
 .template-product .recommendations li img {
-  width: 44px;
-  height: 44px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
-  opacity: 0.85;
+  opacity: 0.95;
 }
 .template-product .recommendations li span {
-  font-size: 0.78rem;
-  font-weight: 500;
+  font-size: 0.92rem;
+  font-weight: 600;
   color: var(--vw-ink);
-  letter-spacing: 0.02em;
-  line-height: 1.3;
+  letter-spacing: 0;
+  line-height: 1.35;
 }
 
 /* ==========================================================================
@@ -1189,7 +1189,7 @@ main > :nth-child(1) {
   border: 0;
   padding: 0;
   text-transform: none;
-  color: var(--vw-ink);
+  color: #fff;
 }
 .template-product .Install h2::before {
   content: "Pose";
@@ -1212,9 +1212,20 @@ main > :nth-child(1) {
   font-style: italic;
   letter-spacing: 0;
   text-transform: none;
-  color: var(--vw-muted);
+  color: rgba(255, 255, 255, 0.7);
   margin-top: 0.75rem;
 }
+
+/* Text column should be relative so the play button overlay below has a parent */
+.template-product .Install > div > div:nth-child(2) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
 .template-product .Install .btnInstall {
   display: inline-flex;
   align-items: center;
@@ -1224,17 +1235,15 @@ main > :nth-child(1) {
   border-radius: 50%;
   background: var(--vw-accent);
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   z-index: 2;
   transition: background 0.2s, transform 0.2s;
   box-shadow: 0 8px 24px rgba(196, 118, 87, 0.35);
+  margin-top: 0.5rem;
 }
 .template-product .Install .btnInstall:hover {
   background: var(--vw-accent-deep);
-  transform: translate(-50%, -50%) scale(1.06);
+  transform: scale(1.06);
 }
 .template-product .Install .btnInstall svg {
   width: 22px;
@@ -1249,7 +1258,7 @@ main > :nth-child(1) {
 @media (min-width: 1025px) {
   .vw-pdp-hero {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 45% 55%;
     align-items: flex-start;
     max-width: 100%;
     margin: 0;
