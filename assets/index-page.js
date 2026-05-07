@@ -1,122 +1,72 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // VideoPresentationMedia
-  let mainVideo = $(".template-index .Presentation video");
-  let mobileSrc =
-    "https://cdn.shopify.com/videos/c/o/v/a02c78e0f14242b5ab5d12cbf4db6028.mp4";
-  let desktopSrc =
-    "https://cdn.shopify.com/videos/c/o/v/22d5ff147a144105af5e39b6fcd6ee80.mp4";
+  // ---- HERO VIDEO (responsive source) ----
+  let heroVideo = document.querySelector(".vw-hero__video");
+  if (heroVideo) {
+    let mobileSrc =
+      "https://cdn.shopify.com/videos/c/o/v/a02c78e0f14242b5ab5d12cbf4db6028.mp4";
+    let desktopSrc =
+      "https://cdn.shopify.com/videos/c/o/v/22d5ff147a144105af5e39b6fcd6ee80.mp4";
+    let src = window.innerWidth < 750 ? mobileSrc : desktopSrc;
 
-  if ($(window).width() < 750) {
-    mainVideo.append("<source type='video/mp4' src='" + mobileSrc + "' />");
-  } else {
-    mainVideo.append("<source type='video/mp4' src='" + desktopSrc + "' />");
+    let source = document.createElement("source");
+    source.type = "video/mp4";
+    source.src = src;
+    heroVideo.appendChild(source);
+    heroVideo.load();
+    heroVideo.play().catch(function () {});
   }
 
-  // SlideProducts
-  let splideProducts = new Splide("#splideProducts", {
-    type: "loop",
-    perPage: 3,
-    breakpoints: {
-      1025: { perPage: 2 },
-    },
-    focus: "center",
-    autoplay: true,
-    interval: 8000,
-    flickMaxPages: 3,
-    updateOnMove: true,
-    pagination: false,
-    padding: "1%",
-    throttle: 300,
-  }).mount();
+  // ---- BEST-SELLERS RAIL ----
+  if (document.getElementById("splideProducts")) {
+    new Splide("#splideProducts", {
+      type: "loop",
+      perPage: 4,
+      gap: "1rem",
+      breakpoints: {
+        1200: { perPage: 3 },
+        900: { perPage: 2 },
+        600: { perPage: 1.3, gap: "0.75rem" },
+      },
+      autoplay: true,
+      interval: 6000,
+      pauseOnHover: true,
+      updateOnMove: true,
+      pagination: false,
+      arrows: true,
+    }).mount();
+  }
 
-  // SlideProductsBackground
-  let loadFirstBackground = (function () {
-    let newColor = $(".template-index .SlideProducts ul :nth-child(1)").data(
-      "color"
-    );
-    $(".template-index .SlideProducts").css("background-color", newColor);
-  })();
+  // ---- DADA ART RAIL ----
+  if (document.getElementById("splideDada")) {
+    new Splide("#splideDada", {
+      type: "loop",
+      perPage: 4,
+      gap: "1rem",
+      breakpoints: {
+        1200: { perPage: 3 },
+        900: { perPage: 2 },
+        600: { perPage: 1.3, gap: "0.75rem" },
+      },
+      autoplay: true,
+      interval: 7000,
+      pauseOnHover: true,
+      pagination: false,
+      arrows: true,
+    }).mount();
+  }
 
-  splideProducts.on("move", function () {
-    let newColor = $(".template-index .SlideProducts ul li.is-active").data(
-      "color"
-    );
-    $(".template-index .SlideProducts").css("background-color", newColor);
-  });
-
-  // SlideCollections
-  let splideCollections = new Splide("#splideCollections", {
-    type: "loop",
-    perPage: 4,
-    breakpoints: {
-      1400: { perPage: 3 },
-      1025: { perPage: 1 },
-    },
-    focus: "center",
-    autoplay: true,
-    interval: 8000,
-    updateOnMove: true,
-    pagination: false,
-    padding: "0",
-  }).mount();
-
-  // SlideRealisations
-  let splideRealisations = new Splide("#splideRealisations", {
-    type: "loop",
-    perPage: 3,
-    breakpoints: {
-      1025: { perPage: 1 },
-    },
-    focus: "center",
-    autoplay: true,
-    interval: 8000,
-    updateOnMove: true,
-    pagination: false,
-    padding: "0",
-  }).mount();
-
-  // SlideDada
-  let splideDada = new Splide("#splideDada", {
-    type: "loop",
-    perPage: 5,
-    breakpoints: {
-      1025: { perPage: 2 },
-    },
-    focus: "center",
-    autoplay: true,
-    interval: 8000,
-    updateOnMove: true,
-    pagination: false,
-    padding: "0",
-  }).mount();
-  
-  // InstallPlay
-  if ($(window).width() < 1025) {
-    let btnInstall = document.getElementById("btnInstall");
-    let videoInstall = document.getElementById("videoInstall");
-
+  // ---- HOW IT WORKS — play install video ----
+  let btnInstall = document.getElementById("btnInstall");
+  let videoInstall = document.getElementById("videoInstall");
+  if (btnInstall && videoInstall) {
     btnInstall.addEventListener("click", function () {
       videoInstall.play();
       videoInstall.setAttribute("controls", "true");
-      document.querySelector(
-        ".template-index .Install #btnInstall"
-      ).style.display = "none";
-      document.querySelector(
-        ".template-index .Install .btnInstall"
-      ).style.display = "none";
-      document.querySelector(".template-index .Install h2").style.display =
-        "none";
+      btnInstall.style.display = "none";
     });
-  } else {
-    videoInstall.setAttribute("autoplay", "true");
+    if (window.innerWidth >= 1025) {
+      videoInstall.setAttribute("autoplay", "true");
+      videoInstall.play().catch(function () {});
+    }
   }
-});
-
-const object = document.getElementById("couches2");
-
-document.addEventListener("mousemove", (event) => {
-  const x = event.clientX;
-  const y = event.clientY;
-
-  object.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
 });
