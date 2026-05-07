@@ -1,0 +1,121 @@
+main {
+  background-color: #f5f5f5;
+}
+
+.contact {
+  padding-top: 0 !important;
+}
+.section-template--16602059571423__main-padding {
+  padding-bottom: 0 !important;
+}
+h1 {
+  margin-bottom: 0 !important;
+  text-align: center;
+}
+
+.contact__fields {
+  display: flex;
+justify-content: center;
+gap: 1rem;
+}
+
+label {
+  font-size: 95%;
+}
+.contact__button {
+  text-align: center;
+}
+
+form {
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 0 6px 3px #0000000d;
+  max-width: 1080px;
+  margin: auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+
+.contact__fields .field {
+  width: max-content;
+}
+
+.field input, .field textarea {
+  width: 200px;
+  height: 35px;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid rgb(0 0 0 / .3);
+  background-color: #f5f5f5;
+  padding: 0 5px;
+  order: 2;
+}
+
+.field textarea {
+  width: 90%;
+  height: 200px;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid rgb(0 0 0 / .3);
+  background-color: #f5f5f5;
+  padding: 0 5px;
+  order: 2;
+}
+
+.contact a {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #000;
+  width: max-content;
+  position: relative;
+  outline: 1px solid #fff;
+  outline-color: rgb(255, 255, 255);
+  outline-offset: -1px;
+  transition: all .1s ease;
+}
+.contact a:hover {
+  outline-color: transparent;
+}
+.contact button {
+  margin: 2rem auto 1rem auto;
+  background-color: #1b8886;
+  color: #fff;
+  font-weight: 900;
+  font-size: 16px;
+  width: max-content;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.contact button:hover {
+  opacity:0.95;
+}
+.contact svg {
+  width:20px;
+  height: 20px;
+}
+
+
+
+/* MEDIA SCREEN */
+
+@media only screen and (max-width: 750px) {
+
+.contact__fields {
+  gap: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+}
