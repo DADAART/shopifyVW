@@ -8,180 +8,202 @@
 {% endif %}
 
 <header class="Header">
-  <div class="announcement">
-    <style>
-@media only screen and (max-width: 600px) {
-  .Header .announcement span.spanGap {
-    gap: 3px;
-    font-size: 11px;
-}
-}
-    </style>
-    <span class="madeinfrance">
-      <img
-        alt="logo made in France"
-        src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/madeinfrance.svg?v=1666779214"
-      >
-      {{- 'vw.header.topbar.made_france' | t -}}
-    </span>
-    <span>
-      <!-- TrustBox widget - Micro Combo -->
-      <div
-        class="trustpilot-widget"
-        data-locale="{{ request.locale.iso_code }}-EU"
-        data-template-id="5419b6ffb0d04a076446a9af"
-        data-businessunit-id="61b6ef608c78c0029e82f404"
-        data-style-height="20px"
-        data-style-width="100%"
-        data-theme="light"
-      >
-        <a href="https://trustpilot.com/review/vinyl-way.com" target="_blank">Trustpilot</a>
+
+  {% comment %} ───── Top utility bar ───── {% endcomment %}
+  <div class="announcement vw-topbar">
+    <div class="vw-topbar__inner">
+      <div class="vw-topbar__group vw-topbar__group--left">
+        <span class="madeinfrance">
+          <img alt="Made in France" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/madeinfrance.svg?v=1666779214">
+          {{- 'vw.header.topbar.made_france' | t -}}
+        </span>
+        <span class="vw-topbar__rating">
+          <div class="grc-site-rating"></div>
+        </span>
       </div>
-      <!-- End TrustBox widget -->
-      <!-- SAG widget -->
-      <div class="grc-site-rating"></div>
-      <!-- End SAG widget -->
-    </span><span class="spanGap"
-      ><strong>{{ 'vw.header.topbar.livraison1' | t }} </strong> {{ 'vw.header.topbar.livraison2' | t -}}
-    </span>
-    <span class="spanGap"
-      ><strong>{{ 'vw.header.topbar.livraison1' | t }} </strong> {{ 'vw.header.topbar.livraison2' | t -}}
-    </span> 
+
+      <div class="vw-topbar__group vw-topbar__group--center">
+        <span><strong>{{ 'vw.header.topbar.livraison1' | t }}</strong> {{ 'vw.header.topbar.livraison2' | t }}</span>
+      </div>
+
+      <div class="vw-topbar__group vw-topbar__group--right">
+        {% unless customer and customer.tags contains 'pro' %}
+          <a href="{{ localUrl }}/account/register/?pro" class="vw-topbar__pro">
+            {{ 'vw.header.nav.professionnels' | t }} <strong>−30%</strong>
+          </a>
+        {% endunless %}
+        <a href="{{ localUrl }}/pages/faq" class="vw-topbar__link">Aide</a>
+      </div>
+    </div>
   </div>
-  <div class="nav">
+
+  {% comment %} ───── Main nav ───── {% endcomment %}
+  <div class="nav vw-nav">
+
+    {% comment %} ── Mobile hamburger ── {% endcomment %}
     <div class="menuHamburger">
       <div class="menu-toggle" id="menu-toggle">
         <span class="screen-reader-text">Menu</span>
-        <svg
-          class="icon icon-menu-toggle"
-          aria-hidden="true"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 100 100"
-        >
+        <svg class="icon icon-menu-toggle" aria-hidden="true" viewBox="0 0 100 100">
           <g class="svg-menu-toggle">
-              <path class="line line-1" d="M5 13h90v14H5z" />
-              <path class="line line-2" d="M5 43h90v14H5z" />
-              <path class="line line-3" d="M5 73h90v14H5z" />
+            <path class="line line-1" d="M5 13h90v14H5z"/>
+            <path class="line line-2" d="M5 43h90v14H5z"/>
+            <path class="line line-3" d="M5 73h90v14H5z"/>
           </g>
         </svg>
       </div>
-
-      <div class="menuListHeader">
-        <ul>
-          <li class="menu-item">
-            <a>Vinyl Way<span class="arrow"></span></a>
-            <ul class="sub-menu" style="display: none;">
-              <li>
-                <a href="{{ localUrl }}/collections/credences-adhesives"> Crédences adhésives </a>
-              </li>
-              <li>
-                <a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}">
-                  {{- 'vw.header.nav.carreaux' | t -}}
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item">
-            <a style="font-weight:bold;">Dada Art<span class="arrow"></span></a>
-            <ul class="sub-menu" style="display: none;">
-              <li>
-                <a href="https://dada-art.fr/collections/tapis-vinyle" target="blank">Tapis vinyle</a>
-              </li>
-              <li>
-                <a href="https://dada-art.fr/collections/set-de-table" target="blank">Set de table</a>
-              </li>
-              <li>
-                <a href="https://dada-art.fr/collections/credence-aluminium" target="blank">Crédence Aluminium</a>
-              </li>
-              <li>
-                <a href="https://dada-art.fr/collections/papier-peint" target="blank">Papier peint</a>
-              </li>
-              <li>
-                <a href="https://dada-art.fr/collections/toile-imprimee" target="blank">Toile encadrée</a>
-              </li>
-              <li>
-                <a href="https://dada-art.fr/collections/affiche" target="blank">Affiche</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="{{ localUrl }}/#{{ 'vw.url.installation' | t }}">{{ 'vw.header.nav.installation' | t }}</a>
-          </li>
-          <li>
-            <a href="{{ localUrl }}/#{{ 'vw.url.realisations' | t }}">{{ 'vw.header.nav.realisations' | t }}</a>
-          </li>
-          <li><a class="notranslate" href="{{ localUrl }}/pages/faq">FAQ</a></li>
-          <li><a href="{{ localUrl }}/blogs/articles">Blog</a></li>
-
-          {% unless customer and customer.tags contains 'pro' %}
-            <li class="menuListHeadersmall menuListHeadersmallFirst">
-              <a href="{{ localUrl }}/account/register/?pro">{{ 'vw.header.nav.professionnels' | t }}</a>
-            </li>
-          {% endunless %}
-          <li class="menuListHeadersmall">
-            <a href="https://ftp.vinyl-wall.com/{{ 'vw.url.retour' | t }}.pdf">{{ 'vw.header.nav.retour' | t }}</a>
-          </li>
-          <li class="menuListHeadersmall">
-            <a href="{{ localUrl }}/policies/legal-notice">{{ 'vw.header.nav.legal-notice' | t }}</a>
-          </li>
-          <li class="menuListHeadersmall">
-            <a href="{{ localUrl }}/policies/terms-of-sale">{{ 'vw.header.nav.terms-of-sale' | t }}</a>
-          </li>
-          <li class="menuListHeadersmall">
-            <a href="{{ localUrl }}/pages/contact">{{ 'vw.header.nav.contact' | t }}</a>
-          </li>
-        </ul>
-      </div>
-
-      <a href="/search" class="searchMobile">
+      <a href="{{ localUrl }}/search" class="searchMobile" aria-label="{{ 'vw.header.search' | t }}">
         <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/search.svg?v=1751962967" alt="Search">
       </a>
     </div>
-    <div class="logoHeader">
-      <a href="https://vinyl-way.com{{ localUrl }}">
-        <img alt="logo Vinyl Way" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/LogoVw.svg?v=1666779214">
-        <span class="notranslate"></span>
+
+    {% comment %} ── Logo ── {% endcomment %}
+    <div class="logoHeader vw-nav__logo">
+      <a href="{{ localUrl }}/" aria-label="Vinyl Way — Accueil">
+        <img alt="Vinyl Way" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/LogoVw.svg?v=1666779214">
       </a>
     </div>
-    <div class="btnsHeader">
-      <form class="searchHeader searchHeaderDesktop" action="{{ localUrl }}/search">
+
+    {% comment %} ── Primary menu ── {% endcomment %}
+    <nav class="menuListHeader vw-nav__menu" aria-label="Menu principal">
+      <ul class="vw-nav__list">
+
+        {% comment %} 1) Carreaux adhésifs (mega menu) {% endcomment %}
+        <li class="menu-item vw-nav__item vw-nav__item--mega">
+          <a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}">
+            {{ 'vw.header.nav.carreaux' | t }}
+            <span class="vw-nav__chevron" aria-hidden="true"></span>
+          </a>
+          <div class="sub-menu vw-mega" style="display:none;">
+            <div class="vw-mega__inner">
+
+              <div class="vw-mega__col">
+                <span class="vw-mega__title">Par style</span>
+                <ul class="vw-mega__list">
+                  {% assign style_handles = 'zelliges,carreaux-marocains,marbre,carreaux-de-ciment,bois,mosaique,beton,brique,carreaux-de-metro,terra,couleurs-unies' | split: ',' %}
+                  {% for handle in style_handles %}
+                    {% assign col = collections[handle] %}
+                    {% if col and col.products.size > 0 %}
+                      <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-collections' | t }}/#{{ col.handle }}">{{ col.title }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+
+              <div class="vw-mega__col">
+                <span class="vw-mega__title">Par couleur</span>
+                <ul class="vw-mega__swatches">
+                  {% assign swatch_pairs = 'black|#212121,grey|#808080,white|#FFFFFF,beige|#F5F5DC,brown|#8E6841,orange|#FFA500,blue|#3A4879,green|#008000,red|#B61815,pink|#FFC0CB' | split: ',' %}
+                  {% for pair in swatch_pairs %}
+                    {% assign parts = pair | split: '|' %}
+                    <li>
+                      <a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-couleurs' | t }}/{{ parts[0] }}" aria-label="{{ parts[0] }}">
+                        <span class="vw-mega__swatch" style="background:{{ parts[1] }};"></span>
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+                <a class="vw-mega__see-all" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-couleurs' | t }}">Toutes les couleurs →</a>
+              </div>
+
+              <div class="vw-mega__col">
+                <span class="vw-mega__title">Par usage</span>
+                <ul class="vw-mega__list">
+                  <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/?kitchen">Cuisine</a></li>
+                  <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/?bathroom">Salle de bain</a></li>
+                  <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/?shower">Douche</a></li>
+                  <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/?floor">Sol</a></li>
+                  <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/?wall">Mur</a></li>
+                  <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/?furniture">Meubles</a></li>
+                </ul>
+              </div>
+
+              <div class="vw-mega__col vw-mega__col--featured">
+                <span class="vw-mega__title">Sélections</span>
+                <ul class="vw-mega__list">
+                  <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-bestsellers' | t }}"><strong>Best-sellers</strong></a></li>
+                  <li><a href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}">Tous les motifs</a></li>
+                </ul>
+                {% assign hero_col = collections.carreaux-adhesifs-bestsellers %}
+                {% if hero_col and hero_col.products.size > 0 %}
+                  <a class="vw-mega__feature" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-bestsellers' | t }}">
+                    <img loading="lazy" alt="{{ hero_col.title }}" src="{{ hero_col.products.first.featured_image | img_url: '480x' }}">
+                    <div class="vw-mega__feature-label">
+                      <span>Best-sellers</span>
+                      <small>Les motifs les plus chouchoutés</small>
+                    </div>
+                  </a>
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+        </li>
+
+        {% comment %} 2) Crédences {% endcomment %}
+        <li class="vw-nav__item">
+          <a href="{{ localUrl }}/collections/credences-adhesives">Crédences</a>
+        </li>
+
+        {% comment %} 3) Inspirations & pose {% endcomment %}
+        <li class="menu-item vw-nav__item">
+          <a>Inspirations &amp; pose <span class="vw-nav__chevron" aria-hidden="true"></span></a>
+          <ul class="sub-menu vw-submenu" style="display:none;">
+            <li><a href="{{ localUrl }}/#{{ 'vw.url.realisations' | t }}">Réalisations clients</a></li>
+            <li><a href="{{ localUrl }}/#{{ 'vw.url.installation' | t }}">Guide de pose</a></li>
+            <li><a href="{{ localUrl }}/blogs/articles">Blog &amp; conseils</a></li>
+            <li><a href="{{ localUrl }}/pages/faq" class="notranslate">FAQ</a></li>
+          </ul>
+        </li>
+
+        {% comment %} 4) DADA ART (external) {% endcomment %}
+        <li class="vw-nav__item vw-nav__item--external">
+          <a href="https://dada-art.fr" target="_blank" rel="noopener">DADA ART <span class="vw-nav__external" aria-hidden="true">↗</span></a>
+        </li>
+
+        {% comment %} ── Mobile-only secondary links ── {% endcomment %}
+        <li class="menuListHeadersmall menuListHeadersmallFirst">
+          <a href="{{ localUrl }}/account">{{ 'vw.header.nav.account' | t }}</a>
+        </li>
+        {% unless customer and customer.tags contains 'pro' %}
+          <li class="menuListHeadersmall">
+            <a href="{{ localUrl }}/account/register/?pro">{{ 'vw.header.nav.professionnels' | t }} −30%</a>
+          </li>
+        {% endunless %}
+        <li class="menuListHeadersmall">
+          <a href="{{ localUrl }}/pages/contact">{{ 'vw.header.nav.contact' | t }}</a>
+        </li>
+        <li class="menuListHeadersmall">
+          <a href="https://ftp.vinyl-wall.com/{{ 'vw.url.retour' | t }}.pdf">{{ 'vw.header.nav.retour' | t }}</a>
+        </li>
+        <li class="menuListHeadersmall">
+          <a href="{{ localUrl }}/policies/legal-notice">{{ 'vw.header.nav.legal-notice' | t }}</a>
+        </li>
+        <li class="menuListHeadersmall">
+          <a href="{{ localUrl }}/policies/terms-of-sale">{{ 'vw.header.nav.terms-of-sale' | t }}</a>
+        </li>
+      </ul>
+    </nav>
+
+    {% comment %} ── Right actions ── {% endcomment %}
+    <div class="btnsHeader vw-nav__actions">
+      <form class="searchHeader searchHeaderDesktop vw-nav__search" action="{{ localUrl }}/search" role="search">
         <div class="inputContainer">
-          <input type="text" placeholder="{{ 'vw.header.search' | t }}.." name="q" value="">
+          <input type="search" placeholder="{{ 'vw.header.search' | t }}…" name="q" value="" autocomplete="off">
         </div>
-        <button name="someName" type="submit">
+        <button type="submit" aria-label="{{ 'vw.header.search' | t }}">
           <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/search.svg?v=1751962967" alt="Search" class="icon">
         </button>
       </form>
 
-      <div class="accountHeader">
-        <a href="{{ localUrl }}/account">
-          <img
-            alt="icon account"
-            src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/account.svg?v=1751962967"
-          >
-        </a>
-      </div>
-      <div class="cartHeader">
-        <a href="{{ localUrl }}/cart">
-          <img alt="icon cart" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/cart.svg?v=1751962967">
-          <span
-            {% if cart.item_count < 1 %}
-              class="is-empty"
-            {% endif %}
-          >
-            {{- cart.item_count -}}
-          </span>
-        </a>
-      </div>
-      {% unless customer %}
-        <a class="btnPro" href="{{ localUrl }}/account/register/?pro">{{ 'vw.header.nav.professionnels' | t }}</a>
-      {% else %}
-        <a class="btnPro" href="{{ localUrl }}/account/">{{ 'vw.header.nav.account' | t }}</a>
-      {% endunless %}
+      <a class="accountHeader vw-nav__action" href="{{ localUrl }}/account" aria-label="{{ 'vw.header.nav.account' | t }}">
+        <img alt="Mon compte" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/account.svg?v=1751962967">
+      </a>
+
+      <a class="cartHeader vw-nav__action vw-nav__action--cart" href="{{ localUrl }}/cart" aria-label="Panier">
+        <img alt="Panier" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/cart.svg?v=1751962967">
+        <span {% if cart.item_count < 1 %}class="is-empty"{% endif %}>{{- cart.item_count -}}</span>
+      </a>
     </div>
   </div>
 </header>
