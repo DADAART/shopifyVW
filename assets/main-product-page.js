@@ -1,20 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
   // InstallPlay
-  let btnInstall = document.getElementById("btnInstall");
   let videoInstall = document.getElementById("videoInstall");
+  let btnInstallSpan = document.querySelector(
+    ".template-product .Install .btnInstall"
+  );
 
-  btnInstall.addEventListener("click", function () {
-    videoInstall.play();
-    videoInstall.setAttribute("controls", "true");
-    document.querySelector(
-      ".template-product .Install #btnInstall"
-    ).style.display = "none";
-    document.querySelector(
-      ".template-product .Install .btnInstall"
-    ).style.display = "none";
-    document.querySelector(".template-product .Install h2").style.display =
-      "none";
-  });
+  if (videoInstall && btnInstallSpan) {
+    let playInstall = function () {
+      videoInstall.play().catch(function () {});
+      videoInstall.setAttribute("controls", "true");
+      btnInstallSpan.style.display = "none";
+    };
+
+    btnInstallSpan.addEventListener("click", playInstall);
+
+    // Autoplay on desktop — like the homepage install video
+    if (window.innerWidth >= 1025) {
+      videoInstall.setAttribute("autoplay", "true");
+      videoInstall.muted = true;
+      videoInstall.play().catch(function () {});
+    }
+  }
 
   // calculQuantity
   let calculA, calculB, calculC, calculD, calculE, CalculF;
