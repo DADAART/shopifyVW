@@ -1,0 +1,30 @@
+{{ 'faq.css' | asset_url | stylesheet_tag }}
+<section class="faq notranslate">
+  {{ page.content }}
+</section>
+
+<style>
+    .faq .accordeon>div>div {
+      display:flex !important;
+    }
+    .faq .accordeonTitle::after {
+    display: none !important;
+  }
+    .faq .accordeonTitle:hover {
+    padding: 0 !important;
+    cursor: text !important;
+  }
+  .faq > * {
+    max-width: 1025px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    $(".faq .accordeonItem>span").click(function () {
+        $(this).parent().toggleClass("active");
+    });
+  });
+</script>

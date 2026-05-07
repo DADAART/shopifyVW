@@ -1,0 +1,368 @@
+{
+  "sections": {
+    "cluster_ceramique": {
+      "type": "collection-cluster-section",
+      "settings": {
+        "title": "Faïences & Céramiques",
+        "anchor_id": "ceramique",
+        "description": "L'éclat de l'émail et le relief de la terre cuite. Une immersion dans la matière artisanale."
+      },
+      "blocks": {
+        "block_1": {
+          "type": "promo_dark_block",
+          "settings": {
+            "card_size": "tall",
+            "label": "BEST SELLER",
+            "title": "Les Zelliges",
+            "text": "",
+            "link_text": "Explorer les 8 nuances"
+          }
+        },
+        "block_2": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "zelliges-carres",
+            "card_size": "standard",
+            "custom_title": "Zelliges Carrés",
+            "subtitle": "",
+            "badge": "8 Nuances"
+          }
+        },
+        "block_3": {
+          "type": "promo_block",
+          "settings": {
+            "title": "Indécis ?",
+            "text": "Ne choisissez pas au hasard. Commandez nos échantillons pour tester la matière chez vous.",
+            "btn_text": "COMMANDER (2€)"
+          }
+        },
+        "block_4": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "zelliges-rectangles",
+            "card_size": "tall",
+            "custom_title": "Zelliges Briques",
+            "subtitle": "Pour pose droite ou bâton rompu"
+          }
+        },
+        "block_5": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "zelliges-mats",
+            "card_size": "standard",
+            "custom_title": "Zelliges Mats",
+            "subtitle": "Finition Poudrée"
+          }
+        },
+        "block_6": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "carreaux-de-metro",
+            "card_size": "standard",
+            "custom_title": "Le Metro Parisien",
+            "subtitle": "L'intemporel biseauté"
+          }
+        },
+        "block_7": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "carreaux-marocains",
+            "card_size": "tall",
+            "custom_title": "Artisanat (Bejmat)",
+            "subtitle": "Esprit Riad"
+          }
+        },
+        "block_8": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "mosaique-carre",
+            "card_size": "standard",
+            "custom_title": "Mosaïques Piscine",
+            "subtitle": "Petits Carreaux"
+          }
+        },
+        "block_9": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "mosaique-petite",
+            "card_size": "standard",
+            "custom_title": "Micro Mosaïque",
+            "subtitle": "Détails fins"
+          }
+        },
+        "block_10": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "couleurs-unies",
+            "card_size": "wide",
+            "custom_title": "Les Unis",
+            "subtitle": "La simplicité pure"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5",
+        "block_6",
+        "block_7",
+        "block_8",
+        "block_9",
+        "block_10"
+      ]
+    },
+    "cluster_mineral": {
+      "type": "collection-cluster-section",
+      "settings": {
+        "title": "Minéral & Matière",
+        "anchor_id": "mineral",
+        "description": "La force des matériaux bruts. Du béton industriel au marbre italien."
+      },
+      "blocks": {
+        "block_1": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "terrazzo",
+            "card_size": "wide",
+            "custom_title": "Terrazzo & Minéral",
+            "subtitle": "L'élégance italienne revisitée",
+            "badge": "8 Designs"
+          }
+        },
+        "block_2": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "beton",
+            "card_size": "tall",
+            "label": "NOUVEAU",
+            "label_style": "green",
+            "custom_title": "Béton Ciré",
+            "subtitle": "Sobriété et texture brute"
+          }
+        },
+        "block_3": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "marbre",
+            "card_size": "standard",
+            "custom_title": "Marbres Italiens",
+            "subtitle": "5 Variantes Luxe",
+            "badge": "4 Nuances"
+          }
+        },
+        "block_4": {
+          "type": "promo_block",
+          "settings": {
+            "title": "Touchez la matière",
+            "text": "Le relief de nos produits est bluffant.",
+            "btn_text": "ÉCHANTILLONS"
+          }
+        },
+        "block_5": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "brique",
+            "card_size": "standard",
+            "custom_title": "Briques",
+            "subtitle": "Esprit Loft New-York"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5"
+      ]
+    },
+    "cluster_ciment": {
+      "type": "collection-cluster-section",
+      "settings": {
+        "title": "Carreaux de Ciment",
+        "anchor_id": "ciment",
+        "description": "Le charme rétro et les motifs traditionnels."
+      },
+      "blocks": {
+        "block_1": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "carreaux-de-ciment-noir-blanc",
+            "card_size": "tall",
+            "custom_title": "Black & White",
+            "subtitle": "Graphisme Monochrome"
+          }
+        },
+        "block_2": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "carreaux-de-ciment-multicolore",
+            "card_size": "standard",
+            "custom_title": "Multicolore",
+            "subtitle": "Explosion de couleurs"
+          }
+        },
+        "block_3": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "carreaux-de-ciment-bleu",
+            "card_size": "standard",
+            "custom_title": "Bleu Azur",
+            "subtitle": "Inspiration Méditerranée"
+          }
+        },
+        "block_4": {
+          "type": "promo_dark_block",
+          "settings": {
+            "card_size": "tall",
+            "label": "",
+            "title": "Art Déco",
+            "text": "Des motifs géométriques audacieux pour une touche rétro-chic.",
+            "link_text": "Voir les 5 modèles"
+          }
+        },
+        "block_5": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "carreaux-de-ciment-mixte",
+            "card_size": "standard",
+            "custom_title": "Patchwork",
+            "subtitle": "Mix & Match"
+          }
+        },
+        "block_6": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "carreaux-de-ciment-provencaux",
+            "card_size": "standard",
+            "custom_title": "Provençaux",
+            "subtitle": "Tradition du Sud"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5",
+        "block_6"
+      ]
+    },
+    "cluster_graphique": {
+      "type": "collection-cluster-section",
+      "settings": {
+        "title": "Graphique & Abstrait",
+        "anchor_id": "graphique",
+        "description": "Lignes modernes, formes géométriques et art abstrait."
+      },
+      "blocks": {
+        "block_1": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "arche-nouvelle-collection",
+            "card_size": "tall",
+            "label": "NOUVEAUTÉ",
+            "label_style": "orange",
+            "custom_title": "Collection Arche",
+            "subtitle": "La Tendance du moment"
+          }
+        },
+        "block_2": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "montreal",
+            "card_size": "standard",
+            "custom_title": "Montréal",
+            "subtitle": "Style Urbain"
+          }
+        },
+        "block_3": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "quadrillage",
+            "card_size": "standard",
+            "custom_title": "Quadrillage",
+            "subtitle": "Géométrie pure"
+          }
+        },
+        "block_4": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "abstrait-effet-3d",
+            "card_size": "wide",
+            "custom_title": "Effet 3D",
+            "subtitle": "Trompe l'oeil volumique"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ]
+    },
+    "cluster_nature": {
+      "type": "collection-cluster-section",
+      "settings": {
+        "title": "Nature & Textures",
+        "anchor_id": "nature",
+        "description": "Matériaux organiques et chaleur naturelle."
+      },
+      "blocks": {
+        "block_1": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "bois",
+            "card_size": "wide",
+            "custom_title": "Essences de Bois",
+            "subtitle": "Chêne, Noyer & Cendré",
+            "badge": "8 Motifs"
+          }
+        },
+        "block_2": {
+          "type": "promo_block",
+          "settings": {
+            "title": "Effet Bois ?",
+            "text": "Le toucher texturé est essentiel. Commandez un échantillon.",
+            "btn_text": "COMMANDER (2€)"
+          }
+        },
+        "block_3": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "osier",
+            "card_size": "tall",
+            "custom_title": "Cannage & Osier",
+            "subtitle": "Effet tressage naturel"
+          }
+        },
+        "block_4": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "coussin-cuir",
+            "card_size": "standard",
+            "custom_title": "Effet Cuir",
+            "subtitle": "Texture noble"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ]
+    }
+  },
+  "order": [
+    "cluster_ceramique",
+    "cluster_mineral",
+    "cluster_ciment",
+    "cluster_graphique",
+    "cluster_nature"
+  ]
+}

@@ -1,0 +1,714 @@
+{{ 'index-page.css' | asset_url | stylesheet_tag }}
+{{ 'index-page.js' | asset_url | script_tag }}
+
+{% if request.locale.iso_code contains 'fr' %}
+  {% assign localUrl = '' %}
+{% else %}
+  {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+{% endif %}
+
+<style>
+  .template-index .mobilhome_1 > div:nth-child(1) p {
+    margin-left: 0;
+}
+  @media only screen and (max-width: 400px) {
+.template-index .mobilhome_1 > div:nth-child(1) h1 strong {
+    font-size: 26px !important;
+}
+  }
+  @media only screen and (max-width: 1080px) {
+.template-index .mobilhome_1 > div:nth-child(1) p small {
+    font-size: 100%;
+}
+  }
+  
+          .template-index .camping_car_2 {
+            display:flex;
+            gap: 1rem;
+            padding:1rem;
+      flex-direction: column;
+          }
+          .template-index .camping_car_2 > * > * > * {
+            width:100%;
+          }
+          .template-index .mobilhome_1 > div:nth-child(1), .template-index .camping_car_2 > div:nth-child(2) {
+            background-color: #f5f5f5;
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            width: 100%;
+            flex: 50%;
+          }
+          .template-index .mobilhome_1 > div:nth-child(1)  > div, .template-index .camping_car_2 > div:nth-child(2) > div {
+            display:flex;
+            align-items:flex-start;
+            justify-content: center;
+            padding: 1rem;
+      flex-direction: column;
+        width: max-content;
+            max-width:100%;
+            margin:auto;
+          }
+          .template-index .mobilhome_1 > div:nth-child(1) h1 {
+            font-weight: 900;
+            font-size:26px;
+            text-align:left;
+          }
+          .template-index .mobilhome_1 > div:nth-child(1) h1 strong {
+            display:block;
+            font-size:34px;
+            font-weight: 900;
+          }
+          .template-index .mobilhome_1 > div:nth-child(1) p, .template-index .camping_car_2 p {
+            max-width: 500px;
+          }
+
+    .template-index .mobilhome_1 .btn , .template-index .camping_car_2 .btn {
+      margin-left: 0;
+    }
+          .template-index .Presentation {
+        padding: 0rem;
+        padding-bottom: 1rem;
+        padding-top: 1.5rem;
+          }
+
+    .template-index .btn_2 {
+      margin: 0 auto;
+      font-weight: normal;
+      text-transform: uppercase;
+      padding: 0.5rem 4rem;
+      display: block;
+      margin-top: 2rem;
+      color: #000;
+      border: 2px solid #000;
+      width: max-content;
+      max-width: 100%;
+    }
+
+    .template-index .btn_2:hover {
+        background-color: #000;
+        color: #fff;
+    }
+    .template-index .btn_3 {
+        margin: auto;
+        font-weight: normal;
+        text-transform: uppercase;
+        padding: 0.5rem 4rem;
+        display: block;
+        margin-top: 2rem;
+        color: #fff;
+        border: 2px solid #fff;
+        width: max-content;
+      max-width: 100%;
+    }
+
+    .template-index .btn_3:hover {
+        background-color: #fff;
+        color: #000 !important;
+    }
+
+         .template-index .camping_car_2 video {
+           width: auto;
+           height:100%
+         }
+         .template-index .camping_car_2 > div:nth-child(1) {
+           overflow:hidden;
+         }
+         .template-index .camping_car_2 > div:nth-child(2) {
+           background-color: #65aeaa;
+         }
+         .template-index .camping_car_2 > div:nth-child(2) > div > * {
+           color: #fff;
+         }
+         .template-index .camping_car_2 h3 {
+           text-align:left;
+         }
+
+    .template-index .splideBestCredence .splide__slide {
+      padding: .5rem;
+      background:#000;
+    }
+    .template-index .splideBestCredence .splide__slide img {
+      padding: 0;
+  }
+
+    .template-index .splideBestCredence .splide__slide > div{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      color:#fff;
+    }
+    .template-index .splideBestCredence .splide__slide span {
+      font-weight:bold;
+      font-size:20px;
+      color:#fff;
+    }
+
+    .template-index .splideBestCredence .splide__slide .btn {
+      margin:0;
+      padding:0.5rem 2.5rem;
+    }
+    .template-index .splideBestCredence ul {
+      gap: 0.5rem;
+    }
+
+    /* MEDIA SCREEN */
+  @media only screen and (min-width: 1025px) {
+    .template-index .Presentation .contentPresentation {
+      background: #fff;
+  }
+   .template-index .camping_car_2 {
+    flex-direction : row;
+  }
+    .template-index .Presentation {
+      height: 100%;
+  }
+    .template-index .Presentation .contentPresentation {
+      position: relative;
+    }
+  .template-index .mobilhome_1 > div:nth-child(1) h1,  .template-index .camping_car_2 h3 {
+            font-size: 57px;
+      text-align: left;
+      width: max-content;
+      max-width: 100%;
+          }
+   .template-index .camping_car_2 h3 {
+            font-size: 45px;
+          }
+          .template-index .mobilhome_1 > div:nth-child(1) h1 strong {
+            font-size:72px;
+          }
+  .template-index .mobilhome_1 > div:nth-child(1) p {
+            font-size:32px;
+    font-weight: bold;
+          }
+  .template-index .camping_car_2 > div:nth-child(2) p {
+            font-size:20px;
+    font-weight: bold;
+      max-width: 610px;
+          }
+    .template-index .camping_car_2 video {
+      max-height: 70vh;
+  }
+    .template-index .splideBestCredence {
+      padding: 0;
+  }
+
+  }
+</style>
+
+<div class="template-index">
+  <section class="Transform transformRevert mobilhome_1">
+    <div>
+      <div>
+        <h1>Vinyl Way <strong>Crédence adhésive</strong></h1>
+        <p><small>Réinventez votre intérieur!
+          <br>Une touche élégante et pratique pour votre cuisine et salle de bain.</small></p>
+        <a href="{{ localUrl }}/collections/credences-adhesives/" class="btn btn_2">Découvrir nos 100+ crédences</a>
+      </div>
+    </div>
+
+    <div
+      class="bgImg"
+      role="img"
+      alt="{{ 'vw.index.transform.bg_alt' | t }}"
+      style="background-image: url('https://cdn.shopify.com/s/files/1/0567/1220/0371/files/GIF-credences.gif?v=1707294641');"
+    ></div>
+  </section>
+
+  <section class="Presentation">
+    <div class="contentPresentation">
+      <ul class="mobileIconsPresentation">
+        <li>{{ 'vw.index.presentation.icons_economique' | t }}</li>
+        <li>{{ 'vw.index.presentation.icons_facile' | t }}</li>
+        <li>{{ 'vw.index.presentation.icons_waterproof' | t }}</li>
+        <li>{{ 'vw.index.presentation.icons_thermo' | t }}</li>
+      </ul>
+
+      <ul class="desktopIconsPresentation">
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_OLD_JOINTS.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.joint1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.joint2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_WALLPAPER_KNIFE.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.cut1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.cut2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_SELF_ADHESIVE.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.colle1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.colle2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_SHOWER.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.douche1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.douche2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_HEAT_WATER.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.chaleur1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.chaleur2' | t -}}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="SlideRealisations splideBestCredence">
+    <h2>Meilleures ventes</h2>
+    <div id="splideBestCredence" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          {% for product in collections['credences-adhesives-bestsellers'].products %}
+            {% for tag in product.tags %}
+              {% if tag contains '#' %}
+                {% assign dataColor = tag %}
+              {% endif %}
+            {% endfor %}
+            {% for tag in product.tags %}
+              {% if tag contains '#' %}
+                <li class="splide__slide" style="background-color:{{ dataColor }};">
+                  <a href="{{ product.url }}">
+                    <img
+                      alt="Vinyl Way {{ product.title }}"
+                      loading="lazy"
+                      src="{{ product.images[0] | img_url: '500x' }}"
+                    >
+                  </a>
+                  <div>
+                    <span>{{ product.title }}</span>
+                    <a class="btn btn_3" href="{{ product.url }}">Voir</a>
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="camping_car_2">
+    <div>
+      <video
+        poster="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/vw_video_credence_square_poster.png?v=1707122649"
+        muted=""
+        playsinline=""
+        autoplay=""
+        loop=""
+          alt="Vidéo Crédence adhésive Vinyl Way"
+      >
+          <source src="https://cdn.shopify.com/videos/c/o/v/216c4448fc964697b35816a775fd7dbf.webm" type="video/webm">
+          <source src="https://cdn.shopify.com/videos/c/o/v/3cbdc7da790949399baf05c2df3502b7.mp4" type="video/mp4">
+        {{ 'vw.index.presentation.video_error' | t }}
+      </video>
+    </div>
+    <div>
+      <div>
+        <h3>
+          Pourquoi la crédence
+          <br>
+          by Vinyl Way ?
+        </h3>
+        <p>
+         Optez pour la facilité d'installation et la durabilité avec nos crédences adhésives, conçues pour résister à l'eau et à l'humidité quotidienne. Avec une sélection variée de motifs et couleurs, transformez votre espace avec style. 
+        </p>
+        <a href="{{ localUrl }}/collections/credences-adhesives/" class="btn btn_3">Voir les collections</a>
+      </div>
+    </div>
+  </section>
+
+  
+  <style>
+        .coverCredence {
+          background-image:url('https://cdn.shopify.com/s/files/1/0567/1220/0371/files/bgCredence.jpg?v=1700458223');
+          background-repeat:repeat;
+          background-size: contain;
+          height:300px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          max-width:100%;
+          overflow: hidden;
+        }
+        .coverCredence > div img {
+          visibility:hidden;
+          opacity:0;
+          height:100%;
+          width: auto;
+        }
+
+    /*  */
+        .coverCredence > div {
+        position: absolute;
+        height: 100%;
+          width:100%;
+          background-image:url('https://vinyl-way.com/cdn/shop/products/77718.jpg?v=1700125746');
+          background-position:left;
+          background-size:cover;
+        left: 65%;
+        -webkit-animation: coverCredence 6s ease-in-out infinite;
+        animation: coverCredence 6s ease-in-out infinite;
+        overflow: hidden;
+      transition: 0.5s;
+        clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%, 0px 100%, 0px 300px)
+        }
+        .coverCredence > div .shadow {
+  z-index:4;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  box-shadow: 5px -5px 10px -6px #000;
+  transition: 0.5s;
+background: linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0) 50%, rgba(139,139,139,1) 50%, rgba(139,139,139,1) 65%, rgba(255,255,255,1) 100%);
+        -webkit-animation: coverCredenceShadow 6s ease-in-out infinite;
+        animation: coverCredenceShadow 6s ease-in-out infinite;
+}
+    /*  */
+    
+        .coverCredence h4 {
+        margin: auto;
+        font-size: calc(20px + 1.5vw);
+        padding-right: 23%;
+        }
+        .coverCredence h4 strong {
+          font-weight:900;
+          font-size:120%;
+          display:block;
+        }
+
+        @keyframes coverCredence {
+         0%, 100% {
+        transform: translateX(0);
+        background-image: url('https://vinyl-way.com/cdn/shop/products/79697-40x198_e9c518ab-977d-4734-8819-8ae73854483d.jpg?v=1707290413');
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 200px 100%, 0px 100px)
+    }
+
+    50% {
+        transform: translateX(-30%); /* Ajustez cette valeur pour la distance de translation */
+        background-image: url('https://vinyl-way.com/cdn/shop/products/60964-40x198_ccc19edc-49a2-422a-9b94-32bf2ef272cc.jpg?v=1707290765');
+        clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%, 0px 100%, 0px 300px)
+    }
+
+    80% {
+        transform: translateX(0);
+        background-image: url('https://vinyl-way.com/cdn/shop/products/77721-40x198_a55869ac-70ff-46ff-ac81-9a01676891f0.jpg?v=1707290780');
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 200px 100%, 0px 100px)
+    }
+        }
+        @keyframes coverCredenceShadow {
+         0%, 100% {
+  width: 200px;
+  height: 200px;
+    }
+
+    50% {
+  width: 0px;
+  height: 0px;
+    }
+
+    80% {
+  width: 200px;
+  height: 200px;
+    }
+        }
+  </style>
+
+  <section class="coverCredence">
+    <h4>Masque les <strong>imperfections</strong></h4>
+    <div><img src="https://vinyl-way.com/cdn/shop/products/79697-40x198_e9c518ab-977d-4734-8819-8ae73854483d.jpg?v=1707290413">
+  <div class="paper">
+  </div>
+    <div class="shadow">
+  </div>
+    </div>  
+  </section>
+
+  <div id="splideProducts" class="splide" style="display:none !important;">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <div id="splideCollections" class="splide" style="display:none !important;">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+  {% render 'reviews' %}
+
+
+  <section class="Quality">
+    <div>
+       <h2><span>{{ 'vw.index.quality.title.text1' | t }} <img alt="{{ 'vw.index.quality.title.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/madeinfrance.svg?v=1666779214">
+                </span>
+                <b>{{ 'vw.index.quality.title.text2' | t }}</b></span>
+            </h2>
+      <p>{{ 'vw.index.quality.paragraph1' | t }}</p>
+      <ul class="listTexts">
+        <li>{{ 'vw.index.quality.list.li1' | t }}</li>
+        <li>{{ 'vw.index.quality.list.li2' | t }}</li>
+        <li>{{ 'vw.index.quality.list.li3' | t }}</li>
+        <li>{{ 'vw.index.quality.list.li4' | t }}</li>
+      </ul>
+      <p>{{ 'vw.index.quality.paragraph2' | t }}</p>
+    </div>
+    <div>
+      <div class="bgDiag">
+        <div></div>
+      </div>
+
+      <ul>
+        <li>{{ 'vw.index.quality.couches.li1' | t }}</li>
+        <li>{{ 'vw.index.quality.couches.li2' | t }}</li>
+        <li>{{ 'vw.index.quality.couches.li3' | t }}</li>
+        <li>{{ 'vw.index.quality.couches.li4' | t }}</li>
+        <li>{{ 'vw.index.quality.couches.li5' | t }}</li>
+      </ul>
+      <div id=" couches2" class="couches">
+        <svg
+          class="svg-couches couchesthumbslide"
+          version="1.1"
+          id="Calque_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 483 420"
+          xml:space="preserve"
+        >
+          <g>
+              <polygon class="st0" points="258,373 22,327 242,221 480,267 " />
+          </g>
+          <g>
+              <polygon class="st1" points="258,313 22,267 22,264 258,310 " />
+          </g>
+          <g>
+              <polygon class="st2" points="258,313 258,310 480,204 480,207 " />
+          </g>
+          <g>
+              <polygon class="st3" points="258,310 22,264 242,158 480,204 " />
+          </g>
+          <g>
+              <polygon class="st6" points="258,250 22,203 22,193 258,239 	" />
+          </g>
+          <g>
+              <polygon class="st5" points="258,250 258,239 480,133 480,143 " />
+          </g>
+          <g>
+              <polygon class="st4" points="258,239 22,193 242,87 480,133 	" />
+          </g>
+          <g class="st7">
+              <polygon class="st8" points="258,164 22,118 242,12 480,58 	" />
+          </g>
+        </svg>
+
+        <div class="img-svg">
+          <img alt="carreau adhésif Viynl Way" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <div>
+      <img
+        alt="logo Castorama"
+        loading="lazy"
+        src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/Castorama_Logo.png?v=1667830799"
+      >
+      <img
+        alt="logo Salon Maison et Objet"
+        loading="lazy"
+        src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/MaisonObjet-1line-logotype_black.png?v=1667831417"
+      >
+      <img
+        alt="logo Messe FrankFurt - Salon Ambiente"
+        loading="lazy"
+        src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/ambiente-datum-2020.png?v=1667830799"
+      >
+      <img
+        alt="logo MIF EXPO - Salon du Made In France"
+        loading="lazy"
+        src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/mif-2.png?v=1667831417"
+      >
+      <img
+        alt="logo Marie Claire Maison"
+        loading="lazy"
+        src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/logo.png?v=1635941585"
+      >
+      <img
+        alt="logo Le Journal des Femmes"
+        loading="lazy"
+        src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/logo-jdf.png?v=1635941585"
+      >
+    </div>
+  </section>
+
+  <section class="SlideRealisations" id="{{ 'vw.url.realisations' | t }}" style="display:none;">
+    <h2>
+      <b>{{ 'vw.index.realisations.title_text1' | t }}</b>
+      <span>{{ 'vw.index.realisations.title_text2' | t }}</span>
+    </h2>
+    <div id="splideRealisations" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client2.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client3.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client4.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client5.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client6.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client7.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client8.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client9.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client10.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client11.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client12.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client13.jpg"
+            >
+          </li>
+          <li class="splide__slide">
+            <img
+              alt="{{ 'vw.index.realisations.img_alt' | t }}"
+              loading="lazy"
+              src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client1.jpg"
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+
+      // SlideCollections
+      let splideBestCredence = new Splide('#splideBestCredence', {
+          type: 'loop',
+          perPage: 4,
+          breakpoints: {
+              1400: { perPage: 3 },
+              1025: { perPage: 1 }
+          },
+          focus: 'left',
+          autoplay: true,
+          interval: 4000,
+          updateOnMove: true,
+          pagination: false,
+      }).mount();
+
+    });
+</script>

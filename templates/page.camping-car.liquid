@@ -1,0 +1,603 @@
+{{ 'index-page.css' | asset_url | stylesheet_tag }}
+{{ 'index-page.js' | asset_url | script_tag }}
+
+{% if request.locale.iso_code contains 'fr' %}
+  {% assign localUrl = '' %}
+{% else %}
+  {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+{% endif %}
+
+<style>
+        .template-index .camping_car_1, .template-index .camping_car_2 {
+          display:flex;
+          gap: 1rem;
+          padding:1rem;          
+    flex-direction: column;
+        }
+        .template-index .camping_car_1 > * > * > * , .template-index .camping_car_2 > * > * > * {
+          width:100%;
+        }
+        .template-index .camping_car_1 > div:nth-child(1), .template-index .camping_car_2 > div:nth-child(2) {
+          background-color: #f5f5f5;
+          display:flex;
+          align-items:center;
+          justify-content: center;
+          width: 100%;
+          flex: 50%;
+        }
+        .template-index .camping_car_1 > div:nth-child(1)  > div, .template-index .camping_car_2 > div:nth-child(2) > div {
+          display:flex;
+          align-items:flex-start;
+          justify-content: center;
+          padding: 1rem;          
+    flex-direction: column;
+      width: max-content;
+          max-width:100%;
+          margin:auto;
+        }
+        .template-index .camping_car_1 > div:nth-child(1) h1 {
+          font-weight: 900;
+          font-size:26px;
+          text-align:left;
+        }
+        .template-index .camping_car_1 > div:nth-child(1) h1 strong {
+          display:block;
+          font-size:34px;
+          font-weight: 900;
+        }
+        .template-index .camping_car_1 > div:nth-child(1) p, .template-index .camping_car_2 p {
+          max-width: 500px;
+        }
+  
+  .template-index .camping_car_1 .btn , .template-index .camping_car_2 .btn {
+    margin-left: 0;
+  }
+        .template-index .Presentation {
+      padding: 0rem;
+      padding-bottom: 1rem;
+      padding-top: 1.5rem;
+        }
+
+  .template-index .btn_2 {
+    margin: 0 auto;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding: 0.5rem 4rem;
+    display: block;
+    margin-top: 2rem;
+    color: #000;
+    border: 2px solid #000;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .template-index .btn_2:hover {
+      background-color: #000;
+      color: #fff;
+  }
+  .template-index .btn_3 {
+      margin: auto;
+      font-weight: normal;
+      text-transform: uppercase;
+      padding: 0.5rem 4rem;
+      display: block;
+      margin-top: 2rem;
+      color: #fff;
+      border: 2px solid #fff;
+      width: max-content;
+    max-width: 100%;
+  }
+
+  .template-index .btn_3:hover {
+      background-color: #fff;
+      color: #000 !important;
+  }
+  .template-index .camping_car_1 > div:nth-child(2) {
+    display:flex;
+    gap: 1rem;
+    flex-wrap : wrap;
+    cursor:pointer;
+  }
+
+  .template-index .camping_car_1 > div:nth-child(2) > * {
+    flex: 45%;
+  }
+  .template-index .camping_car_1 > div:nth-child(2) > div:first-child {
+    flex: 100%;
+      position: relative;
+      min-height: 250px;
+  }
+
+        .template-index .camping_car_1 > div:nth-child(2) > div:first-child img {
+       position: absolute;
+      height: auto;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 400px;
+        }
+       .template-index .camping_car_2 video {
+         width: 100%;
+       }
+       .template-index .camping_car_2 > div:nth-child(2) {
+         background-color: #65aeaa;
+       }
+       .template-index .camping_car_2 > div:nth-child(2) > div > * {
+         color: #fff;
+       }
+       .template-index .camping_car_2 h3 {
+         text-align:left;
+       }
+
+  /* MEDIA SCREEN */
+@media only screen and (min-width: 1025px) {
+.template-index .camping_car_1, .template-index .camping_car_2 {
+  flex-direction : row;
+}
+  .template-index .Presentation {
+    height: 100%;
+}
+  .template-index .Presentation .contentPresentation {
+    position: relative;
+  }
+  .template-index .camping_car_1 > div:nth-child(2) > div:first-child {
+    flex: 100%;
+      position: relative;
+      min-height: 400px;
+  }
+.template-index .camping_car_1 > div:nth-child(1) h1,  .template-index .camping_car_2 h3 {
+          font-size: 57px;
+    text-align: left;
+    width: max-content;
+    max-width: 100%;
+        }
+ .template-index .camping_car_2 h3 {
+          font-size: 45px;
+        }
+        .template-index .camping_car_1 > div:nth-child(1) h1 strong {
+          font-size:72px;
+        }
+.template-index .camping_car_1 > div:nth-child(1) p {
+          font-size:32px;
+  font-weight: bold;
+        }
+.template-index .camping_car_2 > div:nth-child(2) p {
+          font-size:20px;
+  font-weight: bold;
+    max-width: 610px;
+        }
+        .template-index .camping_car_1 > div:nth-child(2) > div:first-child img {
+      max-width:700px;
+        }
+  .template-index .camping_car_2 video {
+    max-height: 70vh;
+}
+}
+  
+</style>
+
+<div class="template-index">
+  <section class="camping_car_1">
+    <div>
+    <div>
+      <h1>Vinyl Way <strong>Camping Car</strong></h1>
+      <p>Nos carreaux adhésifs sont idéals pour décorer et rénover vos camping-cars !</p>
+      <a href="{{ localUrl }}/collections/camping-car-couleurs/" class="btn btn_2">Découvrir nos 200+ designs</a>
+    </div>
+      </div>
+
+    <div id="slideCc" data-href="{{ localUrl }}/products/adhesive-tiles-massa/+camping_car_salon">
+      <div style="background-color:#767d6f;">
+        <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/MES_Camping_Car_3D_72983_53f54dbe-9fb3-41da-938d-756c85e1bef0_650x.png?v=1699858568">
+      </div>
+      <div>
+        <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/72983-camping_car_salon_900x_b04f067a-5601-4860-b5c2-88fef4d2672d_650x.webp?v=1699857300">
+      </div>
+      <div>
+        <img src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/72983-camping_car_sdb_900x_c954c6b1-bdba-499f-9f22-359c573e9786_650x.webp?v=1699857299">
+      </div>
+    </div>
+  </section>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+$(document).ready(function(){
+    var imagesSets = [
+        {
+            bgColor: "#d8d6d2",
+            images: [
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/MES_Camping_Car_3D_70130_0f9c95fb-a838-463c-90ed-3a1cdea2b61c_650x.png?v=1699858568",
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/70130-camping_car_salon_900x_e70a0f70-6021-4107-94d8-865726c5dda4_650x.webp?v=1699857300",
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/70130-camping_car_sdb_900x_3a6daae6-0923-4b24-9926-2dc5932e6873_650x.webp?v=1699857299"
+            ],
+            href: "{{ localUrl }}/products/adhesive-tiles-claire/+camping_car_salon"
+        },
+        {
+            bgColor: "#c2cfc0",
+            images: [
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/MES_Camping_Car_3D_60819_e671c45e-3008-4ea8-a42f-82e57d54190b_650x.png?v=1699858568",
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/60819-camping_car_salon_900x_cfd9a222-4eb8-4492-8c27-5e42fdf75764_650x.webp?v=1699857301",
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/60819-camping_car_chambre_900x_1b5e5fed-b545-43b8-b18e-3a833c489580_650x.webp?v=1699857300"
+            ],
+            href: "{{ localUrl }}/products/adhesive-tiles-alice/+camping_car_salon"
+        },
+        {
+            bgColor: "#767d6f",
+            images: [
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/MES_Camping_Car_3D_72983_53f54dbe-9fb3-41da-938d-756c85e1bef0_650x.png?v=1699858568",
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/72983-camping_car_salon_900x_b04f067a-5601-4860-b5c2-88fef4d2672d_650x.webp?v=1699857300",
+                "https://cdn.shopify.com/s/files/1/0567/1220/0371/files/72983-camping_car_sdb_900x_c954c6b1-bdba-499f-9f22-359c573e9786_650x.webp?v=1699857299"
+            ],
+            href: "{{ localUrl }}/products/adhesive-tiles-massa/+camping_car_salon"
+        },
+    ];
+
+    var currentSet = 0;
+
+    function changeImages() {
+        currentSet = (currentSet + 1) % imagesSets.length;
+        var set = imagesSets[currentSet];
+
+        $('#slideCc > div:nth-child(1)').animate({backgroundColor: set.bgColor}, 'slow');
+        $('#slideCc').data('href', set.href);
+
+        $('#slideCc img').each(function(index){
+            $(this).fadeOut('slow', function() {
+                $(this).attr('src', set.images[index]).fadeIn('slow');
+            });
+        });
+    }
+
+    setInterval(changeImages, 3000); // Change every 3000 milliseconds (3 seconds)
+
+    // Gestionnaire de clics pour #slideCc
+    $('#slideCc').on('click', function() {
+        window.location.href = $(this).data('href');
+    });
+});
+</script>
+
+
+
+  <section class="Presentation">
+    <div class="contentPresentation">
+      <ul class="mobileIconsPresentation">
+        <li>{{ 'vw.index.presentation.icons_economique' | t }}</li>
+        <li>{{ 'vw.index.presentation.icons_facile' | t }}</li>
+        <li>{{ 'vw.index.presentation.icons_waterproof' | t }}</li>
+        <li>{{ 'vw.index.presentation.icons_thermo' | t }}</li>
+      </ul>
+
+      <ul class="desktopIconsPresentation">
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_OLD_JOINTS.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.joint1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.joint2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_WALLPAPER_KNIFE.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.cut1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.cut2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_SELF_ADHESIVE.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.colle1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.colle2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_SHOWER.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.douche1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.douche2' | t -}}
+          </span>
+        </li>
+        <li>
+          <img
+            alt="icon"
+            loading="lazy"
+            src="https://cdn.shopify.com/s/files/1/0648/8670/2332/files/PICTO_HEAT_WATER.svg?v=1674206770"
+          >
+          <span>
+            {{- 'vw.index.presentation.icons2.chaleur1' | t -}}
+            <br>
+            {{ 'vw.index.presentation.icons2.chaleur2' | t -}}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="camping_car_2">
+    <div>
+      <video
+        poster="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/poster-site-web-comment-poser-ses-carreaux-adhesifs-vinyl-way.jpg?v=1670489425"
+        controls=""
+        playsinline=""
+        alt=""
+      >
+        <source src="https://cdn.shopify.com/videos/c/o/v/a02c78e0f14242b5ab5d12cbf4db6028.mp4" type="video/mp4">
+        {{ 'vw.index.presentation.video_error' | t }}
+      </video>
+    </div>
+    <div>
+    <div>
+      <h3>
+        Pourquoi des Vinyl Way
+        <br>
+        dans votre Camping Car ?
+      </h3>
+      <p>
+        Les carreaux adhésifs de Vinyl Way sont idéals pour les camping-cars grâce à leur caractère économique, facilité
+        d'installation, et résistance à l'eau et à la chaleur. Ils peuvent facilement couvrir les joints existants et
+        peuvent être découpés sur mesure. De plus, leur caractère autocollant simplifie grandement l'installation,
+        rendant la transformation de l'intérieur de votre camping-car un jeu d'enfant.
+      </p>
+      <a href="{{ localUrl }}/collections/camping-car/" class="btn btn_3">Voir les collections</a>
+    </div>
+      </div>
+  </section>
+
+    <section class="SlideCollections">
+        <h2>{{ 'vw.index.slide_collections.title' | t }}</h2>
+        <div id="splideCollections" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+
+                  {% for collection in collections %}
+                  {%
+          if collection.handle contains 'beton'
+          or collection.handle contains 'bois'
+          or collection.handle contains 'brique'
+          or collection.handle contains 'carreaux-de-ciment'
+          or collection.handle contains 'carreaux-de-metro'
+          or collection.handle contains 'carreaux-marocains'
+          or collection.handle contains 'couleurs-unies'
+          or collection.handle contains 'marbre'
+          or collection.handle contains 'mosaique'
+          or collection.handle contains 'osier'
+          or collection.handle contains 'zelliges'
+          or collection.handle contains 'quad'
+          or collection.handle contains 'mono'
+          or collection.handle contains 'cuir'
+          or collection.handle contains 'mono'
+          or collection.handle contains 'terra'
+          %}
+
+                  <li class="splide__slide bgCollection {{ collection.handle }}">
+                        <h3>{{ collection.title }}</h3>
+                    <div  class="slideCollectionsImage">    
+                    <a href="{{ localUrl }}/collections/camping-car/#{{ collection.handle }}">
+                      {% assign product = collection.products.first %}
+                            <img alt="Vinyl Way - Collection {{ collection.title }} - {{ 'vw.index.slide_collections.bg_alt' | t }}" loading="lazy" src="{{ product.images[15] | img_url: '500x' }}">
+                        </a>
+                              <div>                              
+                              {% for product in collection.products %}
+                                                    {% unless product.handle contains "marketplace" %}
+                                <a class="linkProduct" href="{{ product.url }}/+camping_car_salon">
+                                  <img alt="Vinyl Way - {{ 'vw.index.slide_collections.carreau_alt' | t }} {{ product.title }} - Collection {{ collection.title }}" loading="lazy" src="{{ product.images[1] | img_url: '100x' }}">
+                                </a>
+                                                      {% endunless %}
+                                {% endfor %}                    
+                            </div>
+                       </div> 
+                        <a href="{{ localUrl }}/collections/camping-car/#{{ collection.handle }}" class="slideCollectionsBtn">{{ 'vw.index.slide_collections.btn_voir' | t }}</a>
+                    </li>
+                    
+                  {% endif %}
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+        </div>
+    </section>
+
+  <section class="SlideProducts" style="display:none !important;">
+        <div id="splideProducts" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                  <li></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+  
+  {% render 'reviews' %}
+  
+    <section class="Quality">
+        <div>
+            <h2><span>{{ 'vw.index.quality.title.text1' | t }} <img alt="{{ 'vw.index.quality.title.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/madeinfrance.svg?v=1666779214">
+                </span>
+                <b>{{ 'vw.index.quality.title.text2' | t }}</b></span>
+            </h2>
+            <p>{{ 'vw.index.quality.paragraph1' | t }}</p>
+          <ul class="listTexts">
+            <li>{{ 'vw.index.quality.list.li1' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li2' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li3' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li4' | t }}</li>
+          </ul>
+          <p>{{ 'vw.index.quality.paragraph2' | t }}</p>
+        </div>
+        <div>
+
+            <div class="bgDiag">
+                <div>
+                </div>
+            </div>
+
+            <ul>
+                <li>{{ 'vw.index.quality.couches.li1' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li2' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li3' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li4' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li5' | t }}</li>
+            </ul>
+            <div id=" couches2" class="couches">
+                <svg class="svg-couches couchesthumbslide" version="1.1" id="Calque_1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 483 420" xml:space="preserve">
+                    <g>
+                        <polygon class="st0" points="258,373 22,327 242,221 480,267 " />
+                    </g>
+                    <g>
+                        <polygon class="st1" points="258,313 22,267 22,264 258,310 " />
+                    </g>
+                    <g>
+                        <polygon class="st2" points="258,313 258,310 480,204 480,207 " />
+                    </g>
+                    <g>
+                        <polygon class="st3" points="258,310 22,264 242,158 480,204 " />
+                    </g>
+                    <g>
+                        <polygon class="st6" points="258,250 22,203 22,193 258,239 	" />
+                    </g>
+                    <g>
+                        <polygon class="st5" points="258,250 258,239 480,133 480,143 " />
+                    </g>
+                    <g>
+                        <polygon class="st4" points="258,239 22,193 242,87 480,133 	" />
+                    </g>
+                    <g class="st7">
+                        <polygon class="st8" points="258,164 22,118 242,12 480,58 	" />
+                    </g>
+                </svg>
+
+                <div class="img-svg">
+                    <img alt="carreau adhésif Viynl Way" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <div>
+            <img alt="logo Castorama" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/Castorama_Logo.png?v=1667830799">
+            <img alt="logo Salon Maison et Objet" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/MaisonObjet-1line-logotype_black.png?v=1667831417">
+            <img alt="logo Messe FrankFurt - Salon Ambiente" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/ambiente-datum-2020.png?v=1667830799">
+            <img alt="logo MIF EXPO - Salon du Made In France" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/mif-2.png?v=1667831417">
+            <img alt="logo Marie Claire Maison" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/logo.png?v=1635941585">
+            <img alt="logo Le Journal des Femmes" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/logo-jdf.png?v=1635941585">
+        </div>
+    </section>
+
+    <section class="Install notranslate" id="{{ 'vw.url.installation' | t }}">
+        <div>
+            <div>
+                <div>
+                <video id="videoInstall" poster="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/poster-site-web-comment-poser-ses-carreaux-adhesifs-vinyl-way.jpg?v=1670489425" muted="" loop="" playsinline="" id="videointro"
+                    alt="{{ 'vw.index.install.video_alt' | t }}">
+                    <source src="https://cdn.shopify.com/videos/c/o/v/175cfeafb8c34a6893392ecf568d9285.mp4" type="video/mp4">
+                 {{ 'vw.index.presentation.video_error' | t }}
+                </video>
+                </div>
+                <div class="bgDiag"></div>
+            </div>
+            <div>
+                <h2>
+                    {{ 'vw.index.install.title.text1' | t }} <small>{{ 'vw.index.install.title.text2' | t }}</small>
+                </h2>
+                <div class="listInstall">
+                    <div>
+                        <span>01</span>
+                        <span>{{ 'vw.index.install.list.li1.title' | t }}</span>
+                    </div>
+                    <p>{{ 'vw.index.install.list.li1.text' | t }}</p>
+                <div>
+                    <span>02</span>
+                    <span>{{ 'vw.index.install.list.li2.title' | t }}</span>
+                </div>
+                <p style="margin:0;">{{ 'vw.index.install.list.li2.text1' | t }}.</p>
+                <p>{{ 'vw.index.install.list.li2.text2' | t }}.</p>
+                <div>
+                <span>03</span>
+                <span>{{ 'vw.index.install.list.li3.title' | t }}</span>
+            </div>
+            <p>{{ 'vw.index.install.list.li3.text' | t }}</p>
+        </div>
+        <span class="btnInstall"><svg id="btnInstall" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+                <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                </path>
+            </svg></span>
+        </div>
+        </div>
+    </section>
+    <section class="SlideRealisations" id="{{ 'vw.url.realisations' | t }}">
+        <h2>
+            <b>{{ 'vw.index.realisations.title_text1' | t }}</b>
+            <span>{{ 'vw.index.realisations.title_text2' | t }}</span>
+        </h2>
+        <div id="splideRealisations" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client2.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client3.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client4.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client5.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client6.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client7.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client8.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client9.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client10.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client11.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client12.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client13.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/client1.jpg">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    </div>
+
+    
+{{ 'parallax-js.js' | asset_url | script_tag }}

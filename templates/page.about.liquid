@@ -1,0 +1,103 @@
+{{ 'index-page.css' | asset_url | stylesheet_tag }}
+{{ 'index-page.js' | asset_url | script_tag }}
+{{ 'about-page.css' | asset_url | stylesheet_tag }}
+
+{% if request.locale.iso_code contains 'fr' %}
+  {% assign localUrl = '' %}
+{% else %}
+  {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+{% endif %}
+
+<div class="template-index template-about">
+  <section class="Presentation">
+    <video
+      poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      autoplay=""
+      muted=""
+      loop=""
+      playsinline=""
+      alt=""
+    >
+      <source type="video/mp4" src="https://cdn.shopify.com/videos/c/o/v/c7a183b2bdcd4dbf91f7a11a4cda7421.mp4">
+
+      {{ 'vw.index.presentation.video_error' | t }}
+    </video>
+
+    <div class="titleH1">
+      <h1>
+        <span>Vinyl Way</span>
+        <small>à propos</small>
+      </h1>
+    </div>
+  </section>
+
+  <section class="Transform transformRevert">
+    <div
+      class="bgImg"
+      role="img"
+      alt=""
+    >
+      <video
+        poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        autoplay=""
+        muted=""
+        loop=""
+        playsinline=""
+        alt="{{ 'vw.index.presentation.video_alt' | t }}"
+      >
+        <source type="video/mp4" src="https://cdn.shopify.com/videos/c/o/v/7a07e4e9066540a9a0266d66bf1ab7f6.mp4">
+
+        {{ 'vw.index.presentation.video_error' | t }}
+      </video>
+    </div>
+
+    <div>
+      <h2>
+        <span>{{ 'vw.index.transform.title_text1' | t }}</span> <span>{{ 'vw.index.transform.title_text2' | t }}</span>
+      </h2>
+      <p>{{ 'vw.index.transform.paragraph_text1' | t }}</p>
+      <p>{{ 'vw.index.transform.paragraph_text2' | t }}</p>
+      <a class="btn btn-2" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/">
+        {{- 'vw.index.transform.btn_collections' | t -}}
+      </a>
+      <a class="btn btn-3" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-couleurs' | t }}/">
+        {{- 'vw.index.transform.btn_carreaux' | t -}}
+      </a>
+    </div>
+  </section>
+
+  <section class="Transform">
+    <div
+      class="bgImg"
+      role="img"
+      alt=""
+    >
+      <video
+        poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        autoplay=""
+        muted=""
+        loop=""
+        playsinline=""
+        alt="{{ 'vw.index.presentation.video_alt' | t }}"
+      >
+        <source type="video/mp4" src="https://cdn.shopify.com/videos/c/o/v/f74ffd84a1334a5f8e3cdb4378102bcb.mp4">
+
+        {{ 'vw.index.presentation.video_error' | t }}
+      </video>
+    </div>
+
+    <div>
+      <h2>
+        <span>{{ 'vw.index.transform.title_text1' | t }}</span> <span>{{ 'vw.index.transform.title_text2' | t }}</span>
+      </h2>
+      <p>{{ 'vw.index.transform.paragraph_text1' | t }}</p>
+      <p>{{ 'vw.index.transform.paragraph_text2' | t }}</p>
+      <a class="btn btn-2" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs' | t }}/">
+        {{- 'vw.index.transform.btn_collections' | t -}}
+      </a>
+      <a class="btn btn-3" href="{{ localUrl }}/collections/{{ 'vw.url.carreaux-adhesifs-couleurs' | t }}/">
+        {{- 'vw.index.transform.btn_carreaux' | t -}}
+      </a>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,190 @@
+{{ 'index-page.css' | asset_url | stylesheet_tag }}
+{{ 'index-page.js' | asset_url | script_tag }}
+
+{% if request.locale.iso_code contains "fr" %}
+      {% assign localUrl = "" %}
+    {% else %}
+      {% capture localUrl %}/{{ request.locale.iso_code }}{% endcapture %}
+    {% endif %}
+
+<div class="template-index">
+  
+   <section class="Transform transformRevert">
+
+      <div class="bgImg" role="img" alt="{{ 'vw.index.transform.bg_alt' | t }}"
+        style="background-image: url('https://dada-art.fr/cdn/shop/files/MES_3_copyi.jpg?width=1200');"></div>
+      
+      <div>
+            <h2><span>DADA ART</span></h2>
+            <p>
+            Découvrez notre nouvelle marque de décoration
+                  <br>100 % imaginée et fabriquée en France.</p>
+            <p>Des créations originales et toujours avec la qualité qui a fait le succès de Vinyl Way.</p>
+              <p>🎁 Profitez de -15 % avec le code promo <strong>VINYLWAY15</strong></p>
+            <a class="btn btn-2" href="https://dada-art.fr/discount/VINYLWAY15">Découvrir la marque</a>
+        </div>
+      
+    </section>
+    <section class="SlideRealisations" id="dada-art"
+      >
+        <h2 style="margin-top:0 !important;margin-bottom:0 !important;">
+            <b>Nos produits</b>
+        </h2>
+        <div id="splideDada2" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                   <li class="splide__slide">
+  <a href="https://dada-art.fr/collections/tapis-vinyle" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/032879CC_1_ba00d954-93b3-4e2a-b4ae-5f539fcdf872.jpg">
+    <span>Tapis vinyle</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/set-de-table" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/048808VD_1_9521ea73-011f-4709-89e0-f70260d02c9d.jpg">
+    <span>Set de table</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/credence-aluminium" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/id_23617_slide_1_mes_mix1_display_neutre.jpg">
+    <span>Crédence Aluminium</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/papier-peint" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/id_PPA90344-95x140_slide_1_mes_adulte1.jpg">
+    <span>Papier peint</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/toile-imprimee" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/id_57432_type_toile_cadre_naturel_slide_1_format_60x90_e406985e-9f56-4ff7-9663-73ea7d70978f.webp">
+    <span>Toile encadrée</span>
+  </a>
+</li>
+<li class="splide__slide">
+  <a href="https://dada-art.fr/collections/affiche" target="_blank">
+    <img alt="{{ 'vw.index.realisations.img_alt' | t }}" loading="lazy" src="https://dada-art.fr/cdn/shop/files/id_23278_type_affiche_cadre_sans_slide_1_format_40x50_817da48e-d85a-4116-8538-d61a990a33d2.webp">
+    <span>Affiche</span>
+  </a>
+</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <style>
+      
+      #splideDada2 li.splide__slide {
+        position: relative;
+      }
+      #splideDada2 li.splide__slide span {
+        position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999999;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+    text-shadow: 0px 0px 25px rgba(0, 0, 0, 1);
+      }
+    </style>
+  <script>  
+  // SlideDada2
+  let splideDada2 = new Splide("#splideDada2", {
+    type: "loop",
+    perPage: 5,
+    breakpoints: {
+      1025: { perPage: 2 },
+    },
+    focus: "center",
+    autoplay: true,
+    interval: 8000,
+    updateOnMove: true,
+    pagination: false,
+    padding: "0",
+  }).mount();
+  </script>
+
+    <section class="Quality" style="display:none !important;">
+        <div>
+            <h2><span>{{ 'vw.index.quality.title.text1' | t }} <img alt="{{ 'vw.index.quality.title.img_alt' | t }}" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/madeinfrance.svg?v=1666779214">
+                </span>
+                <b>{{ 'vw.index.quality.title.text2' | t }}</b></span>
+            </h2>
+            <p>{{ 'vw.index.quality.paragraph1' | t }}</p>
+          <ul class="listTexts">
+            <li>{{ 'vw.index.quality.list.li1' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li2' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li3' | t }}</li>
+            <li>{{ 'vw.index.quality.list.li4' | t }}</li>
+          </ul>
+          <p>{{ 'vw.index.quality.paragraph2' | t }}</p>
+        </div>
+        <div>
+
+            <div class="bgDiag">
+                <div>
+                </div>
+            </div>
+
+            <ul>
+                <li>{{ 'vw.index.quality.couches.li1' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li2' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li3' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li4' | t }}</li>
+                <li>{{ 'vw.index.quality.couches.li5' | t }}</li>
+            </ul>
+            <div id=" couches2" class="couches">
+                <svg class="svg-couches couchesthumbslide" version="1.1" id="Calque_1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 483 420" xml:space="preserve">
+                    <g>
+                        <polygon class="st0" points="258,373 22,327 242,221 480,267 " />
+                    </g>
+                    <g>
+                        <polygon class="st1" points="258,313 22,267 22,264 258,310 " />
+                    </g>
+                    <g>
+                        <polygon class="st2" points="258,313 258,310 480,204 480,207 " />
+                    </g>
+                    <g>
+                        <polygon class="st3" points="258,310 22,264 242,158 480,204 " />
+                    </g>
+                    <g>
+                        <polygon class="st6" points="258,250 22,203 22,193 258,239 	" />
+                    </g>
+                    <g>
+                        <polygon class="st5" points="258,250 258,239 480,133 480,143 " />
+                    </g>
+                    <g>
+                        <polygon class="st4" points="258,239 22,193 242,87 480,133 	" />
+                    </g>
+                    <g class="st7">
+                        <polygon class="st8" points="258,164 22,118 242,12 480,58 	" />
+                    </g>
+                </svg>
+
+                <div class="img-svg">
+                    <img alt="carreau adhésif Viynl Way" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <div>
+            <img alt="logo Castorama" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/Castorama_Logo.png?v=1667830799">
+            <img alt="logo Salon Maison et Objet" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/MaisonObjet-1line-logotype_black.png?v=1667831417">
+            <img alt="logo Messe FrankFurt - Salon Ambiente" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/ambiente-datum-2020.png?v=1667830799">
+            <img alt="logo MIF EXPO - Salon du Made In France" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/mif-2.png?v=1667831417">
+            <img alt="logo Marie Claire Maison" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/logo.png?v=1635941585">
+            <img alt="logo Le Journal des Femmes" loading="lazy" src="https://cdn.shopify.com/s/files/1/0567/1220/0371/files/logo-jdf.png?v=1635941585">
+        </div>
+    </section>
+
+
+    </div>
+
+    
+{{ 'parallax-js.js' | asset_url | script_tag }}
